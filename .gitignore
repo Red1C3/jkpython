@@ -32,8 +32,9 @@ bin/
 *.c
 
 ### Executables
-*.out
-pythonlexer
+lexer/*.out
+lexer/*.o
+lexer/pythonlexer
 
 ### Misc.
 tokens.txt
