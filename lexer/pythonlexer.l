@@ -5,11 +5,11 @@
     int indentCounter=0;
 %}
 
-keyword  "nonlocal"|"continue"|"None"|"global"|"in"|"return"|"False"|"True"|"and"|"or"|"not"|"def"|"if"|"else"|"elif"|"for"|"while"|"break"|"pass"|"lambda"
-            
+keyword  "import"|"nonlocal"|"continue"|"None"|"global"|"in"|"return"|"False"|"True"|"and"|"or"|"not"|"def"|"if"|"else"|"elif"|"for"|"while"|"break"|"pass"|"lambda"
+
 identifier [_a-zA-Z][_a-zA-Z0-9]*
 
-dent \n[\t]*
+dent [\n]+[\t]*
 
 comment [#][a-zA-Z0-9_]*
 
@@ -31,16 +31,23 @@ stringdouble \"{stringitemdouble}*\"
 
 
 %%
+
+{keyword} {printf("keyword =%s\n",yytext);}
+
 {dent} {
-    int len=strlen(yytext)-1;
+    int len=0;
+    for(int i=0;i<strlen(yytext);++i){
+        if(yytext[i]=='\t') len++;
+    }
+
     if (len<indentCounter){
         int tokensCount=indentCounter-len;
         indentCounter=len;
-        printf("An dedent was detected with len %d",strlen(yytext)-1);
+        printf("An dedent was detected with len %d",len);
 
     }else if (len==indentCounter+1){
         indentCounter=len;
-        printf("An indent was detected with len %d",strlen(yytext)-1);
+        printf("An indent was detected with len %d",len);
       
     }else if (len!=indentCounter){
       
@@ -48,9 +55,8 @@ stringdouble \"{stringitemdouble}*\"
     printf("indent counter = %d",indentCounter);
     }
 
-{keyword} {printf("keyword =%s\n",yytext);}
 \n\r|\r\n|\n|\r {
-                   
+                 printf("WS\n");  
                 }
 
 {comment} {
@@ -112,10 +118,14 @@ stringdouble \"{stringitemdouble}*\"
 "//"       { printf(" Floor Division token: %s\n",yytext);}
 "//="      { printf(" Floor Division Assignment token: %s\n",yytext);}
 
+"\\n"      {printf(" Backslash Logical Line token\n");}
+
 {stringsingle} {printf(" Single Quotation String = %s\n",yytext);}
 {stringdouble} {printf(" Double Quotation String = %s\n",yytext);}
 
 {identifier} {printf(" Identifier token=%s\n",yytext);} 
+
+. {printf("unknown token = %s\n",yytext);}
 
 %%
 int yywrap(){}
