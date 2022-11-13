@@ -73,8 +73,8 @@ dent [\n]+[\t]*
 
 comment #[^\n]*
 
-number [1-9]([0-9]*|[0-9]*\.[0-9+])
-/* number ([1-9][0-9_]*)?([0-9]\.?|\.[0-9]+) */
+ //number [1-9]([0-9]*|[0-9]*\.[0-9+])
+number ([1-9][0-9_]*)?([0-9]\.?|\.[0-9]+)
 
 escape \\.
 
@@ -208,6 +208,7 @@ int main(int argc,const char** argv){
 }
 
 void handleToken(const char* type,const char* literal){
+    printf("Token Type = %s, Token Value = %s\n",type,literal);
     char buffer[128];
     sprintf(buffer,"Token Type = %s, Token Value = %s\n",type,literal);
     fputs(buffer,outputFile);  
