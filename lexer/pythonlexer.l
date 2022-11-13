@@ -71,10 +71,29 @@ identifier [_a-zA-Z][_a-zA-Z0-9]*
 
 dent [\n]+[\t]*
 
-comment #[^\n]*
+comment #.*
 
- //number [1-9]([0-9]*|[0-9]*\.[0-9+])
-number ([1-9][0-9_]*)?([0-9]\.?|\.[0-9]+)
+ /*
+    100.014e+1
+    <->|<-><->
+     | | |  |
+     ⋱-|-|--|-------- Whole Part:  100
+       | |  |
+       ⋱-|--|----- Decimal Point:  .
+         |  |
+         ⋱--|----- Fraction Part:  014
+            |
+            ⋱-- Exponential Part:  e+1
+ */
+
+number_whole ([1-9](_?[0-9])*_?)?[0-9]
+number_fraction [0-9](_?[0-9])*
+number_exponent e[+-]?[0-9](_?[0-9])*
+
+number_full {number_whole}(\.{number_fraction}?{number_exponent}?)?
+number_fraction_only \.{number_fraction}{number_exponent}?
+
+number {number_full}|{number_fraction_only}
 
 escape \\.
 
