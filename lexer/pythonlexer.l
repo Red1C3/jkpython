@@ -23,16 +23,16 @@
     const char* MULTIPLICATION="*";
     const char* DIVISION="/";
     const char* LESS_THAN="<";
-    const char* LESS_THAN_EQUAL="<=";
+    const char* LESS_THAN_OR_EQUAL="<=";
     const char* GREATER_THAN=">";
-    const char* GREATER_THAN_EQUAL=">=";
+    const char* GREATER_THAN_OR_EQUAL=">=";
     const char* ASSIGNMENT="=";
     const char* DOT=".";
     const char* REMAINDER="%";
     const char* TICK="`";
     const char* EQUAL="==";
     const char* NOT_EQUAL="!=";
-    const char* GREATER_OR_LESS="<>";
+    const char* NOT_EQUAL_2="<>";
     const char* BITWISE_NOT="~";
     const char* BITWISE_XOR="^";
     const char* BITWISE_SHIFT_LEFT="<<";
@@ -150,9 +150,9 @@ stringdouble \"{stringitemdouble}*\"
 
 "=="       { handleToken(EQUAL,yytext);}
 "!="       { handleToken(NOT_EQUAL,yytext);}
-"<="       { handleToken(LESS_THAN_EQUAL,yytext);}
-">="       { handleToken(GREATER_THAN_EQUAL,yytext);} 
-"<>"       { handleToken(GREATER_OR_LESS,yytext);} 
+"<="       { handleToken(LESS_THAN_OR_EQUAL,yytext);}
+">="       { handleToken(GREATER_THAN_OR_EQUAL,yytext);} 
+"<>"       { handleToken(NOT_EQUAL_2,yytext);} 
 "~"        { handleToken(BITWISE_NOT,yytext);} 
 
 "^"        { handleToken(BITWISE_XOR,yytext);}
