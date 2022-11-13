@@ -34,3 +34,6 @@ bin/
 ### Executables
 *.out
 pythonlexer
+
+### Misc.
+tokens.txt
