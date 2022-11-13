@@ -208,8 +208,8 @@ int main(int argc,const char** argv){
 }
 
 void handleToken(const char* type,const char* literal){
-    printf("Token Type = %s, Token Value = %s\n",type,literal);
+    printf("%s, %s\n",type,literal);
     char buffer[128];
-    sprintf(buffer,"Token Type = %s, Token Value = %s\n",type,literal);
+    sprintf(buffer,"%s, %s\n",type,literal);
     fputs(buffer,outputFile);  
 }
