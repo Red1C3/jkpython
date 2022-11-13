@@ -130,7 +130,12 @@ stringdouble \"{stringitemdouble}*\"
 %%
 int yywrap(){}
 
-int main(){
-    yyin=stdin;
+int main(int argc,const char** argv){
+    if(argc==1){
+        yyin=stdin;
+    }else{
+        FILE* inputFile=fopen(argv[1],"r");
+        yyin=inputFile;
+    }
     yylex(); 
 }
