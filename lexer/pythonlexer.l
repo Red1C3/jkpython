@@ -11,12 +11,10 @@ identifier [_a-zA-Z][_a-zA-Z0-9]*
 
 dent [\n]+[\t]*
 
-comment [#][a-zA-Z0-9_]*
-
-
+comment #[^\n]*
 
 number [1-9]([0-9]*|[0-9]*\.[0-9+])
-
+// number ([1-9][0-9_]*)?([0-9]\.?|\.[0-9]+)
 
 escape \\.
 
@@ -132,7 +130,7 @@ int yywrap(){}
 
 int main(int argc,const char** argv){
     if(argc==1){
-        yyin=stdin;
+    yyin=stdin;
     }else{
         FILE* inputFile=fopen(argv[1],"r");
         yyin=inputFile;
