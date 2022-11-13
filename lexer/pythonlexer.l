@@ -111,18 +111,20 @@ stringdouble \"{stringitemdouble}*\"
     }else if (len!=indentCounter){
     	handleToken(ILLEGAL,yytext);
         //REPORT AN ERROR AND EXIT?
+    }else{
+        handleToken(NEWLINE,"");
     }
 }
 
 \n\r|\r\n|\n|\r {
-                 handleToken(NEWLINE,"newline");  
+                 handleToken(NEWLINE,"");  
                 }
 
 {comment} {
             handleToken(COMMENT,yytext);
          }
 
-{number} {handleToken("NUMBER",yytext);}
+{number} {handleToken(NUMBER,yytext);}
 
 "(" {handleToken(LPAREN,yytext);} 
 ")" {handleToken(RPAREN,yytext);} 
@@ -198,7 +200,7 @@ int yywrap(){
 
 int main(int argc,const char** argv){
     if(argc==1){
-    yyin=stdin;
+        yyin=stdin;
     }else{
         inputFile=fopen(argv[1],"r");
         yyin=inputFile;
