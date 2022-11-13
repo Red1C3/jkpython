@@ -2,7 +2,67 @@
     #include <stdio.h>
     #include<ctype.h>
     #include<string.h>
+    
+    const char* KEYWORD="keyword";
+    const char* INDENT="indent";
+    const char* DEDENT="dedent";
+    const char* NEWLINE="newline";
+    const char* NUMBER="number";
+    const char* COMMENT="comment";
+    const char* LPAREN="(";
+    const char* RPAREN=")";
+    const char* LBRACE="{";
+    const char* RBRACE="}";
+    const char* LBRACKET="[";
+    const char* RBRACKET="]";
+    const char* COLON=":";
+    const char* SEMICOLON=";";
+    const char* COMMA=",";
+    const char* PLUS="+";
+    const char* MINUS="-";
+    const char* MULTIPLICATION="*";
+    const char* DIVISION="/";
+    const char* LESS_THAN="<";
+    const char* LESS_THAN_EQUAL="<=";
+    const char* GREATER_THAN=">";
+    const char* GREATER_THAN_EQUAL=">=";
+    const char* ASSIGNMENT="=";
+    const char* DOT=".";
+    const char* REMAINDER="%";
+    const char* TICK="`";
+    const char* EQUAL="==";
+    const char* NOT_EQUAL="!=";
+    const char* GREATER_OR_LESS="<>";
+    const char* BITWISE_NOT="~";
+    const char* BITWISE_XOR="^";
+    const char* BITWISE_SHIFT_LEFT="<<";
+    const char* BITWISE_SHIFT_RIGHT=">>";
+    const char* POWER="**";
+    const char* ADDITION_ASSIGNMENT="+=";
+    const char* SUBSTRACTION_ASSIGNMENT="-=";
+    const char* MULTIPLICATION_ASSIGNMENT="*=";
+    const char* DIVISION_ASSIGNMENT="/=";
+    const char* REMAINDER_ASSIGNMENT="%=";
+    const char* BITWISE_AND_ASSIGNMENT="&=";
+    const char* POWER_ASSIGNMENT="**=";
+    const char* BITWISE_AND="&";
+    const char* BITWISE_OR="|";
+    const char* BITWISE_OR_ASSIGNMENT="|=";
+    const char* BITWISE_XOR_ASSIGNMENT="^=";
+    const char* BITWISE_SHIFT_LEFT_ASSIGNMENT="<<=";
+    const char* BITWISE_SHIFT_RIGHT_ASSIGNMENT=">>=";
+    const char* FLOOR_DIVISION="//";
+    const char* FLOOR_DIVISION_ASSIGNMENT="//=";
+    const char* BACKSLASH_LOGICAL_LINE="\\n";
+    const char* STRING="string";
+    const char* IDENTIFIER="identifier";
+    const char* WHITE_SPACE="whitespace";
+    const char* ILLEGAL="illegal";
+    
+    
     int indentCounter=0;
+    FILE* inputFile=NULL;
+    void handleToken(const char* type, const char* literal);
 %}
 
 keyword  "import"|"nonlocal"|"continue"|"None"|"global"|"in"|"return"|"False"|"True"|"and"|"or"|"not"|"def"|"if"|"else"|"elif"|"for"|"while"|"break"|"pass"|"lambda"
@@ -30,7 +90,7 @@ stringdouble \"{stringitemdouble}*\"
 
 %%
 
-{keyword} {printf("keyword =%s\n",yytext);}
+{keyword} {handleToken(KEYWORD,yytext);}
 
 {dent} {
     int len=0;
@@ -41,99 +101,109 @@ stringdouble \"{stringitemdouble}*\"
     if (len<indentCounter){
         int tokensCount=indentCounter-len;
         indentCounter=len;
-        printf("An dedent was detected with len %d",len);
+        for(int i=0;i<tokensCount;++i)
+        	handleToken(DEDENT,"");
 
     }else if (len==indentCounter+1){
         indentCounter=len;
-        printf("An indent was detected with len %d",len);
+        handleToken(INDENT,"");
       
     }else if (len!=indentCounter){
-      
+    	handleToken(ILLEGAL,yytext);
+        //REPORT AN ERROR AND EXIT?
     }
-    printf("indent counter = %d",indentCounter);
-    }
+}
 
 \n\r|\r\n|\n|\r {
-                 printf("WS\n");  
+                 handleToken(NEWLINE,"newline");  
                 }
 
 {comment} {
-            printf("comment= %s\n",yytext);
+            handleToken(COMMENT,yytext);
          }
 
-{number} {printf(" Number token = %s\n",yytext);}
+{number} {handleToken("NUMBER",yytext);}
 
-"(" {printf("token = %s\n",yytext);} 
-")" {printf("token = %s\n",yytext);} 
-"{" {printf("token = %s\n",yytext);}
-"}" {printf("token = %s\n",yytext);}
-"[" {printf("token = %s\n",yytext);}
-"]" {printf("token = %s\n",yytext);}
+"(" {handleToken(LPAREN,yytext);} 
+")" {handleToken(RPAREN,yytext);} 
+"{" {handleToken(LBRACE,yytext);}
+"}" {handleToken(RBRACE,yytext);}
+"[" {handleToken(LBRACKET,yytext);}
+"]" {handleToken(RBRACKET,yytext);}
          
-":"        { printf(" Column token: %s\n",yytext); }
-","        { printf(" Comma token:  %s\n",yytext);}
-";"        { printf(" SemiColon token: %s\n",yytext);}
+":"        { handleToken(COLON,yytext); }
+","        { handleToken(COMMA,yytext);}
+";"        { handleToken(SEMICOLON,yytext);}
 
-"+"        { printf(" token: %s\n",yytext);}
-"-"        { printf(" token: %s\n",yytext);}
-"*"        { printf(" token: %s\n",yytext);}
-"/"        { printf(" token: %s\n",yytext);}
+"+"        { handleToken(PLUS,yytext);}
+"-"        { handleToken(MINUS,yytext);}
+"*"        { handleToken(MULTIPLICATION,yytext);}
+"/"        { handleToken(DIVISION,yytext);}
 
-"<"        { printf(" Less than token: %s\n",yytext);}
-">"        { printf(" Greater than token: %s\n",yytext);}
-"="        { printf(" Assignment token: %s\n",yytext);}
+"<"        { handleToken(LESS_THAN,yytext);}
+">"        { handleToken(GREATER_THAN,yytext);}
+"="        { handleToken(ASSIGNMENT,yytext);}
 
-"."        { printf(" Dot token: %s\n",yytext);}
-"%"        { printf(" Percent token: %s\n",yytext);}
-"`"        { printf(" Tick token: %s\n",yytext);}
+"."        { handleToken(DOT,yytext);}
+"%"        { handleToken(REMAINDER,yytext);}
+"`"        { handleToken(TICK,yytext);}
 
-"=="       { printf(" Equal token: %s\n",yytext);}
-"!="       { printf(" Not Equal token: %s\n",yytext);}
-"<="       { printf(" Less than or equal to token: %s\n",yytext);}
-">="       { printf(" Greater than or equal token: %s\n",yytext);} 
-"<>"       { printf(" Not equal token: %s\n",yytext);} 
-"~"        { printf(" Tilda token: %s\n",yytext);} 
+"=="       { handleToken(EQUAL,yytext);}
+"!="       { handleToken(NOT_EQUAL,yytext);}
+"<="       { handleToken(LESS_THAN_EQUAL,yytext);}
+">="       { handleToken(GREATER_THAN_EQUAL,yytext);} 
+"<>"       { handleToken(GREATER_OR_LESS,yytext);} 
+"~"        { handleToken(BITWISE_NOT,yytext);} 
 
-"^"        { printf(" Bitwise XORtoken: %s\n",yytext);}
-"<<"       { printf(" Bitwise Shift Left token: %s\n",yytext);}
-">>"       { printf(" Bitwise Shift Right token: %s\n",yytext);}
+"^"        { handleToken(BITWISE_XOR,yytext);}
+"<<"       { handleToken(BITWISE_SHIFT_LEFT,yytext);}
+">>"       { handleToken(BITWISE_SHIFT_RIGHT,yytext);}
 
-""       { printf(" Power token: %s\n",yytext);}
+"**"       { handleToken(POWER,yytext);}
 
-"+="       { printf(" Addition Assignment token: %s\n",yytext);} 
-"-="       { printf(" Subtraction Assignment token: %s\n",yytext);}
-"*="       { printf(" Multiplication Assignment token: %s\n",yytext);}
-"/="       { printf(" Division Assignment token: %s\n",yytext);}
-"%="       { printf(" Remainder Assignment token: %s\n",yytext);}
-"&="       { printf(" Bitwise AND Assignment token: %s\n",yytext);}
-"&"        { printf(" Bitwise AND token: %s\n",yytext);}
-"|"        { printf(" Bitwise OR token: %s\n",yytext);}
-"|="       { printf(" Bitwise OR Assignment token: %s\n",yytext);}
-"^="       { printf(" Bitwise XOR Assignment token: %s\n",yytext);}
-"<<="      { printf(" Bitwise Left Shift Assignment token: %s\n",yytext);}
-">>="      { printf(" Bitwise Right Shift Assignment token: %s\n",yytext);}
-"**="      { printf(" Power Assignment token: %s\n",yytext);}
-"//"       { printf(" Floor Division token: %s\n",yytext);}
-"//="      { printf(" Floor Division Assignment token: %s\n",yytext);}
+"+="       { handleToken(ADDITION_ASSIGNMENT,yytext);} 
+"-="       { handleToken(SUBSTRACTION_ASSIGNMENT,yytext);}
+"*="       { handleToken(MULTIPLICATION_ASSIGNMENT,yytext);}
+"/="       { handleToken(DIVISION_ASSIGNMENT,yytext);}
+"%="       { handleToken(REMAINDER_ASSIGNMENT,yytext);}
+"&="       { handleToken(BITWISE_AND_ASSIGNMENT,yytext);}
+"&"        { handleToken(BITWISE_AND,yytext);}
+"|"        { handleToken(BITWISE_OR,yytext);}
+"|="       { handleToken(BITWISE_OR_ASSIGNMENT,yytext);}
+"^="       { handleToken(BITWISE_XOR_ASSIGNMENT,yytext);}
+"<<="      { handleToken(BITWISE_SHIFT_LEFT_ASSIGNMENT,yytext);}
+">>="      { handleToken(BITWISE_SHIFT_RIGHT_ASSIGNMENT,yytext);}
+"**="      { handleToken(POWER_ASSIGNMENT,yytext);}
+"//"       { handleToken(FLOOR_DIVISION,yytext);}
+"//="      { handleToken(FLOOR_DIVISION_ASSIGNMENT,yytext);}
 
-"\\n"      {printf(" Backslash Logical Line token\n");}
+"\\n"      {handleToken(BACKSLASH_LOGICAL_LINE,yytext);}
 
-{stringsingle} {printf(" Single Quotation String = %s\n",yytext);}
-{stringdouble} {printf(" Double Quotation String = %s\n",yytext);}
+{stringsingle} {handleToken(STRING,yytext);}
+{stringdouble} {handleToken(STRING,yytext);}
 
-{identifier} {printf(" Identifier token=%s\n",yytext);} 
+{identifier} {handleToken(IDENTIFIER,yytext);} 
 
-. {printf("unknown token = %s\n",yytext);}
+" " {handleToken(WHITE_SPACE,yytext);}
+
+. {handleToken(ILLEGAL,yytext);}
 
 %%
-int yywrap(){}
+int yywrap(){
+	if(inputFile!=NULL)
+		fclose(inputFile);
+}
 
 int main(int argc,const char** argv){
     if(argc==1){
     yyin=stdin;
     }else{
-        FILE* inputFile=fopen(argv[1],"r");
+        inputFile=fopen(argv[1],"r");
         yyin=inputFile;
     }
     yylex(); 
+}
+
+void handleToken(const char* type,const char* literal){
+	printf("Token Type = %s, Token Value = %s\n",type,literal);
 }
