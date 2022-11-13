@@ -61,7 +61,7 @@
     
     
     int indentCounter=0;
-    FILE* inputFile=NULL;
+    FILE* inputFile=NULL, *outputFile=NULL;
     void handleToken(const char* type, const char* literal);
 %}
 
@@ -191,7 +191,9 @@ stringdouble \"{stringitemdouble}*\"
 %%
 int yywrap(){
 	if(inputFile!=NULL)
-		fclose(inputFile);
+	    fclose(inputFile);
+    fclose(outputFile);
+    exit(0);
 }
 
 int main(int argc,const char** argv){
@@ -201,9 +203,12 @@ int main(int argc,const char** argv){
         inputFile=fopen(argv[1],"r");
         yyin=inputFile;
     }
+    outputFile=fopen("./tokens.txt","w");
     yylex(); 
 }
 
 void handleToken(const char* type,const char* literal){
-	printf("Token Type = %s, Token Value = %s\n",type,literal);
+    char buffer[128];
+    sprintf(buffer,"Token Type = %s, Token Value = %s\n",type,literal);
+    fputs(buffer,outputFile);  
 }
