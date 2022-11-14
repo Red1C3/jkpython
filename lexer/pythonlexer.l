@@ -53,16 +53,18 @@
     const char* BITWISE_SHIFT_RIGHT_ASSIGNMENT=">>=";
     const char* FLOOR_DIVISION="//";
     const char* FLOOR_DIVISION_ASSIGNMENT="//=";
-    const char* BACKSLASH_LOGICAL_LINE="\\n";
+    const char* BACKSLASH_LOGICAL_LINE="bs_logical_line";
     const char* STRING="string";
     const char* IDENTIFIER="identifier";
     const char* WHITE_SPACE="whitespace";
     const char* ILLEGAL="illegal";
     
     const char* OUTPUT_FORMAT="%-15s%-20s%-5d%d\n";
+    const int TAB_WIDTH=4;
 
     int colnum=1;
     int linenum=1;
+    int bsLogicalLineSpace=1;
     
     int indentCounter=0;
     FILE* inputFile=NULL, *outputFile=NULL;
@@ -74,6 +76,8 @@ keyword  "import"|"nonlocal"|"continue"|"None"|"global"|"in"|"return"|"False"|"T
 identifier [_a-zA-Z][_a-zA-Z0-9]*
 
 newline \n|\r|\n\r|\r\n
+
+bslogicalline \\{newline}[\t]*
 
 dent {newline}+[\t]*
 
@@ -204,7 +208,14 @@ stringdouble \"{stringitemdouble}*\"
 "//"       { handleToken(FLOOR_DIVISION,yytext);}
 "//="      { handleToken(FLOOR_DIVISION_ASSIGNMENT,yytext);}
 
-"\\n"      {handleToken(BACKSLASH_LOGICAL_LINE,yytext);}
+{bslogicalline}     {
+                        int tabsCount=0;
+                        for(int i=0;i<strlen(yytext);++i){
+                            if (yytext[i]=='\t') tabsCount++;
+                        }
+                        bsLogicalLineSpace=tabsCount;
+                        handleToken(BACKSLASH_LOGICAL_LINE,"");
+                     }
 
 {stringsingle} {handleToken(STRING,yytext);}
 {stringdouble} {handleToken(STRING,yytext);}
@@ -237,7 +248,7 @@ int main(int argc,const char** argv){
 void handleToken(const char* type,const char* literal){
     if(!strcmp(type,NEWLINE)) {
         colnum=1;
-        colnum+=(indentCounter*4);
+        colnum+=(indentCounter*TAB_WIDTH);
         linenum++;
     }
 
@@ -251,5 +262,11 @@ void handleToken(const char* type,const char* literal){
     if(!strcmp(type,INDENT) || !strcmp(type,DEDENT)){ // INDENT/DEDENT changes are calculated after emitting
         colnum=1;                                     // NEWLINE token
         colnum+=(indentCounter*4);
+    }
+
+    if(!strcmp(type,BACKSLASH_LOGICAL_LINE)){
+        colnum=1;
+        colnum+=(bsLogicalLineSpace*TAB_WIDTH);
+        linenum++;
     }
 }
