@@ -3,12 +3,12 @@
     #include<ctype.h>
     #include<string.h>
 
-    const char* KEYWORD="keyword";
-    const char* INDENT="indent";
-    const char* DEDENT="dedent";
-    const char* NEWLINE="newline";
-    const char* NUMBER="number";
-    const char* COMMENT="comment";
+    const char* KEYWORD="KEYWORD";
+    const char* INDENT="INDENT";
+    const char* DEDENT="DEDENT";
+    const char* NEWLINE="NEWLINE";
+    const char* NUMBER="NUMBER";
+    const char* COMMENT="COMMENT";
     const char* LPAREN="(";
     const char* RPAREN=")";
     const char* LBRACE="{";
@@ -53,11 +53,32 @@
     const char* BITWISE_SHIFT_RIGHT_ASSIGNMENT=">>=";
     const char* FLOOR_DIVISION="//";
     const char* FLOOR_DIVISION_ASSIGNMENT="//=";
-    const char* BACKSLASH_LOGICAL_LINE="bs_logical_line";
-    const char* STRING="string";
-    const char* IDENTIFIER="identifier";
-    const char* WHITE_SPACE="whitespace";
-    const char* ILLEGAL="illegal";
+    const char* BACKSLASH_LOGICAL_LINE="BS_LOGICAL_LINE";
+    const char* STRING="STRING";
+    const char* IDENTIFIER="IDENTIFIER";
+    const char* WHITE_SPACE="WHITESPACE";
+    const char* ILLEGAL="ILLEGAL";
+    const char* IMPORT="IMPORT";
+    const char* NONLOCAL="NONLOCAL";
+    const char* CONTINUE="CONTINUE";
+    const char* NONE="NONE";
+    const char* GLOBAL="GLOBAL";
+    const char* IN="IN";
+    const char* RETURN="RETURN";
+    const char* FALSE_TOK="FALSE";
+    const char* TRUE_TOK="TRUE";
+    const char* AND="AND";
+    const char* OR="OR";
+    const char* NOT="NOT";
+    const char* DEF="DEF";
+    const char* IF="IF";
+    const char* ELSE="ELSE";
+    const char* ELIF="ELIF";
+    const char* FOR="FOR";
+    const char* WHILE="WHILE";
+    const char* BREAK="BREAK";
+    const char* PASS="PASS";
+    const char* LAMBDA="LAMBDA";
     
     const char* OUTPUT_FORMAT="%-15s%-20s%-5d%d\n";
     const int TAB_WIDTH=4;
@@ -70,8 +91,6 @@
     FILE* inputFile=NULL, *outputFile=NULL;
     void handleToken(const char* type, const char* literal);
 %}
-
-keyword  "import"|"nonlocal"|"continue"|"None"|"global"|"in"|"return"|"False"|"True"|"and"|"or"|"not"|"def"|"if"|"else"|"elif"|"for"|"while"|"break"|"pass"|"lambda"
 
 identifier [_a-zA-Z][_a-zA-Z0-9]*
 
@@ -119,7 +138,27 @@ stringdouble \"{stringitemdouble}*\"
 
 %%
 
-{keyword} {handleToken(KEYWORD,yytext);}
+"import" handleToken(IMPORT,yytext);
+"nonlocal" handleToken(NONLOCAL,yytext);
+"continue" handleToken(CONTINUE,yytext);
+"None" handleToken(NONE,yytext);
+"global" handleToken(GLOBAL,yytext);
+"in" handleToken(IN,yytext);
+"return" handleToken(RETURN,yytext);
+"False" handleToken(FALSE_TOK,yytext);
+"True" handleToken(TRUE_TOK,yytext);
+"and" handleToken(AND,yytext);
+"or" handleToken(OR,yytext);
+"not" handleToken(NOT,yytext);
+"def" handleToken(DEF,yytext);
+"if" handleToken(IF,yytext);
+"else" handleToken(ELSE,yytext);
+"elif" handleToken(ELIF,yytext);
+"for" handleToken(FOR,yytext);
+"while" handleToken(WHILE,yytext);
+"break" handleToken(BREAK,yytext);
+"pass" handleToken(PASS,yytext);
+"lambda" handleToken(LAMBDA,yytext);
 
 {dent} {
     int len=0,nNewlineCount=0,rNewlineCount=0;
