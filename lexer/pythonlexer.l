@@ -126,14 +126,18 @@ number {number_full}|{number_fraction_only}
 
 escape \\.
 
+longstringchar [^\\]
 stringcharsingle [^\\\n\r\']
 stringchardouble [^\\\n\r\"]
 
+longstringitem {longstringchar}|{escape}
 stringitemsingle {stringcharsingle}|{escape}
 stringitemdouble {stringchardouble}|{escape}
 
 stringsingle \'{stringitemsingle}*\'
 stringdouble \"{stringitemdouble}*\"
+longstringsingle   \'\'\'{longstringitem}*\'\'\' 
+longstringdouble \"\"\"{longstringitem}*\"\"\"
 
 
 %%
@@ -256,6 +260,8 @@ stringdouble \"{stringitemdouble}*\"
                         handleToken(BACKSLASH_LOGICAL_LINE,"");
                      }
 
+{longstringsingle}   {handleToken(STRING,yytext);}
+{longstringdouble}   {handleToken(STRING,yytext);}
 {stringsingle} {handleToken(STRING,yytext);}
 {stringdouble} {handleToken(STRING,yytext);}
 
