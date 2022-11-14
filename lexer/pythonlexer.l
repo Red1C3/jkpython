@@ -59,6 +59,8 @@
     const char* WHITE_SPACE="whitespace";
     const char* ILLEGAL="illegal";
     
+    const char* OUTPUT_FORMAT="%-15s%-20s%-5d%d\n";
+
     int colnum=1;
     int linenum=1;
     
@@ -239,10 +241,10 @@ void handleToken(const char* type,const char* literal){
         linenum++;
     }
 
-    printf("%s, %s, %d, %d\n",type,literal,linenum,colnum);
+    printf(OUTPUT_FORMAT,type,literal,linenum,colnum);
 
     char buffer[128];
-    sprintf(buffer,"%s, %s, %d, %d\n",type,literal,linenum,colnum);
+    sprintf(buffer,OUTPUT_FORMAT,type,literal,linenum,colnum);
     fputs(buffer,outputFile);  
     colnum+=strlen(literal);
 
