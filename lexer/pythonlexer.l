@@ -2,7 +2,7 @@
     #include <stdio.h>
     #include<ctype.h>
     #include<string.h>
-    
+
     const char* KEYWORD="keyword";
     const char* INDENT="indent";
     const char* DEDENT="dedent";
@@ -71,7 +71,9 @@ keyword  "import"|"nonlocal"|"continue"|"None"|"global"|"in"|"return"|"False"|"T
 
 identifier [_a-zA-Z][_a-zA-Z0-9]*
 
-dent [\n]+[\t]*
+newline \n|\r|\n\r|\r\n
+
+dent {newline}+[\t]*
 
 comment #.*
 
@@ -99,8 +101,8 @@ number {number_full}|{number_fraction_only}
 
 escape \\.
 
-stringcharsingle [^\\\n\']
-stringchardouble [^\\\n\"]
+stringcharsingle [^\\\n\r\']
+stringchardouble [^\\\n\r\"]
 
 stringitemsingle {stringcharsingle}|{escape}
 stringitemdouble {stringchardouble}|{escape}
@@ -114,14 +116,16 @@ stringdouble \"{stringitemdouble}*\"
 {keyword} {handleToken(KEYWORD,yytext);}
 
 {dent} {
-    int len=0;
+    int len=0,nNewlineCount=0,rNewlineCount=0;
     for(int i=0;i<strlen(yytext);++i){
         if(yytext[i]=='\t') len++;
-        if (yytext[i]=='\n') {
-            handleToken(NEWLINE,"");
-        }
+        if (yytext[i]=='\n') nNewlineCount++;
+        if (yytext[i]=='\r') rNewlineCount++;
     }
-   
+    
+    //Take the longest of both types so it doesn't count double lines in \n\r cases
+    for(int i=0;i<((nNewlineCount<=rNewlineCount)?rNewlineCount:nNewlineCount);++i)
+        handleToken(NEWLINE,"");
 
     if (len<indentCounter){
         int tokensCount=indentCounter-len;
@@ -135,13 +139,9 @@ stringdouble \"{stringitemdouble}*\"
       
     }else if (len!=indentCounter){
     	handleToken(ILLEGAL,yytext);
-        //REPORT AN ERROR AND EXIT?
     }
 }
 
-\n\r|\r\n|\n|\r {
-                 handleToken(NEWLINE,"");  
-                }
 
 {comment} {
             handleToken(COMMENT,yytext);
