@@ -33,6 +33,7 @@ bin/
 
 ### Executables
 lexer/*.out
+lexer/*.exe
 lexer/*.o
 lexer/pythonlexer
 
