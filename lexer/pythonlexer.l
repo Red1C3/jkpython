@@ -239,10 +239,10 @@ void handleToken(const char* type,const char* literal){
         linenum++;
     }
 
-    printf("%s, %s,%d,%d\n",type,literal,linenum,colnum);
+    printf("%s, %s, %d, %d\n",type,literal,linenum,colnum);
 
     char buffer[128];
-    sprintf(buffer,"%s, %s,%d,%d\n",type,literal,linenum,colnum);
+    sprintf(buffer,"%s, %s, %d, %d\n",type,literal,linenum,colnum);
     fputs(buffer,outputFile);  
     colnum+=strlen(literal);
 }
