@@ -59,6 +59,8 @@
     const char* WHITE_SPACE="whitespace";
     const char* ILLEGAL="illegal";
     
+    int colnum=1;
+    int linenum=1;
     
     int indentCounter=0;
     FILE* inputFile=NULL, *outputFile=NULL;
@@ -115,7 +117,11 @@ stringdouble \"{stringitemdouble}*\"
     int len=0;
     for(int i=0;i<strlen(yytext);++i){
         if(yytext[i]=='\t') len++;
+        if (yytext[i]=='\n') {
+            handleToken(NEWLINE,"");
+        }
     }
+   
 
     if (len<indentCounter){
         int tokensCount=indentCounter-len;
@@ -130,8 +136,6 @@ stringdouble \"{stringitemdouble}*\"
     }else if (len!=indentCounter){
     	handleToken(ILLEGAL,yytext);
         //REPORT AN ERROR AND EXIT?
-    }else{
-        handleToken(NEWLINE,"");
     }
 }
 
@@ -229,8 +233,16 @@ int main(int argc,const char** argv){
 }
 
 void handleToken(const char* type,const char* literal){
-    printf("%s, %s\n",type,literal);
+    if(!strcmp(type,NEWLINE)) {
+        colnum=1;
+        colnum+=(indentCounter*4);
+        linenum++;
+    }
+
+    printf("%s, %s,%d,%d\n",type,literal,linenum,colnum);
+
     char buffer[128];
-    sprintf(buffer,"%s, %s\n",type,literal);
+    sprintf(buffer,"%s, %s,%d,%d\n",type,literal,linenum,colnum);
     fputs(buffer,outputFile);  
+    colnum+=strlen(literal);
 }
