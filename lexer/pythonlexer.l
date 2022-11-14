@@ -245,4 +245,9 @@ void handleToken(const char* type,const char* literal){
     sprintf(buffer,"%s, %s, %d, %d\n",type,literal,linenum,colnum);
     fputs(buffer,outputFile);  
     colnum+=strlen(literal);
+
+    if(!strcmp(type,INDENT) || !strcmp(type,DEDENT)){ // INDENT/DEDENT changes are calculated after emitting
+        colnum=1;                                     // NEWLINE token
+        colnum+=(indentCounter*4);
+    }
 }
