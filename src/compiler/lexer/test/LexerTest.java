@@ -36,7 +36,7 @@ public class LexerTest {
     @Test
     public void test() {
         try {
-            System.out.println(runLexer("for"));
+            assertEquals(Unit.GHOST_TEST.getExpected(),runLexer(Unit.GHOST_TEST.getInput()));
         } catch (IOException e) {
             System.out.println(e);
         }

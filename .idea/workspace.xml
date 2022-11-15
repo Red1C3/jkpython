@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Add junit package and create a Java package">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Implement running lexer functions">
+      <change afterPath="$PROJECT_DIR$/src/compiler/lexer/test/Unit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +55,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LexerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="python-compileruwu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="compiler.lexer.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="compiler.lexer.test" />
+      <option name="MAIN_CLASS_NAME" value="compiler.lexer.test.LexerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LexerTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="python-compileruwu" />
       <extension name="coverage">
@@ -72,6 +89,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.LexerTest.test" />
+        <item itemvalue="JUnit.LexerTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
@@ -92,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668511076766</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implement running lexer functions">
+      <created>1668516979704</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668516979704</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -108,6 +133,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add junit package and create a Java package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add junit package and create a Java package" />
+    <MESSAGE value="Implement running lexer functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement running lexer functions" />
   </component>
 </project>
