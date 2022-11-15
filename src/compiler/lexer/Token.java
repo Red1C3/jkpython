@@ -20,6 +20,6 @@ public class Token {
 
     @Override
     public String toString() {
-        return String.format("%-15s%-20s%-5d%d\n",type,literal,lineNum,colNum);
+        return String.format("\n%-15s%-20s%-5d%d\n",type,literal,lineNum,colNum);
     }
 }
