@@ -1,11 +1,14 @@
 package compiler.lexer.test;
 
+import compiler.lexer.Token;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class LexerTest {
     private static boolean isWindows;
@@ -34,19 +37,34 @@ public class LexerTest {
     }
 
     @Test
-    public void test() {
+    public void testTest() {
         try {
-            assertEquals(Unit.GHOST_TEST.getExpected(),runLexer(Unit.GHOST_TEST.getInput()));
+            test(Unit.GHOST_TEST.expected(), runLexer(Unit.GHOST_TEST.input()),false,false);
         } catch (IOException e) {
             System.out.println(e);
         }
     }
 
-    private String runLexer(String input) throws IOException {
+    private void test(Token[] expected,Token[] actual,boolean checkLine,boolean checkCol) throws IOException {
+        assertEquals(expected.length,actual.length,"Expected and Actual have different lengths");
+        for(int i=0;i< expected.length;i++){
+            if(!checkCol){
+                expected[i].colNum=0;
+                actual[i].colNum=0;
+            }
+            if (!checkLine) {
+                expected[i].lineNum=0;
+                actual[i].lineNum=0;
+            }
+        }
+        assertArrayEquals(expected,actual);
+    }
+
+    private Token[] runLexer(String input) throws IOException {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (isWindows) {
             System.out.println("NO WINDOWS COMMAND FOR RUNNING THE LEXER, PLEASE INSERT ONE");
-            return "";
+            return null;
             //TODO windows command for running the lexer
         } else {
             processBuilder.command("sh", "-c", SHELL_RUN);
@@ -60,17 +78,24 @@ public class LexerTest {
         InputStream is = process.getInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-        StringBuilder stringBuilder = new StringBuilder();
+        ArrayList<Token> tokens=new ArrayList<>();
 
         String line;
 
         while ((line = br.readLine()) != null) {
-            stringBuilder.append(line);
+            String[] items=line.split("[ \n]+");
+            if(items.length==4){
+                tokens.add(new Token(items[0],items[1],Integer.parseInt(items[2]),Integer.parseInt(items[3])));
+            }else if (items[0].equals("WHITESPACE")){
+                tokens.add(new Token(items[0]," ",Integer.parseInt(items[1]),Integer.parseInt(items[2])));
+            }else{
+                tokens.add(new Token(items[0],"",Integer.parseInt(items[1]),Integer.parseInt(items[2])));
+            }
         }
 
         is.close();
         os.close();
 
-        return stringBuilder.toString();
+        return tokens.toArray(new Token[0]);
     }
 }

@@ -1,28 +1,17 @@
 package compiler.lexer.test;
 
-public class Unit {
-    private final String input,expected;
-    public Unit(String input,String expected){
-        this.input=input;
-        this.expected=expected;
-    }
+import compiler.lexer.Token;
 
-    public static final Unit GHOST_TEST=new Unit("for",
-            buildToken("FOR","for",1,1,true) //TODO make tokens types constss
+public record Unit(String input, Token[] expected) {
+
+    public static final Unit GHOST_TEST = new Unit(
+            "for\na",
+            new Token[]{buildToken("FOR", "for", 1, 1),
+            buildToken("NEWLINE","",1,4),
+            buildToken("IDENTIFIER","a",1,5)} //TODO make tokens types consts
     );
 
-    public static String buildToken(String type,String literal,int lineNum, int colNum,boolean last){
-        if(last){
-            return String.format("%-15s%-20s%-5d%d",type,literal,lineNum,colNum);
-        }else{
-            return String.format("%-15s%-20s%-5d%d\n",type,literal,lineNum,colNum);
-        }
-    }
-
-    public String getInput(){
-        return input;
-    }
-    public String getExpected(){
-        return expected;
+    public static Token buildToken(String type, String literal, int lineNum, int colNum) {
+        return new Token(type, literal, lineNum, colNum);
     }
 }
