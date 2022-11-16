@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Implement Unit class">
-      <change afterPath="$PROJECT_DIR$/src/compiler/lexer/Token.java" afterDir="false" />
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Improve Token printing">
+      <change afterPath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/test/Unit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +51,7 @@
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.LexerTest.testa">
+  <component name="RunManager" selected="JUnit.LexerTest.testTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
@@ -91,6 +90,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LexerTest.testTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="python-compileruwu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="compiler.lexer.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="compiler.lexer.test" />
+      <option name="MAIN_CLASS_NAME" value="compiler.lexer.test.LexerTest" />
+      <option name="METHOD_NAME" value="testTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LexerTest.testa" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="python-compileruwu" />
       <extension name="coverage">
@@ -109,10 +124,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LexerTest.testTest" />
         <item itemvalue="JUnit.LexerTest.testa" />
         <item itemvalue="JUnit.LexerTest.test" />
         <item itemvalue="JUnit.LexerTest" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -147,7 +162,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668519492361</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Improve Lexer testing, Create Token class">
+      <created>1668545808937</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668545808937</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Improve Token printing">
+      <created>1668545897890</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668545897890</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +194,8 @@
     <MESSAGE value="Add junit package and create a Java package" />
     <MESSAGE value="Implement running lexer functions" />
     <MESSAGE value="Implement Unit class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement Unit class" />
+    <MESSAGE value="Improve Lexer testing, Create Token class" />
+    <MESSAGE value="Improve Token printing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve Token printing" />
   </component>
 </project>
