@@ -79,6 +79,7 @@
     const char* BREAK="BREAK";
     const char* PASS="PASS";
     const char* LAMBDA="LAMBDA";
+    const char* COMMA_LOGICAL_LINE="CM_LOGICAL_LINE";
     
     const char* OUTPUT_FORMAT="%-15s%-20s%-5d%d\n";
     const int TAB_WIDTH=4;
@@ -86,6 +87,7 @@
     int colnum=1;
     int linenum=1;
     int bsLogicalLineSpace=1;
+    int commaLogicalLineSpace=1;
     
     int indentCounter=0;
     FILE* inputFile=NULL, *outputFile=NULL;
@@ -95,6 +97,8 @@
 identifier [_a-zA-Z][_a-zA-Z0-9]*
 
 newline \n|\r|\n\r|\r\n
+
+commalogicalline ,{newline}[\t]*
 
 bslogicalline \\{newline}[\t]*
 
@@ -251,6 +255,15 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 "//"       { handleToken(FLOOR_DIVISION,yytext);}
 "//="      { handleToken(FLOOR_DIVISION_ASSIGNMENT,yytext);}
 
+{commalogicalline} {
+                        int tabsCount=0;
+                        for(int i=0;i<strlen(yytext);++i){
+                            if (yytext[i]=='\t') tabsCount++;
+                        }
+                        commaLogicalLineSpace=tabsCount;
+                        handleToken(COMMA_LOGICAL_LINE,",");
+}
+
 {bslogicalline}     {
                         int tabsCount=0;
                         for(int i=0;i<strlen(yytext);++i){
@@ -312,6 +325,11 @@ void handleToken(const char* type,const char* literal){
     if(!strcmp(type,BACKSLASH_LOGICAL_LINE)){
         colnum=1;
         colnum+=(bsLogicalLineSpace*TAB_WIDTH);
+        linenum++;
+    }
+    if(!strcmp(type,COMMA_LOGICAL_LINE)){
+    	colnum=1;
+        colnum+=(commaLogicalLineSpace*TAB_WIDTH);
         linenum++;
     }
 }
