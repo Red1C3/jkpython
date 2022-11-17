@@ -280,7 +280,7 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 
 {identifier} {handleToken(IDENTIFIER,yytext);} 
 
-" " {handleToken(WHITE_SPACE,yytext);}
+" " {}
 
 . {handleToken(ILLEGAL,yytext);}
 
