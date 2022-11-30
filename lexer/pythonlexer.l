@@ -10,32 +10,11 @@
         NEWLINE,
         NUMBER,
         COMMENT,
-        LPAREN,
-        RPAREN,
-        LBRACE,
-        RBRACE,
-        LBRACKET,
-        RBRACKET,
-        COLON,
-        SEMICOLON,
-        COMMA,
-        PLUS,
-        MINUS,
-        MULTIPLICATION,
-        DIVISION,
-        LESS_THAN,
         LESS_THAN_OR_EQUAL,
-        GREATER_THAN,
         GREATER_THAN_OR_EQUAL,
-        ASSIGNMENT,
-        DOT,
-        REMAINDER,
-        TICK,
         EQUAL,
         NOT_EQUAL,
         NOT_EQUAL_2,
-        BITWISE_NOT,
-        BITWISE_XOR,
         BITWISE_SHIFT_LEFT,
         BITWISE_SHIFT_RIGHT,
         POWER,
@@ -46,8 +25,6 @@
         REMAINDER_ASSIGNMENT,
         BITWISE_AND_ASSIGNMENT,
         POWER_ASSIGNMENT,
-        BITWISE_AND,
-        BITWISE_OR,
         BITWISE_OR_ASSIGNMENT,
         BITWISE_XOR_ASSIGNMENT,
         BITWISE_SHIFT_LEFT_ASSIGNMENT,
@@ -204,38 +181,38 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 
 {number} {handleToken(NUMBER,yytext);}
 
-"(" {handleToken(LPAREN,yytext);} 
-")" {handleToken(RPAREN,yytext);} 
-"{" {handleToken(LBRACE,yytext);}
-"}" {handleToken(RBRACE,yytext);}
-"[" {handleToken(LBRACKET,yytext);}
-"]" {handleToken(RBRACKET,yytext);}
+"(" {handleToken(yytext[0],yytext);} 
+")" {handleToken(yytext[0],yytext);} 
+"{" {handleToken(yytext[0],yytext);}
+"}" {handleToken(yytext[0],yytext);}
+"[" {handleToken(yytext[0],yytext);}
+"]" {handleToken(yytext[0],yytext);}
          
-":"        { handleToken(COLON,yytext); }
-","        { handleToken(COMMA,yytext);}
-";"        { handleToken(SEMICOLON,yytext);}
+":"        { handleToken(yytext[0],yytext); }
+","        { handleToken(yytext[0],yytext);}
+";"        { handleToken(yytext[0],yytext);}
 
-"+"        { handleToken(PLUS,yytext);}
-"-"        { handleToken(MINUS,yytext);}
-"*"        { handleToken(MULTIPLICATION,yytext);}
-"/"        { handleToken(DIVISION,yytext);}
+"+"        { handleToken(yytext[0],yytext);}
+"-"        { handleToken(yytext[0],yytext);}
+"*"        { handleToken(yytext[0],yytext);}
+"/"        { handleToken(yytext[0],yytext);}
 
-"<"        { handleToken(LESS_THAN,yytext);}
-">"        { handleToken(GREATER_THAN,yytext);}
-"="        { handleToken(ASSIGNMENT,yytext);}
+"<"        { handleToken(yytext[0],yytext);}
+">"        { handleToken(yytext[0],yytext);}
+"="        { handleToken(yytext[0],yytext);}
 
-"."        { handleToken(DOT,yytext);}
-"%"        { handleToken(REMAINDER,yytext);}
-"`"        { handleToken(TICK,yytext);}
+"."        { handleToken(yytext[0],yytext);}
+"%"        { handleToken(yytext[0],yytext);}
+"`"        { handleToken(yytext[0],yytext);}
 
 "=="       { handleToken(EQUAL,yytext);}
 "!="       { handleToken(NOT_EQUAL,yytext);}
 "<="       { handleToken(LESS_THAN_OR_EQUAL,yytext);}
 ">="       { handleToken(GREATER_THAN_OR_EQUAL,yytext);} 
 "<>"       { handleToken(NOT_EQUAL_2,yytext);} 
-"~"        { handleToken(BITWISE_NOT,yytext);} 
+"~"        { handleToken(yytext[0],yytext);} 
 
-"^"        { handleToken(BITWISE_XOR,yytext);}
+"^"        { handleToken(yytext[0],yytext);}
 "<<"       { handleToken(BITWISE_SHIFT_LEFT,yytext);}
 ">>"       { handleToken(BITWISE_SHIFT_RIGHT,yytext);}
 
@@ -247,8 +224,8 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 "/="       { handleToken(DIVISION_ASSIGNMENT,yytext);}
 "%="       { handleToken(REMAINDER_ASSIGNMENT,yytext);}
 "&="       { handleToken(BITWISE_AND_ASSIGNMENT,yytext);}
-"&"        { handleToken(BITWISE_AND,yytext);}
-"|"        { handleToken(BITWISE_OR,yytext);}
+"&"        { handleToken(yytext[0],yytext);}
+"|"        { handleToken(yytext[0],yytext);}
 "|="       { handleToken(BITWISE_OR_ASSIGNMENT,yytext);}
 "^="       { handleToken(BITWISE_XOR_ASSIGNMENT,yytext);}
 "<<="      { handleToken(BITWISE_SHIFT_LEFT_ASSIGNMENT,yytext);}
