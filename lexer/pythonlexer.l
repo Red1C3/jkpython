@@ -4,8 +4,7 @@
     #include<string.h>
 
     enum {
-        KEYWORD=258,
-        INDENT,
+        INDENT=258,
         DEDENT,
         NEWLINE,
         NUMBER,
