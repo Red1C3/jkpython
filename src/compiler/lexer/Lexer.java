@@ -72,11 +72,11 @@ public class Lexer {
         while ((line = br.readLine()) != null) {
             String[] items = line.split("[ \n]+");
             if (items.length == 4) {
-                tokens.add(new Token(items[0], items[1], Integer.parseInt(items[2]), Integer.parseInt(items[3])));
+                tokens.add(new Token(Integer.parseInt(items[0]), items[1], Integer.parseInt(items[2]), Integer.parseInt(items[3])));
             } else if (items[0].equals("WHITESPACE")) {
-                tokens.add(new Token(items[0], " ", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
+                tokens.add(new Token(Integer.parseInt(items[0]), " ", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
             } else {
-                tokens.add(new Token(items[0], "", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
+                tokens.add(new Token(Integer.parseInt(items[0]), "", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
             }
         }
 

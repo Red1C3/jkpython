@@ -1,10 +1,11 @@
 package compiler.lexer;
 
 public class Token {
-    private final String literal, type;
+    private final String literal;
+    private final int type;
     public int lineNum, colNum;
 
-    public Token(String type, String literal, int lineNum, int colNum) {
+    public Token(int type, String literal, int lineNum, int colNum) {
         this.type = type;
         this.literal = literal;
         this.lineNum = lineNum;
@@ -14,7 +15,7 @@ public class Token {
     @Override
     public boolean equals(Object obj) {
         Token other = (Token) obj;
-        return type.equals(other.type) && literal.equals(other.literal) &&
+        return type==other.type && literal.equals(other.literal) &&
                 lineNum == other.lineNum && colNum == other.colNum;
     }
 
