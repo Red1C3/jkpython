@@ -24,7 +24,7 @@
 %token <Object> INDENT
 %token <Object> DEDENT
 %token <Object> NEWLINE
-%token <Integer> NUMBER
+%token <Double> NUMBER
 %token <Object> COMMENT
 %token <Boolean> LESS_THAN_OR_EQUAL
 %token <Boolean> GREATER_THAN_OR_EQUAL
@@ -74,9 +74,12 @@
 %token <Object> PASS
 %token <Object> LAMBDA
 %token <Object> COMMA_LOGICAL_LINE
-%type <Integer> exp
+%type <Object> exp
 
-%left '+'
+%left '+' '-'
+%left '*' '/'
+%precedence NEG
+%right '^'
 
 %%
 prog: 
@@ -86,13 +89,26 @@ prog:
 
 statement:
 '\n'
-| exp '\n' {System.out.println($1);}
+| exp '\n' {System.out.println((Double)$1);}
 ;
 
-exp: NUMBER
-| exp '+' exp {$$=$1+$3;}
+statements:
+statement
+|statements statement
 ;
 
+block:
+INDENT statements DEDENT
+;
+
+exp: NUMBER {$$=(Double)$1;}
+| exp '+' exp {$$=(Double)$1+(Double)$3;}
+| exp '-' exp {$$=(Double)$1-(Double)$3;}
+| exp '*' exp {$$=(Double)$1*(Double)$3;}
+| exp '/' exp {$$=(Double)$1/(Double)$3;}
+| '-' exp %prec NEG {$$=-(Double)$2;}
+| '(' exp ')' {$$=$2;}
+;
 %%
 
 class CalcLexer implements Calc.Lexer {
@@ -112,7 +128,7 @@ class CalcLexer implements Calc.Lexer {
     System.err.println(s);
   }
 
-  Integer yylval;
+  Object yylval;
 
   public Object getLVal() {
     return yylval;
@@ -126,7 +142,7 @@ class CalcLexer implements Calc.Lexer {
     case StreamTokenizer.TT_EOL:
       return (int) '\n';
     case StreamTokenizer.TT_WORD:
-      yylval = Integer.parseInt(st.sval);
+      yylval = Double.parseDouble(st.sval);
       return NUMBER;
     default:
       return ttype;
