@@ -1,5 +1,7 @@
 %language "Java"
 
+%define api.parser.class {Calc}
+%define api.parser.public
 
 %code imports {
   import java.io.IOException;
@@ -22,7 +24,7 @@
 %token <Object> INDENT
 %token <Object> DEDENT
 %token <Object> NEWLINE
-%token <Double> NUMBER
+%token <Integer> NUMBER
 %token <Object> COMMENT
 %token <Boolean> LESS_THAN_OR_EQUAL
 %token <Boolean> GREATER_THAN_OR_EQUAL
@@ -72,17 +74,24 @@
 %token <Object> PASS
 %token <Object> LAMBDA
 %token <Object> COMMA_LOGICAL_LINE
-%type <Object> exp
+%type <Integer> exp
+
+%left '+'
 
 %%
 prog: 
+%empty
+|statement prog
+;
 
-|statement 
-|prog 
+statement:
+'\n'
+| exp '\n' {System.out.println($1);}
+;
 
-statement: exp
-
-exp: exp '+' exp {$$=$1+$3;}
+exp: NUMBER
+| exp '+' exp {$$=$1+$3;}
+;
 
 %%
 
@@ -118,7 +127,7 @@ class CalcLexer implements Calc.Lexer {
       return (int) '\n';
     case StreamTokenizer.TT_WORD:
       yylval = Integer.parseInt(st.sval);
-      return NUM;
+      return NUMBER;
     default:
       return ttype;
     }
