@@ -1,6 +1,21 @@
 %language "Java"
-% code imports{
-    import java.io.IOException;
+
+
+%code imports {
+  import java.io.IOException;
+  import java.io.InputStream;
+  import java.io.InputStreamReader;
+  import java.io.Reader;
+  import java.io.StreamTokenizer;
+}
+
+%code {
+  public static void main(String[] args) throws IOException {
+    CalcLexer l = new CalcLexer(System.in);
+    Calc p = new Calc(l);
+    if (!p.parse())
+      System.exit(1);
+  }
 }
 
 %token <Object> KEYWORD
@@ -57,6 +72,55 @@
 %token <Object> PASS
 %token <Object> LAMBDA
 %token <Object> COMMA_LOGICAL_LINE
+%type <Object> exp
 
+%%
+prog: 
 
-%
+|statement 
+|prog 
+
+statement: exp
+
+exp: exp '+' exp {$$=$1+$3;}
+
+%%
+
+class CalcLexer implements Calc.Lexer {
+
+  StreamTokenizer st;
+
+  public CalcLexer(InputStream is) {
+    st = new StreamTokenizer(new InputStreamReader(is));
+    st.resetSyntax();
+    st.eolIsSignificant(true);
+    st.whitespaceChars('\t', '\t');
+    st.whitespaceChars(' ', ' ');
+    st.wordChars('0', '9');
+  }
+
+  public void yyerror(String s) {
+    System.err.println(s);
+  }
+
+  Integer yylval;
+
+  public Object getLVal() {
+    return yylval;
+  }
+
+  public int yylex() throws IOException {
+    int ttype = st.nextToken();
+    switch (ttype) {
+    case StreamTokenizer.TT_EOF:
+      return YYEOF;
+    case StreamTokenizer.TT_EOL:
+      return (int) '\n';
+    case StreamTokenizer.TT_WORD:
+      yylval = Integer.parseInt(st.sval);
+      return NUM;
+    default:
+      return ttype;
+    }
+  }
+}
