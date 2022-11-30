@@ -188,7 +188,7 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 "[" {handleToken(yytext[0],yytext);}
 "]" {handleToken(yytext[0],yytext);}
          
-":"        { handleToken(yytext[0],yytext); }
+":"        { handleToken(yytext[0],yytext);}
 ","        { handleToken(yytext[0],yytext);}
 ";"        { handleToken(yytext[0],yytext);}
 
