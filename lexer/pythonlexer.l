@@ -3,85 +3,87 @@
     #include<ctype.h>
     #include<string.h>
 
-    const char* KEYWORD="KEYWORD";
-    const char* INDENT="INDENT";
-    const char* DEDENT="DEDENT";
-    const char* NEWLINE="NEWLINE";
-    const char* NUMBER="NUMBER";
-    const char* COMMENT="COMMENT";
-    const char* LPAREN="(";
-    const char* RPAREN=")";
-    const char* LBRACE="{";
-    const char* RBRACE="}";
-    const char* LBRACKET="[";
-    const char* RBRACKET="]";
-    const char* COLON=":";
-    const char* SEMICOLON=";";
-    const char* COMMA=",";
-    const char* PLUS="+";
-    const char* MINUS="-";
-    const char* MULTIPLICATION="*";
-    const char* DIVISION="/";
-    const char* LESS_THAN="<";
-    const char* LESS_THAN_OR_EQUAL="<=";
-    const char* GREATER_THAN=">";
-    const char* GREATER_THAN_OR_EQUAL=">=";
-    const char* ASSIGNMENT="=";
-    const char* DOT=".";
-    const char* REMAINDER="%";
-    const char* TICK="`";
-    const char* EQUAL="==";
-    const char* NOT_EQUAL="!=";
-    const char* NOT_EQUAL_2="<>";
-    const char* BITWISE_NOT="~";
-    const char* BITWISE_XOR="^";
-    const char* BITWISE_SHIFT_LEFT="<<";
-    const char* BITWISE_SHIFT_RIGHT=">>";
-    const char* POWER="**";
-    const char* ADDITION_ASSIGNMENT="+=";
-    const char* SUBSTRACTION_ASSIGNMENT="-=";
-    const char* MULTIPLICATION_ASSIGNMENT="*=";
-    const char* DIVISION_ASSIGNMENT="/=";
-    const char* REMAINDER_ASSIGNMENT="%=";
-    const char* BITWISE_AND_ASSIGNMENT="&=";
-    const char* POWER_ASSIGNMENT="**=";
-    const char* BITWISE_AND="&";
-    const char* BITWISE_OR="|";
-    const char* BITWISE_OR_ASSIGNMENT="|=";
-    const char* BITWISE_XOR_ASSIGNMENT="^=";
-    const char* BITWISE_SHIFT_LEFT_ASSIGNMENT="<<=";
-    const char* BITWISE_SHIFT_RIGHT_ASSIGNMENT=">>=";
-    const char* FLOOR_DIVISION="//";
-    const char* FLOOR_DIVISION_ASSIGNMENT="//=";
-    const char* BACKSLASH_LOGICAL_LINE="BS_LOGICAL_LINE";
-    const char* STRING="STRING";
-    const char* IDENTIFIER="IDENTIFIER";
-    const char* WHITE_SPACE="WHITESPACE";
-    const char* ILLEGAL="ILLEGAL";
-    const char* IMPORT="IMPORT";
-    const char* NONLOCAL="NONLOCAL";
-    const char* CONTINUE="CONTINUE";
-    const char* NONE="NONE";
-    const char* GLOBAL="GLOBAL";
-    const char* IN="IN";
-    const char* RETURN="RETURN";
-    const char* FALSE_TOK="FALSE";
-    const char* TRUE_TOK="TRUE";
-    const char* AND="AND";
-    const char* OR="OR";
-    const char* NOT="NOT";
-    const char* DEF="DEF";
-    const char* IF="IF";
-    const char* ELSE="ELSE";
-    const char* ELIF="ELIF";
-    const char* FOR="FOR";
-    const char* WHILE="WHILE";
-    const char* BREAK="BREAK";
-    const char* PASS="PASS";
-    const char* LAMBDA="LAMBDA";
-    const char* COMMA_LOGICAL_LINE="CM_LOGICAL_LINE";
+    enum {
+        KEYWORD=258,
+        INDENT,
+        DEDENT,
+        NEWLINE,
+        NUMBER,
+        COMMENT,
+        LPAREN,
+        RPAREN,
+        LBRACE,
+        RBRACE,
+        LBRACKET,
+        RBRACKET,
+        COLON,
+        SEMICOLON,
+        COMMA,
+        PLUS,
+        MINUS,
+        MULTIPLICATION,
+        DIVISION,
+        LESS_THAN,
+        LESS_THAN_OR_EQUAL,
+        GREATER_THAN,
+        GREATER_THAN_OR_EQUAL,
+        ASSIGNMENT,
+        DOT,
+        REMAINDER,
+        TICK,
+        EQUAL,
+        NOT_EQUAL,
+        NOT_EQUAL_2,
+        BITWISE_NOT,
+        BITWISE_XOR,
+        BITWISE_SHIFT_LEFT,
+        BITWISE_SHIFT_RIGHT,
+        POWER,
+        ADDITION_ASSIGNMENT,
+        SUBSTRACTION_ASSIGNMENT,
+        MULTIPLICATION_ASSIGNMENT,
+        DIVISION_ASSIGNMENT,
+        REMAINDER_ASSIGNMENT,
+        BITWISE_AND_ASSIGNMENT,
+        POWER_ASSIGNMENT,
+        BITWISE_AND,
+        BITWISE_OR,
+        BITWISE_OR_ASSIGNMENT,
+        BITWISE_XOR_ASSIGNMENT,
+        BITWISE_SHIFT_LEFT_ASSIGNMENT,
+        BITWISE_SHIFT_RIGHT_ASSIGNMENT,
+        FLOOR_DIVISION,
+        FLOOR_DIVISION_ASSIGNMENT,
+        BACKSLASH_LOGICAL_LINE,
+        STRING,
+        IDENTIFIER,
+        WHITE_SPACE,
+        ILLEGAL,
+        IMPORT,
+        NONLOCAL,
+        CONTINUE,
+        NONE,
+        GLOBAL,
+        IN,
+        RETURN,
+        FALSE_TOK,
+        TRUE_TOK,
+        AND,
+        OR,
+        NOT,
+        DEF,
+        IF,
+        ELSE,
+        ELIF,
+        FOR,
+        WHILE,
+        BREAK,
+        PASS,
+        LAMBDA,
+        COMMA_LOGICAL_LINE
+    };
     
-    const char* OUTPUT_FORMAT="%-15s%-20s%-5d%d\n";
+    const char* OUTPUT_FORMAT="%-15d%-20s%-5d%d\n";
     const int TAB_WIDTH=4;
 
     int colnum=1;
@@ -91,7 +93,7 @@
     
     int indentCounter=0;
     FILE* inputFile=NULL, *outputFile=NULL;
-    void handleToken(const char* type, const char* literal);
+    void handleToken(int type, const char* literal);
 %}
 
 identifier [_a-zA-Z][_a-zA-Z0-9]*
@@ -303,8 +305,8 @@ int main(int argc,const char** argv){
     yylex(); 
 }
 
-void handleToken(const char* type,const char* literal){
-    if(!strcmp(type,NEWLINE)) {
+void handleToken(int type,const char* literal){
+    if(type != NEWLINE) {
         colnum=1;
         colnum+=(indentCounter*TAB_WIDTH);
         linenum++;
@@ -317,17 +319,17 @@ void handleToken(const char* type,const char* literal){
     fputs(buffer,outputFile);  
     colnum+=strlen(literal);
 
-    if(!strcmp(type,INDENT) || !strcmp(type,DEDENT)){ // INDENT/DEDENT changes are calculated after emitting
+    if(type != INDENT || type != DEDENT){ // INDENT/DEDENT changes are calculated after emitting
         colnum=1;                                     // NEWLINE token
         colnum+=(indentCounter*4);
     }
 
-    if(!strcmp(type,BACKSLASH_LOGICAL_LINE)){
+    if(type != BACKSLASH_LOGICAL_LINE){
         colnum=1;
         colnum+=(bsLogicalLineSpace*TAB_WIDTH);
         linenum++;
     }
-    if(!strcmp(type,COMMA_LOGICAL_LINE)){
+    if(type != COMMA_LOGICAL_LINE){
     	colnum=1;
         colnum+=(commaLogicalLineSpace*TAB_WIDTH);
         linenum++;
