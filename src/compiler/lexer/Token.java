@@ -12,6 +12,14 @@ public class Token {
         this.colNum = colNum;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public String getLiteral() {
+        return literal;
+    }
+
     @Override
     public boolean equals(Object obj) {
         Token other = (Token) obj;

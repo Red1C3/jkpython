@@ -1,23 +1,12 @@
 %language "Java"
 
-%define api.parser.class {Calc}
+%define api.parser.class {Parser}
 %define api.parser.public
 
 %code imports {
-  import java.io.IOException;
-  import java.io.InputStream;
-  import java.io.InputStreamReader;
-  import java.io.Reader;
-  import java.io.StreamTokenizer;
-}
-
-%code {
-  public static void main(String[] args) throws IOException {
-    CalcLexer l = new CalcLexer(System.in);
-    Calc p = new Calc(l);
-    if (!p.parse())
-      System.exit(1);
-  }
+  import compiler.lexer.Lexer;
+  import compiler.lexer.Token;
+  import compiler.lexer.Tokens;
 }
 
 %token <Object> KEYWORD
@@ -111,41 +100,36 @@ exp: NUMBER {$$=(Double)$1;}
 ;
 %%
 
-class CalcLexer implements Calc.Lexer {
+class LexerHelper implements Parser.Lexer {
+  private compiler.lexer.Lexer lexer;
 
-  StreamTokenizer st;
-
-  public CalcLexer(InputStream is) {
-    st = new StreamTokenizer(new InputStreamReader(is));
-    st.resetSyntax();
-    st.eolIsSignificant(true);
-    st.whitespaceChars('\t', '\t');
-    st.whitespaceChars(' ', ' ');
-    st.wordChars('0', '9');
+  public LexerHelper(compiler.lexer.Lexer lexer){
+    this.lexer=lexer;
   }
 
   public void yyerror(String s) {
     System.err.println(s);
   }
 
-  Object yylval;
+  private Object yylval;
 
   public Object getLVal() {
     return yylval;
   }
 
-  public int yylex() throws IOException {
-    int ttype = st.nextToken();
-    switch (ttype) {
-    case StreamTokenizer.TT_EOF:
-      return YYEOF;
-    case StreamTokenizer.TT_EOL:
-      return (int) '\n';
-    case StreamTokenizer.TT_WORD:
-      yylval = Double.parseDouble(st.sval);
-      return NUMBER;
+  public int yylex(){
+    Token token=lexer.nextToken();
+    if(token==null){
+        return YYEOF;
+    }
+    switch(token.getType()){
+    case Tokens.NUMBER:
+        yylval=Double.parseDouble(token.getLiteral());
+        return NUMBER;
+    case Tokens.NEWLINE:
+        return (int) '\n';
     default:
-      return ttype;
+        return token.getType();
     }
   }
 }
