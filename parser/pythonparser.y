@@ -9,6 +9,51 @@
   import compiler.lexer.Tokens;
 }
 
+%lex-param {compiler.lexer.Lexer lexer}
+
+%code lexer {
+  private compiler.lexer.Lexer lexer;
+
+  public YYLexer(compiler.lexer.Lexer lexer){
+    this.lexer=lexer;
+  }
+
+  public void yyerror(String s) {
+    System.err.println(s);
+  }
+
+  private Object yylval;
+
+  public Object getLVal() {
+    return yylval;
+  }
+
+  public int yylex(){
+    Token token=lexer.nextToken();
+    if(token==null){
+        return YYEOF;
+    }
+    switch(token.getType()){
+      case Tokens.NUMBER:
+          yylval=Double.parseDouble(token.getLiteral());
+          return NUMBER;
+      case Tokens.NEWLINE:
+          return (int) '\n';
+      case Tokens.STRING:
+          yylval=token.getLiteral();
+          return STRING;
+      case Tokens.IF:
+          return IF;
+      case Tokens.INDENT:
+          return INDENT;
+      case Tokens.DEDENT:
+          return DEDENT;
+      default:
+          return token.getType();
+    }
+  }
+}
+
 %token <Object> KEYWORD
 %token <Object> INDENT
 %token <Object> DEDENT
@@ -104,46 +149,3 @@ exp: NUMBER {$$=(Double)$1;}
 | '(' exp ')' {$$=$2;}
 ;
 %%
-
-class LexerHelper implements Parser.Lexer {
-  private compiler.lexer.Lexer lexer;
-
-  public LexerHelper(compiler.lexer.Lexer lexer){
-    this.lexer=lexer;
-  }
-
-  public void yyerror(String s) {
-    System.err.println(s);
-  }
-
-  private Object yylval;
-
-  public Object getLVal() {
-    return yylval;
-  }
-
-  public int yylex(){
-    Token token=lexer.nextToken();
-    if(token==null){
-        return YYEOF;
-    }
-    switch(token.getType()){
-    case Tokens.NUMBER:
-        yylval=Double.parseDouble(token.getLiteral());
-        return NUMBER;
-    case Tokens.NEWLINE:
-        return (int) '\n';
-    case Tokens.STRING:
-        yylval=token.getLiteral();
-        return STRING;
-    case Tokens.IF:
-        return IF;
-    case Tokens.INDENT:
-        return INDENT;
-    case Tokens.DEDENT:
-        return DEDENT;
-    default:
-        return token.getType();
-    }
-  }
-}
