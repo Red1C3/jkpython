@@ -76,18 +76,34 @@ prog:
 |statement prog
 ;
 
-statement:
+simple_statement:
 '\n'
 | exp '\n' {System.out.println((Double)$1);}
 ;
 
+compound_statement:
+IF exp ':' block
+;
+
+statement:
+simple_statements
+| compound_statement
+;
+
 statements:
 statement
-|statements statement
+| statements statement
+;
+
+
+simple_statements:
+simple_statement
+|simple_statement simple_statements
 ;
 
 block:
-INDENT statements DEDENT
+INDENT statements DEDENT {System.out.println("Block handled");}
+| simple_statements {System.out.println("Simple statements as block handled");}
 ;
 
 exp: NUMBER {$$=(Double)$1;}
