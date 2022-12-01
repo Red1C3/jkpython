@@ -1,6 +1,8 @@
 package compiler.lexer;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,7 +57,13 @@ public class Lexer {
         }
     }
 
+    public Lexer run(Path path) throws IOException {
+        String input = Files.readString(path);
+        return run(input);
+    }
+
     public Lexer run(String input) throws IOException {
+        cur=0;
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (isWindows) {
             System.out.println("NO WINDOWS COMMAND FOR RUNNING THE LEXER, PLEASE INSERT ONE");

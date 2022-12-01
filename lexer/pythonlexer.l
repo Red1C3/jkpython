@@ -155,7 +155,7 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
     }
     
     //Take the longest of both types so it doesn't count double lines in \n\r cases
-    for(int i=0;i<((nNewlineCount<=rNewlineCount)?rNewlineCount:nNewlineCount);++i) //TODO less than one
+    for(int i=0;i<((nNewlineCount<=rNewlineCount)?rNewlineCount:nNewlineCount);++i)
         handleToken(NEWLINE,"");
 
     if (len<indentCounter){
