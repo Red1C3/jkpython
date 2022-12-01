@@ -34,22 +34,22 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-
-
 package compiler.parser;
+
+
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 /* "%code imports" blocks.  */
-/* "./parser/pythonparser.y":6  */
+/* "pythonparser.y":8  */
 
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
-  import compiler.lexer.Tokens;
 
-/* "./src/compiler/parser/Parser.java":50  */
+/* "../src/compiler/parser/Parser.java":50  */
 
 /**
- * A Bison parser, automatically generated from <tt>./parser/pythonparser.y</tt>.
+ * A Bison parser, automatically generated from <tt>pythonparser.y</tt>.
  *
  * @author LALR (1) parser skeleton written by Paolo Bonzini.
  */
@@ -132,12 +132,16 @@ public class Parser
     S_NEG(61),                     /* NEG  */
     S_62_(62),                     /* '^'  */
     S_63_n_(63),                   /* '\n'  */
-    S_64_(64),                     /* '('  */
-    S_65_(65),                     /* ')'  */
-    S_YYACCEPT(66),                /* $accept  */
-    S_prog(67),                    /* prog  */
-    S_statement(68),               /* statement  */
-    S_exp(69);                     /* exp  */
+    S_64_(64),                     /* ':'  */
+    S_65_(65),                     /* '='  */
+    S_66_(66),                     /* '('  */
+    S_67_(67),                     /* ')'  */
+    S_YYACCEPT(68),                /* $accept  */
+    S_prog(69),                    /* prog  */
+    S_statements(70),              /* statements  */
+    S_statement(71),               /* statement  */
+    S_block(72),                   /* block  */
+    S_exp(73);                     /* exp  */
 
 
     private final int yycode_;
@@ -213,9 +217,13 @@ public class Parser
       SymbolKind.S_63_n_,
       SymbolKind.S_64_,
       SymbolKind.S_65_,
+      SymbolKind.S_66_,
+      SymbolKind.S_67_,
       SymbolKind.S_YYACCEPT,
       SymbolKind.S_prog,
+      SymbolKind.S_statements,
       SymbolKind.S_statement,
+      SymbolKind.S_block,
       SymbolKind.S_exp
     };
 
@@ -280,8 +288,8 @@ public class Parser
   "CONTINUE", "NONE", "GLOBAL", "IN", "RETURN", "FALSE_TOK", "TRUE_TOK",
   "AND", "OR", "NOT", "DEF", "IF", "ELSE", "ELIF", "FOR", "WHILE", "BREAK",
   "PASS", "LAMBDA", "COMMA_LOGICAL_LINE", "'+'", "'-'", "'*'", "'/'",
-  "NEG", "'^'", "'\\n'", "'('", "')'", "$accept", "prog", "statement",
-  "exp", null
+  "NEG", "'^'", "'\\n'", "':'", "'='", "'('", "')'", "$accept", "prog",
+  "statements", "statement", "block", "exp", null
     };
   }
 
@@ -446,6 +454,56 @@ public class Parser
   }
 
 
+  private class YYLexer implements Lexer {
+/* "%code lexer" blocks.  */
+/* "pythonparser.y":15  */
+
+  private compiler.lexer.Lexer lexer;
+
+  public YYLexer(compiler.lexer.Lexer lexer){
+    this.lexer=lexer;
+  }
+
+  public void yyerror(String s) {
+    System.err.println(s);
+  }
+
+  private Object yylval;
+
+  public Object getLVal() {
+    return yylval;
+  }
+
+  public int yylex(){
+    Token token=lexer.nextToken();
+    if(token==null){
+        return YYEOF;
+    }
+    switch(token.getType()){
+      case Lexer.NUMBER:
+          yylval=Double.parseDouble(token.getLiteral());
+          return NUMBER;
+      case Lexer.NEWLINE:
+          return (int) '\n';
+      case Lexer.STRING:
+          yylval=token.getLiteral();
+          return STRING;
+      case Lexer.IF:
+          return IF;
+      case Lexer.INDENT:
+          return INDENT;
+      case Lexer.DEDENT:
+          return DEDENT;
+      default:
+          return token.getType();
+    }
+  }
+
+/* "../src/compiler/parser/Parser.java":503  */
+
+  }
+
+
   /**
    * The object doing lexical analysis for us.
    */
@@ -454,12 +512,22 @@ public class Parser
 
 
 
+  /**
+   * Instantiates the Bison-generated parser.
+   */
+  public Parser(compiler.lexer.Lexer lexer)
+  {
+
+    this.yylexer = new YYLexer(lexer);
+
+  }
+
 
   /**
    * Instantiates the Bison-generated parser.
    * @param yylexer The scanner that will supply tokens to the parser.
    */
-  public Parser(Lexer yylexer)
+  protected Parser(Lexer yylexer)
   {
 
     this.yylexer = yylexer;
@@ -612,64 +680,85 @@ public class Parser
 
     switch (yyn)
       {
-          case 5: /* statement: exp '\n'  */
-  if (yyn == 5)
-    /* "./parser/pythonparser.y":81  */
-           {System.out.println((Double)((Object)(yystack.valueAt (1))));};
+          case 6: /* statement: exp '\n'  */
+  if (yyn == 6)
+    /* "pythonparser.y":131  */
+         {System.out.println((Double)((Object)(yystack.valueAt (1))));};
   break;
 
 
-  case 6: /* exp: NUMBER  */
-  if (yyn == 6)
-    /* "./parser/pythonparser.y":93  */
+  case 7: /* statement: IF exp ':' block  */
+  if (yyn == 7)
+    /* "pythonparser.y":132  */
+                   {System.out.println("IF statement detected");};
+  break;
+
+
+  case 8: /* statement: IDENTIFIER '=' exp '\n'  */
+  if (yyn == 8)
+    /* "pythonparser.y":133  */
+                          {System.out.println("assignment statement detected");};
+  break;
+
+
+  case 9: /* block: '\n' INDENT statements DEDENT  */
+  if (yyn == 9)
+    /* "pythonparser.y":139  */
+                              {System.out.println("block detected");};
+  break;
+
+
+  case 10: /* exp: NUMBER  */
+  if (yyn == 10)
+    /* "pythonparser.y":144  */
             {yyval=(Double)((Double)(yystack.valueAt (0)));};
   break;
 
 
-  case 7: /* exp: exp '+' exp  */
-  if (yyn == 7)
-    /* "./parser/pythonparser.y":94  */
+  case 11: /* exp: exp '+' exp  */
+  if (yyn == 11)
+    /* "pythonparser.y":145  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))+(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 8: /* exp: exp '-' exp  */
-  if (yyn == 8)
-    /* "./parser/pythonparser.y":95  */
+  case 12: /* exp: exp '-' exp  */
+  if (yyn == 12)
+    /* "pythonparser.y":146  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 9: /* exp: exp '*' exp  */
-  if (yyn == 9)
-    /* "./parser/pythonparser.y":96  */
+  case 13: /* exp: exp '*' exp  */
+  if (yyn == 13)
+    /* "pythonparser.y":147  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))*(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 10: /* exp: exp '/' exp  */
-  if (yyn == 10)
-    /* "./parser/pythonparser.y":97  */
+  case 14: /* exp: exp '/' exp  */
+  if (yyn == 14)
+    /* "pythonparser.y":148  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))/(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 11: /* exp: '-' exp  */
-  if (yyn == 11)
-    /* "./parser/pythonparser.y":98  */
+  case 15: /* exp: '-' exp  */
+  if (yyn == 15)
+    /* "pythonparser.y":149  */
                     {yyval=-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 12: /* exp: '(' exp ')'  */
-  if (yyn == 12)
-    /* "./parser/pythonparser.y":99  */
+  case 16: /* exp: '(' exp ')'  */
+  if (yyn == 16)
+    /* "pythonparser.y":150  */
               {yyval=((Object)(yystack.valueAt (1)));};
   break;
 
 
 
-/* "./src/compiler/parser/Parser.java":673  */
+/* "../src/compiler/parser/Parser.java":762  */
 
         default: break;
       }
@@ -1022,7 +1111,7 @@ public class Parser
     return yyvalue == yytable_ninf_;
   }
 
-  private static final byte yypact_ninf_ = -55;
+  private static final byte yypact_ninf_ = -64;
   private static final byte yytable_ninf_ = -1;
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -1032,9 +1121,10 @@ public class Parser
   {
     return new byte[]
     {
-      -7,   -55,    -6,   -55,    -6,     3,    -7,   -40,   -55,   -49,
-     -55,   -55,    -6,    -6,    -6,    -6,   -55,   -55,   -54,   -54,
-     -55,   -55
+      -7,   -64,   -63,    -6,    -6,    -6,     9,   -64,    -7,   -21,
+      -6,   -30,   -64,   -45,   -64,   -64,    -6,    -6,    -6,    -6,
+     -64,   -14,   -53,   -64,   -52,   -52,   -64,   -64,   -64,    12,
+     -64,    -7,    16,   -64
     };
   }
 
@@ -1046,9 +1136,10 @@ public class Parser
   {
     return new byte[]
     {
-       2,     6,     0,     4,     0,     0,     2,     0,    11,     0,
-       1,     3,     0,     0,     0,     0,     5,    12,     7,     8,
-       9,    10
+       2,    10,     0,     0,     0,     0,     0,     3,     4,     0,
+       0,     0,    15,     0,     1,     5,     0,     0,     0,     0,
+       6,     0,     0,    16,    11,    12,    13,    14,     8,     0,
+       7,     0,     0,     9
     };
   }
 
@@ -1058,7 +1149,7 @@ public class Parser
   {
     return new byte[]
     {
-     -55,     1,   -55,     0
+     -64,   -64,    -5,   -64,   -64,     1
     };
   }
 
@@ -1068,7 +1159,7 @@ public class Parser
   {
     return new byte[]
     {
-       0,     5,     6,     7
+       0,     6,     7,     8,    30,     9
     };
   }
 
@@ -1080,12 +1171,13 @@ public class Parser
   {
     return new byte[]
     {
-       1,     1,     8,    10,     9,    14,    15,    11,    12,    13,
-      14,    15,    18,    19,    20,    21,    17,    12,    13,    14,
-      15,     0,     0,    16,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     2,     2,     0,     0,     0,     3,     4,     4
+       1,     1,    10,    15,    11,    12,    13,    18,    19,    14,
+      29,    21,    16,    17,    18,    19,    31,    24,    25,    26,
+      27,    33,    23,     0,     0,     2,    32,    16,    17,    18,
+      19,     0,     0,     0,    22,     0,    16,    17,    18,    19,
+       0,     3,    20,    16,    17,    18,    19,     0,     0,    28,
+       0,     4,     4,     0,     0,     0,     0,     0,     0,     5,
+       5
     };
   }
 
@@ -1094,12 +1186,13 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       7,     7,     2,     0,     4,    59,    60,     6,    57,    58,
-      59,    60,    12,    13,    14,    15,    65,    57,    58,    59,
-      60,    -1,    -1,    63,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    58,    58,    -1,    -1,    -1,    63,    64,    64
+       7,     7,    65,     8,     3,     4,     5,    59,    60,     0,
+      63,    10,    57,    58,    59,    60,     4,    16,    17,    18,
+      19,     5,    67,    -1,    -1,    32,    31,    57,    58,    59,
+      60,    -1,    -1,    -1,    64,    -1,    57,    58,    59,    60,
+      -1,    48,    63,    57,    58,    59,    60,    -1,    -1,    63,
+      -1,    58,    58,    -1,    -1,    -1,    -1,    -1,    -1,    66,
+      66
     };
   }
 
@@ -1110,9 +1203,10 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       0,     7,    58,    63,    64,    67,    68,    69,    69,    69,
-       0,    67,    57,    58,    59,    60,    63,    65,    69,    69,
-      69,    69
+       0,     7,    32,    48,    58,    66,    69,    70,    71,    73,
+      65,    73,    73,    73,     0,    70,    57,    58,    59,    60,
+      63,    73,    64,    67,    73,    73,    73,    73,    63,    63,
+      72,     4,    70,     5
     };
   }
 
@@ -1122,8 +1216,8 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       0,    66,    67,    67,    68,    68,    69,    69,    69,    69,
-      69,    69,    69
+       0,    68,    69,    69,    70,    70,    71,    71,    71,    72,
+      73,    73,    73,    73,    73,    73,    73
     };
   }
 
@@ -1133,8 +1227,8 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       0,     2,     0,     2,     1,     2,     1,     3,     3,     3,
-       3,     2,     3
+       0,     2,     0,     1,     1,     2,     2,     4,     4,     4,
+       1,     3,     3,     3,     3,     2,     3
     };
   }
 
@@ -1163,9 +1257,9 @@ private static final byte[] yycheck_ = yycheck_init();
       63,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      64,    65,    59,    57,     2,    58,     2,    60,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+      66,    67,    59,    57,     2,    58,     2,    60,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,    64,     2,
+       2,    65,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,    62,     2,     2,     2,     2,     2,
@@ -1195,13 +1289,12 @@ private static final byte[] yycheck_ = yycheck_init();
   }
 
 
-  private static final int YYLAST_ = 58;
+  private static final int YYLAST_ = 60;
   private static final int YYEMPTY_ = -2;
-  private static final int YYFINAL_ = 10;
-  private static final int YYNTOKENS_ = 66;
+  private static final int YYFINAL_ = 14;
+  private static final int YYNTOKENS_ = 68;
 
 
 }
-/* "./parser/pythonparser.y":101  */
-
+/* "pythonparser.y":152  */
 
