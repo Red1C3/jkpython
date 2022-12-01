@@ -27,6 +27,14 @@ public class Lexer {
         }
     }
 
+    public void printAllTokens(){
+        for (Token token:tokens
+             ) {
+            System.out.println(token.toString());
+        }
+        System.out.println("Finished printing tokens");
+    }
+
     private void buildLexer() {
         isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
         try {
