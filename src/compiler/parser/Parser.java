@@ -41,7 +41,7 @@ package compiler.parser;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 /* "%code imports" blocks.  */
-/* "pythonparser.y":8  */
+/* "pythonparser.y":9  */
 
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
@@ -59,7 +59,7 @@ public class Parser
   public static final String bisonVersion = "3.8.2";
 
   /** Name of the skeleton that generated this parser.  */
-  public static final String bisonSkeleton = "lalr1.java";
+  public static final String bisonSkeleton = "./lalr1-patched.java";
 
 
 
@@ -456,7 +456,7 @@ public class Parser
 
   private class YYLexer implements Lexer {
 /* "%code lexer" blocks.  */
-/* "pythonparser.y":15  */
+/* "pythonparser.y":16  */
 
   private compiler.lexer.Lexer lexer;
 
@@ -682,77 +682,77 @@ public class Parser
       {
           case 6: /* statement: exp '\n'  */
   if (yyn == 6)
-    /* "pythonparser.y":131  */
+    /* "pythonparser.y":132  */
          {System.out.println((Double)((Object)(yystack.valueAt (1))));};
   break;
 
 
   case 7: /* statement: IF exp ':' block  */
   if (yyn == 7)
-    /* "pythonparser.y":132  */
+    /* "pythonparser.y":133  */
                    {System.out.println("IF statement detected");};
   break;
 
 
   case 8: /* statement: IDENTIFIER '=' exp '\n'  */
   if (yyn == 8)
-    /* "pythonparser.y":133  */
+    /* "pythonparser.y":134  */
                           {System.out.println("assignment statement detected");};
   break;
 
 
   case 9: /* block: '\n' INDENT statements DEDENT  */
   if (yyn == 9)
-    /* "pythonparser.y":139  */
+    /* "pythonparser.y":140  */
                               {System.out.println("block detected");};
   break;
 
 
   case 10: /* exp: NUMBER  */
   if (yyn == 10)
-    /* "pythonparser.y":144  */
+    /* "pythonparser.y":145  */
             {yyval=(Double)((Double)(yystack.valueAt (0)));};
   break;
 
 
   case 11: /* exp: exp '+' exp  */
   if (yyn == 11)
-    /* "pythonparser.y":145  */
+    /* "pythonparser.y":146  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))+(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 12: /* exp: exp '-' exp  */
   if (yyn == 12)
-    /* "pythonparser.y":146  */
+    /* "pythonparser.y":147  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 13: /* exp: exp '*' exp  */
   if (yyn == 13)
-    /* "pythonparser.y":147  */
+    /* "pythonparser.y":148  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))*(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 14: /* exp: exp '/' exp  */
   if (yyn == 14)
-    /* "pythonparser.y":148  */
+    /* "pythonparser.y":149  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))/(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 15: /* exp: '-' exp  */
   if (yyn == 15)
-    /* "pythonparser.y":149  */
+    /* "pythonparser.y":150  */
                     {yyval=-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 16: /* exp: '(' exp ')'  */
   if (yyn == 16)
-    /* "pythonparser.y":150  */
+    /* "pythonparser.y":151  */
               {yyval=((Object)(yystack.valueAt (1)));};
   break;
 
@@ -1296,5 +1296,5 @@ private static final byte[] yycheck_ = yycheck_init();
 
 
 }
-/* "pythonparser.y":152  */
+/* "pythonparser.y":153  */
 

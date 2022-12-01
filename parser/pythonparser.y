@@ -1,4 +1,5 @@
 %language "Java"
+%skeleton "./lalr1-patched.java"
 
 %define api.package {compiler.parser}
 
