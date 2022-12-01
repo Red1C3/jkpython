@@ -4,10 +4,8 @@
     <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Add print all tokens method to Lexer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lexer/pythonlexer.l" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/pythonlexer.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/parser/LexerHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,21 +62,16 @@
       <recent name="$PROJECT_DIR$/src/compiler/parser" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Calc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="compiler.parser.Calc" />
+  <component name="RunManager" selected="Application.Main - Interactve">
+    <configuration name="Main - File" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="compiler.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PROGRAM_PARAMETERS" value="input.txt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main - Interactve" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
       <method v="2">
@@ -133,10 +126,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main - File" />
+      <item itemvalue="Application.Main - Interactve" />
+      <item itemvalue="JUnit.LexerTest.test" />
+      <item itemvalue="JUnit.LexerTest.testa" />
+      <item itemvalue="JUnit.LexerTest.testTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Calc" />
+        <item itemvalue="Application.Main - Interactve" />
         <item itemvalue="JUnit.LexerTest.testTest" />
         <item itemvalue="JUnit.LexerTest.testa" />
         <item itemvalue="JUnit.LexerTest.test" />
