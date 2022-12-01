@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Switch token types to int">
-      <change afterPath="$PROJECT_DIR$/src/compiler/lexer/Tokens.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/parser/LexerHelper.java" afterDir="false" />
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Add print all tokens method to Lexer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/pythonlexer.l" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/pythonlexer.l" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/parser/LexerHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +39,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "/home/reddeadalice/Projects/python-compileruwu/parser",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/reddeadalice/Projects/python-compileruwu/parser&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/parser" />
@@ -194,7 +194,28 @@
       <option name="project" value="LOCAL" />
       <updated>1669832948335</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Assemble lexer-bridge">
+      <created>1669841593750</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669841593750</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Big failure yay">
+      <created>1669888816972</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669888816972</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add print all tokens method to Lexer">
+      <created>1669888850126</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669888850126</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -218,6 +239,9 @@
     <MESSAGE value="Improve Lexer testing, Create Token class" />
     <MESSAGE value="Improve Token printing" />
     <MESSAGE value="Switch token types to int" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switch token types to int" />
+    <MESSAGE value="Assemble lexer-bridge" />
+    <MESSAGE value="Big failure yay" />
+    <MESSAGE value="Add print all tokens method to Lexer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add print all tokens method to Lexer" />
   </component>
 </project>

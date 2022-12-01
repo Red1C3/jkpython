@@ -71,40 +71,29 @@
 %right '^'
 
 %%
-prog: 
+prog:
 %empty
-|statement prog
-;
-
-simple_statement:
-'\n'
-| exp '\n' {System.out.println((Double)$1);}
-;
-
-compound_statement:
-IF exp ':' block
-;
-
-statement:
-simple_statements
-| compound_statement
+| statements
 ;
 
 statements:
 statement
-| statements statement
+|statement statements
+;
+
+statement:
+exp '\n' {System.out.println((Double)$1);}
+| IF exp ':' block {System.out.println("IF statement detected");}
+| IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected");}
 ;
 
 
-simple_statements:
-simple_statement
-|simple_statement simple_statements
-;
 
 block:
-INDENT statements DEDENT {System.out.println("Block handled");}
-| simple_statements {System.out.println("Simple statements as block handled");}
+'\n' INDENT statements DEDENT {System.out.println("block detected");}
 ;
+
+
 
 exp: NUMBER {$$=(Double)$1;}
 | exp '+' exp {$$=(Double)$1+(Double)$3;}
@@ -144,6 +133,15 @@ class LexerHelper implements Parser.Lexer {
         return NUMBER;
     case Tokens.NEWLINE:
         return (int) '\n';
+    case Tokens.STRING:
+        yylval=token.getLiteral();
+        return STRING;
+    case Tokens.IF:
+        return IF;
+    case Tokens.INDENT:
+        return INDENT;
+    case Tokens.DEDENT:
+        return DEDENT;
     default:
         return token.getType();
     }
