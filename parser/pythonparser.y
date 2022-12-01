@@ -1,5 +1,7 @@
 %language "Java"
 
+%define api.package {compiler.parser}
+
 %define api.parser.class {Parser}
 %define api.parser.public
 
