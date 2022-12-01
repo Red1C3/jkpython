@@ -1,7 +1,6 @@
 package compiler;
 
 import compiler.lexer.Lexer;
-import compiler.parser.LexerHelper;
 import compiler.parser.Parser;
 
 import java.io.IOException;
@@ -24,8 +23,7 @@ public class Main {
 
         lexer.printAllTokens();
 
-        LexerHelper lexerHelper=new LexerHelper(lexer);
-        Parser parser=new Parser(lexerHelper);
+        Parser parser=new Parser(lexer);
         parser.parse();
     }
 
@@ -37,8 +35,7 @@ public class Main {
             line+="\n";
             lexer.run(line);
             lexer.printAllTokens(); //TODO if faced an INDENT don't parse until it DEDENTs?
-            LexerHelper lexerHelper=new LexerHelper(lexer);
-            Parser parser=new Parser(lexerHelper);
+            Parser parser=new Parser(lexer);
             parser.parse();
             System.out.print(PROMPT);
         }
