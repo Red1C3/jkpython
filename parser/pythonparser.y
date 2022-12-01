@@ -56,7 +56,6 @@
   }
 }
 
-%token <Object> KEYWORD
 %token <Object> INDENT
 %token <Object> DEDENT
 %token <Object> NEWLINE
