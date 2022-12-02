@@ -10,33 +10,40 @@ import java.util.Scanner;
 public class Main {
     private static Lexer lexer;
 
-    private static final String PROMPT=">>>";
+    private static final String PROMPT = ">>>";
 
-    public static void main(String[] args) throws IOException {
-        lexer=new Lexer();
-        if(args.length==0){
+    public static void main(String[] args) {
+        lexer = new Lexer();
+        if (args.length == 0) {
             runInteractive();
             return;
         }
+        try {
+            lexer.run(Paths.get(args[0]));
 
-        lexer.run(Paths.get(args[0]));
+            lexer.printAllTokens();
 
-        lexer.printAllTokens();
-
-        Parser parser=new Parser(lexer);
-        parser.parse();
+            Parser parser = new Parser(lexer);
+            parser.parse();
+        } catch (IOException e) {
+            System.out.println("Failed to handle file " + args[0] + "\nError:" + e);
+        }
     }
 
-    private static void runInteractive() throws IOException {
-        Scanner scanner=new Scanner(System.in);
+    private static void runInteractive() {
+        Scanner scanner = new Scanner(System.in);
         String line;
         System.out.print(PROMPT);
-        while((line=scanner.nextLine())!=null){
-            line+="\n";
-            lexer.run(line);
-            lexer.printAllTokens(); //TODO if faced an INDENT don't parse until it DEDENTs?
-            Parser parser=new Parser(lexer);
-            parser.parse();
+        while ((line = scanner.nextLine()) != null) {
+            try {
+                line += "\n";
+                lexer.run(line);
+                lexer.printAllTokens(); //TODO if faced an INDENT don't parse until it DEDENTs?
+                Parser parser = new Parser(lexer);
+                parser.parse();
+            } catch (IOException e) {
+                System.out.println("Failed to handle line: " + line + "\nError:" + e);
+            }
             System.out.print(PROMPT);
         }
     }
