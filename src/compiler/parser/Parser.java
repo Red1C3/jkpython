@@ -41,15 +41,16 @@ package compiler.parser;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 /* "%code imports" blocks.  */
-/* "pythonparser.y":9  */
+/* "./parser/pythonparser.y":9  */
 
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
+  import compiler.lexer.Tokens;
 
-/* "../src/compiler/parser/Parser.java":50  */
+/* "./src/compiler/parser/Parser.java":51  */
 
 /**
- * A Bison parser, automatically generated from <tt>pythonparser.y</tt>.
+ * A Bison parser, automatically generated from <tt>./parser/pythonparser.y</tt>.
  *
  * @author LALR (1) parser skeleton written by Paolo Bonzini.
  */
@@ -59,7 +60,7 @@ public class Parser
   public static final String bisonVersion = "3.8.2";
 
   /** Name of the skeleton that generated this parser.  */
-  public static final String bisonSkeleton = "./lalr1-patched.java";
+  public static final String bisonSkeleton = "./parser/./lalr1-patched.java";
 
 
 
@@ -71,77 +72,76 @@ public class Parser
     S_YYEOF(0),                    /* "end of file"  */
     S_YYerror(1),                  /* error  */
     S_YYUNDEF(2),                  /* "invalid token"  */
-    S_KEYWORD(3),                  /* KEYWORD  */
-    S_INDENT(4),                   /* INDENT  */
-    S_DEDENT(5),                   /* DEDENT  */
-    S_NEWLINE(6),                  /* NEWLINE  */
-    S_NUMBER(7),                   /* NUMBER  */
-    S_COMMENT(8),                  /* COMMENT  */
-    S_LESS_THAN_OR_EQUAL(9),       /* LESS_THAN_OR_EQUAL  */
-    S_GREATER_THAN_OR_EQUAL(10),   /* GREATER_THAN_OR_EQUAL  */
-    S_EQUAL(11),                   /* EQUAL  */
-    S_NOT_EQUAL(12),               /* NOT_EQUAL  */
-    S_NOT_EQUAL_2(13),             /* NOT_EQUAL_2  */
-    S_BITWISE_SHIFT_LEFT(14),      /* BITWISE_SHIFT_LEFT  */
-    S_BITWISE_SHIFT_RIGHT(15),     /* BITWISE_SHIFT_RIGHT  */
-    S_POWER(16),                   /* POWER  */
-    S_ADDITION_ASSIGNMENT(17),     /* ADDITION_ASSIGNMENT  */
-    S_SUBSTRACTION_ASSIGNMENT(18), /* SUBSTRACTION_ASSIGNMENT  */
-    S_MULTIPLICATION_ASSIGNMENT(19), /* MULTIPLICATION_ASSIGNMENT  */
-    S_DIVISION_ASSIGNMENT(20),     /* DIVISION_ASSIGNMENT  */
-    S_REMAINDER_ASSIGNMENT(21),    /* REMAINDER_ASSIGNMENT  */
-    S_BITWISE_AND_ASSIGNMENT(22),  /* BITWISE_AND_ASSIGNMENT  */
-    S_POWER_ASSIGNMENT(23),        /* POWER_ASSIGNMENT  */
-    S_BITWISE_OR_ASSIGNMENT(24),   /* BITWISE_OR_ASSIGNMENT  */
-    S_BITWISE_XOR_ASSIGNMENT(25),  /* BITWISE_XOR_ASSIGNMENT  */
-    S_BITWISE_SHIFT_LEFT_ASSIGNMENT(26), /* BITWISE_SHIFT_LEFT_ASSIGNMENT  */
-    S_BITWISE_SHIFT_RIGHT_ASSIGNMENT(27), /* BITWISE_SHIFT_RIGHT_ASSIGNMENT  */
-    S_FLOOR_DIVISION(28),          /* FLOOR_DIVISION  */
-    S_FLOOR_DIVISION_ASSIGNMENT(29), /* FLOOR_DIVISION_ASSIGNMENT  */
-    S_BACKSLASH_LOGICAL_LINE(30),  /* BACKSLASH_LOGICAL_LINE  */
-    S_STRING(31),                  /* STRING  */
-    S_IDENTIFIER(32),              /* IDENTIFIER  */
-    S_WHITE_SPACE(33),             /* WHITE_SPACE  */
-    S_ILLEGAL(34),                 /* ILLEGAL  */
-    S_IMPORT(35),                  /* IMPORT  */
-    S_NONLOCAL(36),                /* NONLOCAL  */
-    S_CONTINUE(37),                /* CONTINUE  */
-    S_NONE(38),                    /* NONE  */
-    S_GLOBAL(39),                  /* GLOBAL  */
-    S_IN(40),                      /* IN  */
-    S_RETURN(41),                  /* RETURN  */
-    S_FALSE_TOK(42),               /* FALSE_TOK  */
-    S_TRUE_TOK(43),                /* TRUE_TOK  */
-    S_AND(44),                     /* AND  */
-    S_OR(45),                      /* OR  */
-    S_NOT(46),                     /* NOT  */
-    S_DEF(47),                     /* DEF  */
-    S_IF(48),                      /* IF  */
-    S_ELSE(49),                    /* ELSE  */
-    S_ELIF(50),                    /* ELIF  */
-    S_FOR(51),                     /* FOR  */
-    S_WHILE(52),                   /* WHILE  */
-    S_BREAK(53),                   /* BREAK  */
-    S_PASS(54),                    /* PASS  */
-    S_LAMBDA(55),                  /* LAMBDA  */
-    S_COMMA_LOGICAL_LINE(56),      /* COMMA_LOGICAL_LINE  */
-    S_57_(57),                     /* '+'  */
-    S_58_(58),                     /* '-'  */
-    S_59_(59),                     /* '*'  */
-    S_60_(60),                     /* '/'  */
-    S_NEG(61),                     /* NEG  */
-    S_62_(62),                     /* '^'  */
-    S_63_n_(63),                   /* '\n'  */
-    S_64_(64),                     /* ':'  */
-    S_65_(65),                     /* '='  */
-    S_66_(66),                     /* '('  */
-    S_67_(67),                     /* ')'  */
-    S_YYACCEPT(68),                /* $accept  */
-    S_prog(69),                    /* prog  */
-    S_statements(70),              /* statements  */
-    S_statement(71),               /* statement  */
-    S_block(72),                   /* block  */
-    S_exp(73);                     /* exp  */
+    S_INDENT(3),                   /* INDENT  */
+    S_DEDENT(4),                   /* DEDENT  */
+    S_NEWLINE(5),                  /* NEWLINE  */
+    S_NUMBER(6),                   /* NUMBER  */
+    S_COMMENT(7),                  /* COMMENT  */
+    S_LESS_THAN_OR_EQUAL(8),       /* LESS_THAN_OR_EQUAL  */
+    S_GREATER_THAN_OR_EQUAL(9),    /* GREATER_THAN_OR_EQUAL  */
+    S_EQUAL(10),                   /* EQUAL  */
+    S_NOT_EQUAL(11),               /* NOT_EQUAL  */
+    S_NOT_EQUAL_2(12),             /* NOT_EQUAL_2  */
+    S_BITWISE_SHIFT_LEFT(13),      /* BITWISE_SHIFT_LEFT  */
+    S_BITWISE_SHIFT_RIGHT(14),     /* BITWISE_SHIFT_RIGHT  */
+    S_POWER(15),                   /* POWER  */
+    S_ADDITION_ASSIGNMENT(16),     /* ADDITION_ASSIGNMENT  */
+    S_SUBSTRACTION_ASSIGNMENT(17), /* SUBSTRACTION_ASSIGNMENT  */
+    S_MULTIPLICATION_ASSIGNMENT(18), /* MULTIPLICATION_ASSIGNMENT  */
+    S_DIVISION_ASSIGNMENT(19),     /* DIVISION_ASSIGNMENT  */
+    S_REMAINDER_ASSIGNMENT(20),    /* REMAINDER_ASSIGNMENT  */
+    S_BITWISE_AND_ASSIGNMENT(21),  /* BITWISE_AND_ASSIGNMENT  */
+    S_POWER_ASSIGNMENT(22),        /* POWER_ASSIGNMENT  */
+    S_BITWISE_OR_ASSIGNMENT(23),   /* BITWISE_OR_ASSIGNMENT  */
+    S_BITWISE_XOR_ASSIGNMENT(24),  /* BITWISE_XOR_ASSIGNMENT  */
+    S_BITWISE_SHIFT_LEFT_ASSIGNMENT(25), /* BITWISE_SHIFT_LEFT_ASSIGNMENT  */
+    S_BITWISE_SHIFT_RIGHT_ASSIGNMENT(26), /* BITWISE_SHIFT_RIGHT_ASSIGNMENT  */
+    S_FLOOR_DIVISION(27),          /* FLOOR_DIVISION  */
+    S_FLOOR_DIVISION_ASSIGNMENT(28), /* FLOOR_DIVISION_ASSIGNMENT  */
+    S_BACKSLASH_LOGICAL_LINE(29),  /* BACKSLASH_LOGICAL_LINE  */
+    S_STRING(30),                  /* STRING  */
+    S_IDENTIFIER(31),              /* IDENTIFIER  */
+    S_WHITE_SPACE(32),             /* WHITE_SPACE  */
+    S_ILLEGAL(33),                 /* ILLEGAL  */
+    S_IMPORT(34),                  /* IMPORT  */
+    S_NONLOCAL(35),                /* NONLOCAL  */
+    S_CONTINUE(36),                /* CONTINUE  */
+    S_NONE(37),                    /* NONE  */
+    S_GLOBAL(38),                  /* GLOBAL  */
+    S_IN(39),                      /* IN  */
+    S_RETURN(40),                  /* RETURN  */
+    S_FALSE_TOK(41),               /* FALSE_TOK  */
+    S_TRUE_TOK(42),                /* TRUE_TOK  */
+    S_AND(43),                     /* AND  */
+    S_OR(44),                      /* OR  */
+    S_NOT(45),                     /* NOT  */
+    S_DEF(46),                     /* DEF  */
+    S_IF(47),                      /* IF  */
+    S_ELSE(48),                    /* ELSE  */
+    S_ELIF(49),                    /* ELIF  */
+    S_FOR(50),                     /* FOR  */
+    S_WHILE(51),                   /* WHILE  */
+    S_BREAK(52),                   /* BREAK  */
+    S_PASS(53),                    /* PASS  */
+    S_LAMBDA(54),                  /* LAMBDA  */
+    S_COMMA_LOGICAL_LINE(55),      /* COMMA_LOGICAL_LINE  */
+    S_56_(56),                     /* '+'  */
+    S_57_(57),                     /* '-'  */
+    S_58_(58),                     /* '*'  */
+    S_59_(59),                     /* '/'  */
+    S_NEG(60),                     /* NEG  */
+    S_61_(61),                     /* '^'  */
+    S_62_n_(62),                   /* '\n'  */
+    S_63_(63),                     /* ':'  */
+    S_64_(64),                     /* '='  */
+    S_65_(65),                     /* '('  */
+    S_66_(66),                     /* ')'  */
+    S_YYACCEPT(67),                /* $accept  */
+    S_prog(68),                    /* prog  */
+    S_statements(69),              /* statements  */
+    S_statement(70),               /* statement  */
+    S_block(71),                   /* block  */
+    S_exp(72);                     /* exp  */
 
 
     private final int yycode_;
@@ -154,7 +154,6 @@ public class Parser
       SymbolKind.S_YYEOF,
       SymbolKind.S_YYerror,
       SymbolKind.S_YYUNDEF,
-      SymbolKind.S_KEYWORD,
       SymbolKind.S_INDENT,
       SymbolKind.S_DEDENT,
       SymbolKind.S_NEWLINE,
@@ -208,17 +207,17 @@ public class Parser
       SymbolKind.S_PASS,
       SymbolKind.S_LAMBDA,
       SymbolKind.S_COMMA_LOGICAL_LINE,
+      SymbolKind.S_56_,
       SymbolKind.S_57_,
       SymbolKind.S_58_,
       SymbolKind.S_59_,
-      SymbolKind.S_60_,
       SymbolKind.S_NEG,
-      SymbolKind.S_62_,
-      SymbolKind.S_63_n_,
+      SymbolKind.S_61_,
+      SymbolKind.S_62_n_,
+      SymbolKind.S_63_,
       SymbolKind.S_64_,
       SymbolKind.S_65_,
       SymbolKind.S_66_,
-      SymbolKind.S_67_,
       SymbolKind.S_YYACCEPT,
       SymbolKind.S_prog,
       SymbolKind.S_statements,
@@ -274,8 +273,8 @@ public class Parser
   {
     return new String[]
     {
-  "\"end of file\"", "error", "\"invalid token\"", "KEYWORD", "INDENT",
-  "DEDENT", "NEWLINE", "NUMBER", "COMMENT", "LESS_THAN_OR_EQUAL",
+  "\"end of file\"", "error", "\"invalid token\"", "INDENT", "DEDENT",
+  "NEWLINE", "NUMBER", "COMMENT", "LESS_THAN_OR_EQUAL",
   "GREATER_THAN_OR_EQUAL", "EQUAL", "NOT_EQUAL", "NOT_EQUAL_2",
   "BITWISE_SHIFT_LEFT", "BITWISE_SHIFT_RIGHT", "POWER",
   "ADDITION_ASSIGNMENT", "SUBSTRACTION_ASSIGNMENT",
@@ -313,116 +312,114 @@ public class Parser
     static final int YYerror = 256;
     /** Token "invalid token", to be returned by the scanner.  */
     static final int YYUNDEF = 257;
-    /** Token KEYWORD, to be returned by the scanner.  */
-    static final int KEYWORD = 258;
     /** Token INDENT, to be returned by the scanner.  */
-    static final int INDENT = 259;
+    static final int INDENT = 258;
     /** Token DEDENT, to be returned by the scanner.  */
-    static final int DEDENT = 260;
+    static final int DEDENT = 259;
     /** Token NEWLINE, to be returned by the scanner.  */
-    static final int NEWLINE = 261;
+    static final int NEWLINE = 260;
     /** Token NUMBER, to be returned by the scanner.  */
-    static final int NUMBER = 262;
+    static final int NUMBER = 261;
     /** Token COMMENT, to be returned by the scanner.  */
-    static final int COMMENT = 263;
+    static final int COMMENT = 262;
     /** Token LESS_THAN_OR_EQUAL, to be returned by the scanner.  */
-    static final int LESS_THAN_OR_EQUAL = 264;
+    static final int LESS_THAN_OR_EQUAL = 263;
     /** Token GREATER_THAN_OR_EQUAL, to be returned by the scanner.  */
-    static final int GREATER_THAN_OR_EQUAL = 265;
+    static final int GREATER_THAN_OR_EQUAL = 264;
     /** Token EQUAL, to be returned by the scanner.  */
-    static final int EQUAL = 266;
+    static final int EQUAL = 265;
     /** Token NOT_EQUAL, to be returned by the scanner.  */
-    static final int NOT_EQUAL = 267;
+    static final int NOT_EQUAL = 266;
     /** Token NOT_EQUAL_2, to be returned by the scanner.  */
-    static final int NOT_EQUAL_2 = 268;
+    static final int NOT_EQUAL_2 = 267;
     /** Token BITWISE_SHIFT_LEFT, to be returned by the scanner.  */
-    static final int BITWISE_SHIFT_LEFT = 269;
+    static final int BITWISE_SHIFT_LEFT = 268;
     /** Token BITWISE_SHIFT_RIGHT, to be returned by the scanner.  */
-    static final int BITWISE_SHIFT_RIGHT = 270;
+    static final int BITWISE_SHIFT_RIGHT = 269;
     /** Token POWER, to be returned by the scanner.  */
-    static final int POWER = 271;
+    static final int POWER = 270;
     /** Token ADDITION_ASSIGNMENT, to be returned by the scanner.  */
-    static final int ADDITION_ASSIGNMENT = 272;
+    static final int ADDITION_ASSIGNMENT = 271;
     /** Token SUBSTRACTION_ASSIGNMENT, to be returned by the scanner.  */
-    static final int SUBSTRACTION_ASSIGNMENT = 273;
+    static final int SUBSTRACTION_ASSIGNMENT = 272;
     /** Token MULTIPLICATION_ASSIGNMENT, to be returned by the scanner.  */
-    static final int MULTIPLICATION_ASSIGNMENT = 274;
+    static final int MULTIPLICATION_ASSIGNMENT = 273;
     /** Token DIVISION_ASSIGNMENT, to be returned by the scanner.  */
-    static final int DIVISION_ASSIGNMENT = 275;
+    static final int DIVISION_ASSIGNMENT = 274;
     /** Token REMAINDER_ASSIGNMENT, to be returned by the scanner.  */
-    static final int REMAINDER_ASSIGNMENT = 276;
+    static final int REMAINDER_ASSIGNMENT = 275;
     /** Token BITWISE_AND_ASSIGNMENT, to be returned by the scanner.  */
-    static final int BITWISE_AND_ASSIGNMENT = 277;
+    static final int BITWISE_AND_ASSIGNMENT = 276;
     /** Token POWER_ASSIGNMENT, to be returned by the scanner.  */
-    static final int POWER_ASSIGNMENT = 278;
+    static final int POWER_ASSIGNMENT = 277;
     /** Token BITWISE_OR_ASSIGNMENT, to be returned by the scanner.  */
-    static final int BITWISE_OR_ASSIGNMENT = 279;
+    static final int BITWISE_OR_ASSIGNMENT = 278;
     /** Token BITWISE_XOR_ASSIGNMENT, to be returned by the scanner.  */
-    static final int BITWISE_XOR_ASSIGNMENT = 280;
+    static final int BITWISE_XOR_ASSIGNMENT = 279;
     /** Token BITWISE_SHIFT_LEFT_ASSIGNMENT, to be returned by the scanner.  */
-    static final int BITWISE_SHIFT_LEFT_ASSIGNMENT = 281;
+    static final int BITWISE_SHIFT_LEFT_ASSIGNMENT = 280;
     /** Token BITWISE_SHIFT_RIGHT_ASSIGNMENT, to be returned by the scanner.  */
-    static final int BITWISE_SHIFT_RIGHT_ASSIGNMENT = 282;
+    static final int BITWISE_SHIFT_RIGHT_ASSIGNMENT = 281;
     /** Token FLOOR_DIVISION, to be returned by the scanner.  */
-    static final int FLOOR_DIVISION = 283;
+    static final int FLOOR_DIVISION = 282;
     /** Token FLOOR_DIVISION_ASSIGNMENT, to be returned by the scanner.  */
-    static final int FLOOR_DIVISION_ASSIGNMENT = 284;
+    static final int FLOOR_DIVISION_ASSIGNMENT = 283;
     /** Token BACKSLASH_LOGICAL_LINE, to be returned by the scanner.  */
-    static final int BACKSLASH_LOGICAL_LINE = 285;
+    static final int BACKSLASH_LOGICAL_LINE = 284;
     /** Token STRING, to be returned by the scanner.  */
-    static final int STRING = 286;
+    static final int STRING = 285;
     /** Token IDENTIFIER, to be returned by the scanner.  */
-    static final int IDENTIFIER = 287;
+    static final int IDENTIFIER = 286;
     /** Token WHITE_SPACE, to be returned by the scanner.  */
-    static final int WHITE_SPACE = 288;
+    static final int WHITE_SPACE = 287;
     /** Token ILLEGAL, to be returned by the scanner.  */
-    static final int ILLEGAL = 289;
+    static final int ILLEGAL = 288;
     /** Token IMPORT, to be returned by the scanner.  */
-    static final int IMPORT = 290;
+    static final int IMPORT = 289;
     /** Token NONLOCAL, to be returned by the scanner.  */
-    static final int NONLOCAL = 291;
+    static final int NONLOCAL = 290;
     /** Token CONTINUE, to be returned by the scanner.  */
-    static final int CONTINUE = 292;
+    static final int CONTINUE = 291;
     /** Token NONE, to be returned by the scanner.  */
-    static final int NONE = 293;
+    static final int NONE = 292;
     /** Token GLOBAL, to be returned by the scanner.  */
-    static final int GLOBAL = 294;
+    static final int GLOBAL = 293;
     /** Token IN, to be returned by the scanner.  */
-    static final int IN = 295;
+    static final int IN = 294;
     /** Token RETURN, to be returned by the scanner.  */
-    static final int RETURN = 296;
+    static final int RETURN = 295;
     /** Token FALSE_TOK, to be returned by the scanner.  */
-    static final int FALSE_TOK = 297;
+    static final int FALSE_TOK = 296;
     /** Token TRUE_TOK, to be returned by the scanner.  */
-    static final int TRUE_TOK = 298;
+    static final int TRUE_TOK = 297;
     /** Token AND, to be returned by the scanner.  */
-    static final int AND = 299;
+    static final int AND = 298;
     /** Token OR, to be returned by the scanner.  */
-    static final int OR = 300;
+    static final int OR = 299;
     /** Token NOT, to be returned by the scanner.  */
-    static final int NOT = 301;
+    static final int NOT = 300;
     /** Token DEF, to be returned by the scanner.  */
-    static final int DEF = 302;
+    static final int DEF = 301;
     /** Token IF, to be returned by the scanner.  */
-    static final int IF = 303;
+    static final int IF = 302;
     /** Token ELSE, to be returned by the scanner.  */
-    static final int ELSE = 304;
+    static final int ELSE = 303;
     /** Token ELIF, to be returned by the scanner.  */
-    static final int ELIF = 305;
+    static final int ELIF = 304;
     /** Token FOR, to be returned by the scanner.  */
-    static final int FOR = 306;
+    static final int FOR = 305;
     /** Token WHILE, to be returned by the scanner.  */
-    static final int WHILE = 307;
+    static final int WHILE = 306;
     /** Token BREAK, to be returned by the scanner.  */
-    static final int BREAK = 308;
+    static final int BREAK = 307;
     /** Token PASS, to be returned by the scanner.  */
-    static final int PASS = 309;
+    static final int PASS = 308;
     /** Token LAMBDA, to be returned by the scanner.  */
-    static final int LAMBDA = 310;
+    static final int LAMBDA = 309;
     /** Token COMMA_LOGICAL_LINE, to be returned by the scanner.  */
-    static final int COMMA_LOGICAL_LINE = 311;
+    static final int COMMA_LOGICAL_LINE = 310;
     /** Token NEG, to be returned by the scanner.  */
-    static final int NEG = 312;
+    static final int NEG = 311;
 
     /** Deprecated, use YYEOF instead.  */
     public static final int EOF = YYEOF;
@@ -456,7 +453,7 @@ public class Parser
 
   private class YYLexer implements Lexer {
 /* "%code lexer" blocks.  */
-/* "pythonparser.y":16  */
+/* "./parser/pythonparser.y":17  */
 
   private compiler.lexer.Lexer lexer;
 
@@ -480,26 +477,26 @@ public class Parser
         return YYEOF;
     }
     switch(token.getType()){
-      case Lexer.NUMBER:
+      case Tokens.NUMBER:
           yylval=Double.parseDouble(token.getLiteral());
           return NUMBER;
-      case Lexer.NEWLINE:
+      case Tokens.NEWLINE:
           return (int) '\n';
-      case Lexer.STRING:
+      case Tokens.STRING:
           yylval=token.getLiteral();
           return STRING;
-      case Lexer.IF:
+      case Tokens.IF:
           return IF;
-      case Lexer.INDENT:
+      case Tokens.INDENT:
           return INDENT;
-      case Lexer.DEDENT:
+      case Tokens.DEDENT:
           return DEDENT;
       default:
           return token.getType();
     }
   }
 
-/* "../src/compiler/parser/Parser.java":503  */
+/* "./src/compiler/parser/Parser.java":500  */
 
   }
 
@@ -682,83 +679,83 @@ public class Parser
       {
           case 6: /* statement: exp '\n'  */
   if (yyn == 6)
-    /* "pythonparser.y":132  */
+    /* "./parser/pythonparser.y":132  */
          {System.out.println((Double)((Object)(yystack.valueAt (1))));};
   break;
 
 
   case 7: /* statement: IF exp ':' block  */
   if (yyn == 7)
-    /* "pythonparser.y":133  */
+    /* "./parser/pythonparser.y":133  */
                    {System.out.println("IF statement detected");};
   break;
 
 
   case 8: /* statement: IDENTIFIER '=' exp '\n'  */
   if (yyn == 8)
-    /* "pythonparser.y":134  */
+    /* "./parser/pythonparser.y":134  */
                           {System.out.println("assignment statement detected");};
   break;
 
 
   case 9: /* block: '\n' INDENT statements DEDENT  */
   if (yyn == 9)
-    /* "pythonparser.y":140  */
+    /* "./parser/pythonparser.y":140  */
                               {System.out.println("block detected");};
   break;
 
 
   case 10: /* exp: NUMBER  */
   if (yyn == 10)
-    /* "pythonparser.y":145  */
+    /* "./parser/pythonparser.y":145  */
             {yyval=(Double)((Double)(yystack.valueAt (0)));};
   break;
 
 
   case 11: /* exp: exp '+' exp  */
   if (yyn == 11)
-    /* "pythonparser.y":146  */
+    /* "./parser/pythonparser.y":146  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))+(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 12: /* exp: exp '-' exp  */
   if (yyn == 12)
-    /* "pythonparser.y":147  */
+    /* "./parser/pythonparser.y":147  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 13: /* exp: exp '*' exp  */
   if (yyn == 13)
-    /* "pythonparser.y":148  */
+    /* "./parser/pythonparser.y":148  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))*(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 14: /* exp: exp '/' exp  */
   if (yyn == 14)
-    /* "pythonparser.y":149  */
+    /* "./parser/pythonparser.y":149  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))/(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 15: /* exp: '-' exp  */
   if (yyn == 15)
-    /* "pythonparser.y":150  */
+    /* "./parser/pythonparser.y":150  */
                     {yyval=-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 16: /* exp: '(' exp ')'  */
   if (yyn == 16)
-    /* "pythonparser.y":151  */
+    /* "./parser/pythonparser.y":151  */
               {yyval=((Object)(yystack.valueAt (1)));};
   break;
 
 
 
-/* "../src/compiler/parser/Parser.java":762  */
+/* "./src/compiler/parser/Parser.java":759  */
 
         default: break;
       }
@@ -1111,7 +1108,7 @@ public class Parser
     return yyvalue == yytable_ninf_;
   }
 
-  private static final byte yypact_ninf_ = -64;
+  private static final byte yypact_ninf_ = -57;
   private static final byte yytable_ninf_ = -1;
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -1121,10 +1118,10 @@ public class Parser
   {
     return new byte[]
     {
-      -7,   -64,   -63,    -6,    -6,    -6,     9,   -64,    -7,   -21,
-      -6,   -30,   -64,   -45,   -64,   -64,    -6,    -6,    -6,    -6,
-     -64,   -14,   -53,   -64,   -52,   -52,   -64,   -64,   -64,    12,
-     -64,    -7,    16,   -64
+      -6,   -57,   -55,    -5,    -5,    -5,     8,   -57,    -6,   -20,
+      -5,   -28,   -57,   -43,   -57,   -57,    -5,    -5,    -5,    -5,
+     -57,   -13,   -52,   -57,   -56,   -56,   -57,   -57,   -57,    14,
+     -57,    -6,     7,   -57
     };
   }
 
@@ -1149,7 +1146,7 @@ public class Parser
   {
     return new byte[]
     {
-     -64,   -64,    -5,   -64,   -64,     1
+     -57,   -57,    -4,   -57,   -57,     2
     };
   }
 
@@ -1171,10 +1168,10 @@ public class Parser
   {
     return new byte[]
     {
-       1,     1,    10,    15,    11,    12,    13,    18,    19,    14,
-      29,    21,    16,    17,    18,    19,    31,    24,    25,    26,
-      27,    33,    23,     0,     0,     2,    32,    16,    17,    18,
-      19,     0,     0,     0,    22,     0,    16,    17,    18,    19,
+       1,     1,    18,    19,    15,    11,    12,    13,    14,    10,
+      29,    33,    21,    16,    17,    18,    19,    31,    24,    25,
+      26,    27,     0,    23,     0,     2,     0,    32,    16,    17,
+      18,    19,     0,     0,     0,    22,    16,    17,    18,    19,
        0,     3,    20,    16,    17,    18,    19,     0,     0,    28,
        0,     4,     4,     0,     0,     0,     0,     0,     0,     5,
        5
@@ -1186,13 +1183,13 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       7,     7,    65,     8,     3,     4,     5,    59,    60,     0,
-      63,    10,    57,    58,    59,    60,     4,    16,    17,    18,
-      19,     5,    67,    -1,    -1,    32,    31,    57,    58,    59,
-      60,    -1,    -1,    -1,    64,    -1,    57,    58,    59,    60,
-      -1,    48,    63,    57,    58,    59,    60,    -1,    -1,    63,
-      -1,    58,    58,    -1,    -1,    -1,    -1,    -1,    -1,    66,
-      66
+       6,     6,    58,    59,     8,     3,     4,     5,     0,    64,
+      62,     4,    10,    56,    57,    58,    59,     3,    16,    17,
+      18,    19,    -1,    66,    -1,    31,    -1,    31,    56,    57,
+      58,    59,    -1,    -1,    -1,    63,    56,    57,    58,    59,
+      -1,    47,    62,    56,    57,    58,    59,    -1,    -1,    62,
+      -1,    57,    57,    -1,    -1,    -1,    -1,    -1,    -1,    65,
+      65
     };
   }
 
@@ -1203,10 +1200,10 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       0,     7,    32,    48,    58,    66,    69,    70,    71,    73,
-      65,    73,    73,    73,     0,    70,    57,    58,    59,    60,
-      63,    73,    64,    67,    73,    73,    73,    73,    63,    63,
-      72,     4,    70,     5
+       0,     6,    31,    47,    57,    65,    68,    69,    70,    72,
+      64,    72,    72,    72,     0,    69,    56,    57,    58,    59,
+      62,    72,    63,    66,    72,    72,    72,    72,    62,    62,
+      71,     3,    69,     4
     };
   }
 
@@ -1216,8 +1213,8 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       0,    68,    69,    69,    70,    70,    71,    71,    71,    72,
-      73,    73,    73,    73,    73,    73,    73
+       0,    67,    68,    68,    69,    69,    70,    70,    70,    71,
+      72,    72,    72,    72,    72,    72,    72
     };
   }
 
@@ -1240,7 +1237,7 @@ private static final byte[] yycheck_ = yycheck_init();
   private static final SymbolKind yytranslate_(int t)
   {
     // Last valid token kind.
-    int code_max = 312;
+    int code_max = 311;
     if (t <= 0)
       return SymbolKind.S_YYEOF;
     else if (t <= code_max)
@@ -1254,15 +1251,15 @@ private static final byte[] yycheck_ = yycheck_init();
     return new byte[]
     {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      63,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+      62,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      66,    67,    59,    57,     2,    58,     2,    60,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,    64,     2,
-       2,    65,     2,     2,     2,     2,     2,     2,     2,     2,
+      65,    66,    58,    56,     2,    57,     2,    59,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,    63,     2,
+       2,    64,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,    62,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,    61,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -1284,7 +1281,7 @@ private static final byte[] yycheck_ = yycheck_init();
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
-      55,    56,    61
+      55,    60
     };
   }
 
@@ -1292,9 +1289,9 @@ private static final byte[] yycheck_ = yycheck_init();
   private static final int YYLAST_ = 60;
   private static final int YYEMPTY_ = -2;
   private static final int YYFINAL_ = 14;
-  private static final int YYNTOKENS_ = 68;
+  private static final int YYNTOKENS_ = 67;
 
 
 }
-/* "pythonparser.y":153  */
+/* "./parser/pythonparser.y":153  */
 

@@ -9,6 +9,7 @@
 %code imports {
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
+  import compiler.lexer.Tokens;
 }
 
 %lex-param {compiler.lexer.Lexer lexer}
@@ -36,19 +37,19 @@
         return YYEOF;
     }
     switch(token.getType()){
-      case Lexer.NUMBER:
+      case Tokens.NUMBER:
           yylval=Double.parseDouble(token.getLiteral());
           return NUMBER;
-      case Lexer.NEWLINE:
+      case Tokens.NEWLINE:
           return (int) '\n';
-      case Lexer.STRING:
+      case Tokens.STRING:
           yylval=token.getLiteral();
           return STRING;
-      case Lexer.IF:
+      case Tokens.IF:
           return IF;
-      case Lexer.INDENT:
+      case Tokens.INDENT:
           return INDENT;
-      case Lexer.DEDENT:
+      case Tokens.DEDENT:
           return DEDENT;
       default:
           return token.getType();
