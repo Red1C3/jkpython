@@ -58,7 +58,7 @@ public class Lexer {
     }
 
     public Lexer run(Path path) throws IOException {
-        String input = Files.readString(path);
+        String input = Files.readString(path)+"\n";
         return run(input);
     }
 

@@ -129,7 +129,8 @@ statement
 ;
 
 statement:
-exp '\n' {System.out.println((Double)$1);}
+'\n'
+| exp '\n' {System.out.println((Double)$1);}
 | IF exp ':' block {System.out.println("IF statement detected");}
 | IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected");}
 ;
