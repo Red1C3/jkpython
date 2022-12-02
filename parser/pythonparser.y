@@ -131,8 +131,20 @@ statement
 statement:
 '\n'
 | exp '\n' {System.out.println((Double)$1);}
-| IF exp ':' block {System.out.println("IF statement detected");}
+| if_statement
 | IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected");}
+;
+
+if_statement:
+IF if_pred ':' block {System.out.println("IF statement detected");}
+| IF if_pred ':' block ELSE ':' block {System.out.println("IF ELSE statement detected");}
+| IF if_pred ':' block else_if {System.out.println("IF ELIF statement detected");}
+| IF if_pred ':' block else_if ELSE ':' block {System.out.println("IF ELIF ELSE statement detected");}
+;
+
+else_if:
+ELIF if_pred ':' block
+| ELIF if_pred ':' block else_if
 ;
 
 
@@ -150,5 +162,9 @@ exp: NUMBER {$$=(Double)$1;}
 | exp '/' exp {$$=(Double)$1/(Double)$3;}
 | '-' exp %prec NEG {$$=-(Double)$2;}
 | '(' exp ')' {$$=$2;}
+;
+
+if_pred:
+exp
 ;
 %%

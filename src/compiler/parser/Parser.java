@@ -132,16 +132,19 @@ public class Parser
     S_NEG(60),                     /* NEG  */
     S_61_(61),                     /* '^'  */
     S_62_n_(62),                   /* '\n'  */
-    S_63_(63),                     /* ':'  */
-    S_64_(64),                     /* '='  */
+    S_63_(63),                     /* '='  */
+    S_64_(64),                     /* ':'  */
     S_65_(65),                     /* '('  */
     S_66_(66),                     /* ')'  */
     S_YYACCEPT(67),                /* $accept  */
     S_prog(68),                    /* prog  */
     S_statements(69),              /* statements  */
     S_statement(70),               /* statement  */
-    S_block(71),                   /* block  */
-    S_exp(72);                     /* exp  */
+    S_if_statement(71),            /* if_statement  */
+    S_else_if(72),                 /* else_if  */
+    S_block(73),                   /* block  */
+    S_exp(74),                     /* exp  */
+    S_if_pred(75);                 /* if_pred  */
 
 
     private final int yycode_;
@@ -222,8 +225,11 @@ public class Parser
       SymbolKind.S_prog,
       SymbolKind.S_statements,
       SymbolKind.S_statement,
+      SymbolKind.S_if_statement,
+      SymbolKind.S_else_if,
       SymbolKind.S_block,
-      SymbolKind.S_exp
+      SymbolKind.S_exp,
+      SymbolKind.S_if_pred
     };
 
     static final SymbolKind get(int code) {
@@ -287,8 +293,9 @@ public class Parser
   "CONTINUE", "NONE", "GLOBAL", "IN", "RETURN", "FALSE_TOK", "TRUE_TOK",
   "AND", "OR", "NOT", "DEF", "IF", "ELSE", "ELIF", "FOR", "WHILE", "BREAK",
   "PASS", "LAMBDA", "COMMA_LOGICAL_LINE", "'+'", "'-'", "'*'", "'/'",
-  "NEG", "'^'", "'\\n'", "':'", "'='", "'('", "')'", "$accept", "prog",
-  "statements", "statement", "block", "exp", null
+  "NEG", "'^'", "'\\n'", "'='", "':'", "'('", "')'", "$accept", "prog",
+  "statements", "statement", "if_statement", "else_if", "block", "exp",
+  "if_pred", null
     };
   }
 
@@ -496,7 +503,7 @@ public class Parser
     }
   }
 
-/* "./src/compiler/parser/Parser.java":500  */
+/* "./src/compiler/parser/Parser.java":507  */
 
   }
 
@@ -684,13 +691,6 @@ public class Parser
   break;
 
 
-  case 8: /* statement: IF exp ':' block  */
-  if (yyn == 8)
-    /* "./parser/pythonparser.y":134  */
-                   {System.out.println("IF statement detected");};
-  break;
-
-
   case 9: /* statement: IDENTIFIER '=' exp '\n'  */
   if (yyn == 9)
     /* "./parser/pythonparser.y":135  */
@@ -698,64 +698,92 @@ public class Parser
   break;
 
 
-  case 10: /* block: '\n' INDENT statements DEDENT  */
+  case 10: /* if_statement: IF if_pred ':' block  */
   if (yyn == 10)
+    /* "./parser/pythonparser.y":139  */
+                     {System.out.println("IF statement detected");};
+  break;
+
+
+  case 11: /* if_statement: IF if_pred ':' block ELSE ':' block  */
+  if (yyn == 11)
+    /* "./parser/pythonparser.y":140  */
+                                      {System.out.println("IF ELSE statement detected");};
+  break;
+
+
+  case 12: /* if_statement: IF if_pred ':' block else_if  */
+  if (yyn == 12)
     /* "./parser/pythonparser.y":141  */
+                               {System.out.println("IF ELIF statement detected");};
+  break;
+
+
+  case 13: /* if_statement: IF if_pred ':' block else_if ELSE ':' block  */
+  if (yyn == 13)
+    /* "./parser/pythonparser.y":142  */
+                                              {System.out.println("IF ELIF ELSE statement detected");};
+  break;
+
+
+  case 16: /* block: '\n' INDENT statements DEDENT  */
+  if (yyn == 16)
+    /* "./parser/pythonparser.y":153  */
                               {System.out.println("block detected");};
   break;
 
 
-  case 11: /* exp: NUMBER  */
-  if (yyn == 11)
-    /* "./parser/pythonparser.y":146  */
+  case 17: /* exp: NUMBER  */
+  if (yyn == 17)
+    /* "./parser/pythonparser.y":158  */
             {yyval=(Double)((Double)(yystack.valueAt (0)));};
   break;
 
 
-  case 12: /* exp: exp '+' exp  */
-  if (yyn == 12)
-    /* "./parser/pythonparser.y":147  */
+  case 18: /* exp: exp '+' exp  */
+  if (yyn == 18)
+    /* "./parser/pythonparser.y":159  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))+(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 13: /* exp: exp '-' exp  */
-  if (yyn == 13)
-    /* "./parser/pythonparser.y":148  */
+  case 19: /* exp: exp '-' exp  */
+  if (yyn == 19)
+    /* "./parser/pythonparser.y":160  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 14: /* exp: exp '*' exp  */
-  if (yyn == 14)
-    /* "./parser/pythonparser.y":149  */
+  case 20: /* exp: exp '*' exp  */
+  if (yyn == 20)
+    /* "./parser/pythonparser.y":161  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))*(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 15: /* exp: exp '/' exp  */
-  if (yyn == 15)
-    /* "./parser/pythonparser.y":150  */
+  case 21: /* exp: exp '/' exp  */
+  if (yyn == 21)
+    /* "./parser/pythonparser.y":162  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))/(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 16: /* exp: '-' exp  */
-  if (yyn == 16)
-    /* "./parser/pythonparser.y":151  */
+  case 22: /* exp: '-' exp  */
+  if (yyn == 22)
+    /* "./parser/pythonparser.y":163  */
                     {yyval=-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
-  case 17: /* exp: '(' exp ')'  */
-  if (yyn == 17)
-    /* "./parser/pythonparser.y":152  */
+  case 23: /* exp: '(' exp ')'  */
+  if (yyn == 23)
+    /* "./parser/pythonparser.y":164  */
               {yyval=((Object)(yystack.valueAt (1)));};
   break;
 
 
 
-/* "./src/compiler/parser/Parser.java":759  */
+/* "./src/compiler/parser/Parser.java":787  */
 
         default: break;
       }
@@ -1108,7 +1136,7 @@ public class Parser
     return yyvalue == yytable_ninf_;
   }
 
-  private static final byte yypact_ninf_ = -63;
+  private static final byte yypact_ninf_ = -60;
   private static final byte yytable_ninf_ = -1;
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -1118,10 +1146,11 @@ public class Parser
   {
     return new byte[]
     {
-      -6,   -63,   -62,    -5,    -5,   -63,    -5,     9,   -63,    -6,
-     -19,    -5,   -27,   -63,   -44,   -63,   -63,    -5,    -5,    -5,
-      -5,   -63,   -12,   -52,   -63,   -51,   -51,   -63,   -63,   -63,
-      13,   -63,    -6,    17,   -63
+      -6,   -60,   -59,    -5,    -5,   -60,    -5,    16,   -60,    -6,
+     -60,   -30,    -5,   -44,   -40,   -60,   -49,   -60,   -60,    -5,
+      -5,    -5,    -5,   -60,   -20,   -32,   -60,   -36,   -36,   -60,
+     -60,   -60,    40,   -15,    -6,   -17,    -5,    -4,    44,   -32,
+     -14,   -11,   -60,   -60,   -32,   -32,     0,   -60,   -60
     };
   }
 
@@ -1133,10 +1162,11 @@ public class Parser
   {
     return new byte[]
     {
-       2,    11,     0,     0,     0,     6,     0,     0,     3,     4,
-       0,     0,     0,    16,     0,     1,     5,     0,     0,     0,
-       0,     7,     0,     0,    17,    12,    13,    14,    15,     9,
-       0,     8,     0,     0,    10
+       2,    17,     0,     0,     0,     6,     0,     0,     3,     4,
+       8,     0,     0,    24,     0,    22,     0,     1,     5,     0,
+       0,     0,     0,     7,     0,     0,    23,    18,    19,    20,
+      21,     9,     0,    10,     0,     0,     0,    12,     0,     0,
+       0,     0,    16,    11,     0,     0,    14,    13,    15
     };
   }
 
@@ -1146,7 +1176,7 @@ public class Parser
   {
     return new byte[]
     {
-     -63,   -63,    -4,   -63,   -63,     0
+     -60,   -60,    -3,   -60,   -60,     8,     1,    -1,    19
     };
   }
 
@@ -1156,7 +1186,7 @@ public class Parser
   {
     return new byte[]
     {
-       0,     7,     8,     9,    31,    10
+       0,     7,     8,     9,    10,    37,    33,    11,    14
     };
   }
 
@@ -1168,12 +1198,12 @@ public class Parser
   {
     return new byte[]
     {
-       1,     1,    11,    12,    13,    16,    14,    19,    20,    15,
-      30,    22,    17,    18,    19,    20,    32,    25,    26,    27,
-      28,    34,    24,     0,     0,     2,     0,     0,    33,    17,
-      18,    19,    20,     0,     0,     0,    23,    17,    18,    19,
-      20,     3,     0,    21,    17,    18,    19,    20,     0,     0,
-      29,     4,     4,     0,     0,     0,     5,     0,     0,     6,
+       1,     1,    13,    15,    12,    16,    18,    19,    20,    21,
+      22,    24,    19,    20,    21,    22,    17,    26,    27,    28,
+      29,    30,    21,    22,    25,     2,    19,    20,    21,    22,
+      32,    38,    23,    35,    36,    13,    19,    20,    21,    22,
+      43,     3,    31,    34,    41,    46,    47,    39,    42,    36,
+      44,     4,     4,    45,    48,    40,     5,     0,     0,     6,
        6
     };
   }
@@ -1183,12 +1213,12 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       6,     6,    64,     3,     4,     9,     6,    58,    59,     0,
-      62,    11,    56,    57,    58,    59,     3,    17,    18,    19,
-      20,     4,    66,    -1,    -1,    31,    -1,    -1,    32,    56,
-      57,    58,    59,    -1,    -1,    -1,    63,    56,    57,    58,
-      59,    47,    -1,    62,    56,    57,    58,    59,    -1,    -1,
-      62,    57,    57,    -1,    -1,    -1,    62,    -1,    -1,    65,
+       6,     6,     3,     4,    63,     6,     9,    56,    57,    58,
+      59,    12,    56,    57,    58,    59,     0,    66,    19,    20,
+      21,    22,    58,    59,    64,    31,    56,    57,    58,    59,
+      62,    34,    62,    48,    49,    36,    56,    57,    58,    59,
+      39,    47,    62,     3,    48,    44,    45,    64,     4,    49,
+      64,    57,    57,    64,    46,    36,    62,    -1,    -1,    65,
       65
     };
   }
@@ -1201,9 +1231,10 @@ private static final byte[] yycheck_ = yycheck_init();
     return new byte[]
     {
        0,     6,    31,    47,    57,    62,    65,    68,    69,    70,
-      72,    64,    72,    72,    72,     0,    69,    56,    57,    58,
-      59,    62,    72,    63,    66,    72,    72,    72,    72,    62,
-      62,    71,     3,    69,     4
+      71,    74,    63,    74,    75,    74,    74,     0,    69,    56,
+      57,    58,    59,    62,    74,    64,    66,    74,    74,    74,
+      74,    62,    62,    73,     3,    48,    49,    72,    69,    64,
+      75,    48,     4,    73,    64,    64,    73,    73,    72
     };
   }
 
@@ -1214,7 +1245,8 @@ private static final byte[] yycheck_ = yycheck_init();
     return new byte[]
     {
        0,    67,    68,    68,    69,    69,    70,    70,    70,    70,
-      71,    72,    72,    72,    72,    72,    72,    72
+      71,    71,    71,    71,    72,    72,    73,    74,    74,    74,
+      74,    74,    74,    74,    75
     };
   }
 
@@ -1224,8 +1256,9 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       0,     2,     0,     1,     1,     2,     1,     2,     4,     4,
-       4,     1,     3,     3,     3,     3,     2,     3
+       0,     2,     0,     1,     1,     2,     1,     2,     1,     4,
+       4,     7,     5,     8,     4,     5,     4,     1,     3,     3,
+       3,     3,     2,     3,     1
     };
   }
 
@@ -1255,8 +1288,8 @@ private static final byte[] yycheck_ = yycheck_init();
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
       65,    66,    58,    56,     2,    57,     2,    59,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,    63,     2,
-       2,    64,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,    64,     2,
+       2,    63,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,    61,     2,     2,     2,     2,     2,
@@ -1288,10 +1321,10 @@ private static final byte[] yycheck_ = yycheck_init();
 
   private static final int YYLAST_ = 60;
   private static final int YYEMPTY_ = -2;
-  private static final int YYFINAL_ = 15;
+  private static final int YYFINAL_ = 17;
   private static final int YYNTOKENS_ = 67;
 
 
 }
-/* "./parser/pythonparser.y":154  */
+/* "./parser/pythonparser.y":170  */
 

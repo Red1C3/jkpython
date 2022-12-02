@@ -6,7 +6,6 @@ import compiler.parser.Parser;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
-
 public class Main {
     private static Lexer lexer;
 
@@ -46,5 +45,6 @@ public class Main {
             }
             System.out.print(PROMPT);
         }
+        scanner.close();
     }
 }
