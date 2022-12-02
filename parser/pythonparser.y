@@ -112,6 +112,10 @@
 %token <Object> COMMA_LOGICAL_LINE
 %type <Object> exp
 
+%left OR
+%left AND
+%precedence NOT 
+%left EQUAL NOT_EQUAL NOT_EQUAL_2 '<' '>' GREATER_THAN_OR_EQUAL LESS_THAN_OR_EQUAL
 %left '+' '-'
 %left '*' '/'
 %precedence NEG
@@ -130,7 +134,7 @@ statement
 
 statement:
 '\n'
-| exp '\n' {System.out.println((Double)$1);}
+| exp '\n' {System.out.println($1.toString());}
 | if_statement
 | IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected");}
 ;
@@ -155,7 +159,47 @@ block:
 
 
 
-exp: NUMBER {$$=(Double)$1;}
+exp: 
+TRUE_TOK {$$=(Boolean)true;}
+| FALSE_TOK {$$=(Boolean)false;}
+| NUMBER {$$=(Double)$1;}
+| exp AND exp {$$=(Boolean)((Boolean)($1)&&(Boolean)($3));}
+| exp OR exp {$$=(Boolean)((Boolean)($1)||(Boolean)($3));}
+| exp EQUAL exp {if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
+                    $$=(Boolean)((Boolean)($1)==(Boolean)($3));
+                  }
+                if(($1 instanceof Double)&&($3 instanceof Double)){
+                    $$=(((Double)$1).compareTo((Double)$3)==0);
+                  }
+                }
+| exp NOT_EQUAL exp {if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
+                    $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
+                  }
+                if(($1 instanceof Double)&&($3 instanceof Double)){
+                    $$=(((Double)$1).compareTo((Double)$3)!=0);
+                  }}
+| exp NOT_EQUAL_2 exp {if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
+                    $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
+                  }
+                if(($1 instanceof Double)&&($3 instanceof Double)){
+                    $$=(((Double)$1).compareTo((Double)$3)!=0);
+                  }}
+| NOT exp {
+  if($2 instanceof Boolean){
+    $$=!(Boolean)$2;
+  }
+  if($2 instanceof Double){
+    if(((Double)$2)==0){
+      $$=true;
+    }else{
+      $$=false;
+    }
+  }
+  }
+| exp GREATER_THAN_OR_EQUAL exp {$$=((Double)$1).compareTo((Double)$3)>=0;}
+| exp LESS_THAN_OR_EQUAL exp {$$=((Double)$1).compareTo((Double)$3)<=0;}
+| exp '<' exp {$$=((Double)$1).compareTo((Double)$3)<0;}
+| exp '>' exp {$$=((Double)$1).compareTo((Double)$3)>0;}
 | exp '+' exp {$$=(Double)$1+(Double)$3;}
 | exp '-' exp {$$=(Double)$1-(Double)$3;}
 | exp '*' exp {$$=(Double)$1*(Double)$3;}
