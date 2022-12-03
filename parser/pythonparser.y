@@ -119,6 +119,7 @@
 %type <Object> exp
 %type <Boolean> if_pred
 
+%left ','
 %nonassoc '='
 %left OR
 %left AND
@@ -146,8 +147,21 @@ statement:
 | if_statement
 | IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected, assigned expression evaluated to "+$3.toString());}
 | for_statement
+| function_statement
+| return_statement
 ;
 
+
+
+function_statement:
+ DEF IDENTIFIER '('function_args')'':' block {System.out.println("FUNCTION detected");}
+ ;
+
+
+function_args:
+IDENTIFIER 
+| IDENTIFIER ',' function_args 
+;
 
 for_statement:
 FOR IDENTIFIER IN RANGE '('exp','exp')' ':' block {System.out.println("FOR LOOP detected with range params "
@@ -155,6 +169,10 @@ FOR IDENTIFIER IN RANGE '('exp','exp')' ':' block {System.out.println("FOR LOOP 
 ;
 
 
+return_statement:
+RETURN '\n' {System.out.println("RETURN statement");}
+|RETURN exp '\n' {System.out.println("RETURN statement evaluated to "+$2.toString());}
+;
 
 if_statement:
 IF if_pred ':' block {System.out.println("IF statement detected, condition evaluated to "+ $2.toString());}
