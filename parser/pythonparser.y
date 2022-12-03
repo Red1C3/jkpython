@@ -51,6 +51,11 @@
           return INDENT;
       case Tokens.DEDENT:
           return DEDENT;
+      case Tokens.IDENTIFIER:
+          if(token.getLiteral().equals("range"))
+            return RANGE;
+          else
+            return IDENTIFIER;
       default:
           return token.getType();
     }
@@ -110,6 +115,7 @@
 %token <Object> PASS
 %token <Object> LAMBDA
 %token <Object> COMMA_LOGICAL_LINE
+%token <Object> RANGE
 %type <Object> exp
 %type <Boolean> if_pred
 
@@ -139,7 +145,16 @@ statement:
 | exp '\n' {System.out.println($1.toString());}
 | if_statement
 | IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected, assigned expression evaluated to "+$3.toString());}
+| for_statement
 ;
+
+
+for_statement:
+FOR IDENTIFIER IN RANGE '('exp','exp')' ':' block {System.out.println("FOR LOOP detected with range params "
+  + $6.toString() + ", " + $8.toString());}
+;
+
+
 
 if_statement:
 IF if_pred ':' block {System.out.println("IF statement detected, condition evaluated to "+ $2.toString());}
