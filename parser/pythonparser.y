@@ -111,6 +111,7 @@
 %token <Object> LAMBDA
 %token <Object> COMMA_LOGICAL_LINE
 %type <Object> exp
+%type <Boolean> if_pred
 
 %left OR
 %left AND
@@ -140,24 +141,20 @@ statement:
 ;
 
 if_statement:
-IF if_pred ':' block {System.out.println("IF statement detected");}
-| IF if_pred ':' block ELSE ':' block {System.out.println("IF ELSE statement detected");}
-| IF if_pred ':' block else_if {System.out.println("IF ELIF statement detected");}
-| IF if_pred ':' block else_if ELSE ':' block {System.out.println("IF ELIF ELSE statement detected");}
+IF if_pred ':' block {System.out.println("IF statement detected, condition evaluated to "+ $2.toString());}
+| IF if_pred ':' block ELSE ':' block {System.out.println("IF ELSE statement detected, condition evaluated to "+ $2.toString());}
+| IF if_pred ':' block else_if {System.out.println("IF ELIF statement detected, condition evaluated to "+ $2.toString());}
+| IF if_pred ':' block else_if ELSE ':' block {System.out.println("IF ELIF ELSE statement detected, condition evaluated to "+ $2.toString());}
 ;
 
 else_if:
-ELIF if_pred ':' block
-| ELIF if_pred ':' block else_if
+ELIF if_pred ':' block {System.out.println("ELIF condition evaluated to "+$2.toString());}
+| ELIF if_pred ':' block else_if {System.out.println("ELIF condition evaluated to "+$2.toString());}
 ;
-
-
 
 block:
 '\n' INDENT statements DEDENT {System.out.println("block detected");}
 ;
-
-
 
 exp: 
 TRUE_TOK {$$=(Boolean)true;}
@@ -209,6 +206,6 @@ TRUE_TOK {$$=(Boolean)true;}
 ;
 
 if_pred:
-exp
+exp {$$=(Boolean)$1;}
 ;
 %%

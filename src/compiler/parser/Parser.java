@@ -690,91 +690,105 @@ public class Parser
       {
           case 7: /* statement: exp '\n'  */
   if (yyn == 7)
-    /* "./parser/pythonparser.y":137  */
+    /* "./parser/pythonparser.y":138  */
            {System.out.println(((Object)(yystack.valueAt (1))).toString());};
   break;
 
 
   case 9: /* statement: IDENTIFIER '=' exp '\n'  */
   if (yyn == 9)
-    /* "./parser/pythonparser.y":139  */
+    /* "./parser/pythonparser.y":140  */
                           {System.out.println("assignment statement detected");};
   break;
 
 
   case 10: /* if_statement: IF if_pred ':' block  */
   if (yyn == 10)
-    /* "./parser/pythonparser.y":143  */
-                     {System.out.println("IF statement detected");};
+    /* "./parser/pythonparser.y":144  */
+                     {System.out.println("IF statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (2))).toString());};
   break;
 
 
   case 11: /* if_statement: IF if_pred ':' block ELSE ':' block  */
   if (yyn == 11)
-    /* "./parser/pythonparser.y":144  */
-                                      {System.out.println("IF ELSE statement detected");};
+    /* "./parser/pythonparser.y":145  */
+                                      {System.out.println("IF ELSE statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (5))).toString());};
   break;
 
 
   case 12: /* if_statement: IF if_pred ':' block else_if  */
   if (yyn == 12)
-    /* "./parser/pythonparser.y":145  */
-                               {System.out.println("IF ELIF statement detected");};
+    /* "./parser/pythonparser.y":146  */
+                               {System.out.println("IF ELIF statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (3))).toString());};
   break;
 
 
   case 13: /* if_statement: IF if_pred ':' block else_if ELSE ':' block  */
   if (yyn == 13)
-    /* "./parser/pythonparser.y":146  */
-                                              {System.out.println("IF ELIF ELSE statement detected");};
+    /* "./parser/pythonparser.y":147  */
+                                              {System.out.println("IF ELIF ELSE statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (6))).toString());};
+  break;
+
+
+  case 14: /* else_if: ELIF if_pred ':' block  */
+  if (yyn == 14)
+    /* "./parser/pythonparser.y":151  */
+                       {System.out.println("ELIF condition evaluted to "+((Boolean)(yystack.valueAt (2))).toString());};
+  break;
+
+
+  case 15: /* else_if: ELIF if_pred ':' block else_if  */
+  if (yyn == 15)
+    /* "./parser/pythonparser.y":152  */
+                                 {System.out.println("ELIF condition evaluted to "+((Boolean)(yystack.valueAt (3))).toString());};
   break;
 
 
   case 16: /* block: '\n' INDENT statements DEDENT  */
   if (yyn == 16)
-    /* "./parser/pythonparser.y":157  */
+    /* "./parser/pythonparser.y":156  */
                               {System.out.println("block detected");};
   break;
 
 
   case 17: /* exp: TRUE_TOK  */
   if (yyn == 17)
-    /* "./parser/pythonparser.y":163  */
+    /* "./parser/pythonparser.y":160  */
          {yyval=(Boolean)true;};
   break;
 
 
   case 18: /* exp: FALSE_TOK  */
   if (yyn == 18)
-    /* "./parser/pythonparser.y":164  */
+    /* "./parser/pythonparser.y":161  */
             {yyval=(Boolean)false;};
   break;
 
 
   case 19: /* exp: NUMBER  */
   if (yyn == 19)
-    /* "./parser/pythonparser.y":165  */
+    /* "./parser/pythonparser.y":162  */
          {yyval=(Double)((Double)(yystack.valueAt (0)));};
   break;
 
 
   case 20: /* exp: exp AND exp  */
   if (yyn == 20)
-    /* "./parser/pythonparser.y":166  */
+    /* "./parser/pythonparser.y":163  */
               {yyval=(Boolean)((Boolean)(((Object)(yystack.valueAt (2))))&&(Boolean)(((Object)(yystack.valueAt (0)))));};
   break;
 
 
   case 21: /* exp: exp OR exp  */
   if (yyn == 21)
-    /* "./parser/pythonparser.y":167  */
+    /* "./parser/pythonparser.y":164  */
              {yyval=(Boolean)((Boolean)(((Object)(yystack.valueAt (2))))||(Boolean)(((Object)(yystack.valueAt (0)))));};
   break;
 
 
   case 22: /* exp: exp EQUAL exp  */
   if (yyn == 22)
-    /* "./parser/pythonparser.y":168  */
+    /* "./parser/pythonparser.y":165  */
                 {if((((Object)(yystack.valueAt (2))) instanceof Boolean)&&(((Object)(yystack.valueAt (0))) instanceof Boolean)){
                     yyval=(Boolean)((Boolean)(((Object)(yystack.valueAt (2))))==(Boolean)(((Object)(yystack.valueAt (0)))));
                   }
@@ -787,7 +801,7 @@ public class Parser
 
   case 23: /* exp: exp NOT_EQUAL exp  */
   if (yyn == 23)
-    /* "./parser/pythonparser.y":175  */
+    /* "./parser/pythonparser.y":172  */
                     {if((((Object)(yystack.valueAt (2))) instanceof Boolean)&&(((Object)(yystack.valueAt (0))) instanceof Boolean)){
                     yyval=(Boolean)((Boolean)(((Object)(yystack.valueAt (2))))!=(Boolean)(((Object)(yystack.valueAt (0)))));
                   }
@@ -799,7 +813,7 @@ public class Parser
 
   case 24: /* exp: exp NOT_EQUAL_2 exp  */
   if (yyn == 24)
-    /* "./parser/pythonparser.y":181  */
+    /* "./parser/pythonparser.y":178  */
                       {if((((Object)(yystack.valueAt (2))) instanceof Boolean)&&(((Object)(yystack.valueAt (0))) instanceof Boolean)){
                     yyval=(Boolean)((Boolean)(((Object)(yystack.valueAt (2))))!=(Boolean)(((Object)(yystack.valueAt (0)))));
                   }
@@ -811,7 +825,7 @@ public class Parser
 
   case 25: /* exp: NOT exp  */
   if (yyn == 25)
-    /* "./parser/pythonparser.y":187  */
+    /* "./parser/pythonparser.y":184  */
           {
   if(((Object)(yystack.valueAt (0))) instanceof Boolean){
     yyval=!(Boolean)((Object)(yystack.valueAt (0)));
@@ -829,76 +843,83 @@ public class Parser
 
   case 26: /* exp: exp GREATER_THAN_OR_EQUAL exp  */
   if (yyn == 26)
-    /* "./parser/pythonparser.y":199  */
+    /* "./parser/pythonparser.y":196  */
                                 {yyval=((Double)((Object)(yystack.valueAt (2)))).compareTo((Double)((Object)(yystack.valueAt (0))))>=0;};
   break;
 
 
   case 27: /* exp: exp LESS_THAN_OR_EQUAL exp  */
   if (yyn == 27)
-    /* "./parser/pythonparser.y":200  */
+    /* "./parser/pythonparser.y":197  */
                              {yyval=((Double)((Object)(yystack.valueAt (2)))).compareTo((Double)((Object)(yystack.valueAt (0))))<=0;};
   break;
 
 
   case 28: /* exp: exp '<' exp  */
   if (yyn == 28)
-    /* "./parser/pythonparser.y":201  */
+    /* "./parser/pythonparser.y":198  */
               {yyval=((Double)((Object)(yystack.valueAt (2)))).compareTo((Double)((Object)(yystack.valueAt (0))))<0;};
   break;
 
 
   case 29: /* exp: exp '>' exp  */
   if (yyn == 29)
-    /* "./parser/pythonparser.y":202  */
+    /* "./parser/pythonparser.y":199  */
               {yyval=((Double)((Object)(yystack.valueAt (2)))).compareTo((Double)((Object)(yystack.valueAt (0))))>0;};
   break;
 
 
   case 30: /* exp: exp '+' exp  */
   if (yyn == 30)
-    /* "./parser/pythonparser.y":203  */
+    /* "./parser/pythonparser.y":200  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))+(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 31: /* exp: exp '-' exp  */
   if (yyn == 31)
-    /* "./parser/pythonparser.y":204  */
+    /* "./parser/pythonparser.y":201  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 32: /* exp: exp '*' exp  */
   if (yyn == 32)
-    /* "./parser/pythonparser.y":205  */
+    /* "./parser/pythonparser.y":202  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))*(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 33: /* exp: exp '/' exp  */
   if (yyn == 33)
-    /* "./parser/pythonparser.y":206  */
+    /* "./parser/pythonparser.y":203  */
               {yyval=(Double)((Object)(yystack.valueAt (2)))/(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 34: /* exp: '-' exp  */
   if (yyn == 34)
-    /* "./parser/pythonparser.y":207  */
+    /* "./parser/pythonparser.y":204  */
                     {yyval=-(Double)((Object)(yystack.valueAt (0)));};
   break;
 
 
   case 35: /* exp: '(' exp ')'  */
   if (yyn == 35)
-    /* "./parser/pythonparser.y":208  */
+    /* "./parser/pythonparser.y":205  */
               {yyval=((Object)(yystack.valueAt (1)));};
   break;
 
 
+  case 36: /* if_pred: exp  */
+  if (yyn == 36)
+    /* "./parser/pythonparser.y":209  */
+    {yyval=(Boolean)((Object)(yystack.valueAt (0)));};
+  break;
 
-/* "./src/compiler/parser/Parser.java":902  */
+
+
+/* "./src/compiler/parser/Parser.java":923  */
 
         default: break;
       }
@@ -1484,5 +1505,5 @@ private static final byte[] yycheck_ = yycheck_init();
 
 
 }
-/* "./parser/pythonparser.y":214  */
+/* "./parser/pythonparser.y":211  */
 
