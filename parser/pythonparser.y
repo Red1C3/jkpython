@@ -113,6 +113,7 @@
 %type <Object> exp
 %type <Boolean> if_pred
 
+%nonassoc '='
 %left OR
 %left AND
 %precedence NOT 
@@ -137,19 +138,19 @@ statement:
 '\n'
 | exp '\n' {System.out.println($1.toString());}
 | if_statement
-| IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected");}
+| IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected, assigned expression evaluated to "+$3.toString());}
 ;
 
 if_statement:
 IF if_pred ':' block {System.out.println("IF statement detected, condition evaluated to "+ $2.toString());}
 | IF if_pred ':' block ELSE ':' block {System.out.println("IF ELSE statement detected, condition evaluated to "+ $2.toString());}
-| IF if_pred ':' block else_if {System.out.println("IF ELIF statement detected, condition evaluated to "+ $2.toString());}
-| IF if_pred ':' block else_if ELSE ':' block {System.out.println("IF ELIF ELSE statement detected, condition evaluated to "+ $2.toString());}
+| IF if_pred ':' block else_if_blocks {System.out.println("IF ELIF statement detected, condition evaluated to "+ $2.toString());}
+| IF if_pred ':' block else_if_blocks ELSE ':' block {System.out.println("IF ELIF ELSE statement detected, condition evaluated to "+ $2.toString());}
 ;
 
-else_if:
+else_if_blocks:
 ELIF if_pred ':' block {System.out.println("ELIF condition evaluated to "+$2.toString());}
-| ELIF if_pred ':' block else_if {System.out.println("ELIF condition evaluated to "+$2.toString());}
+| ELIF if_pred ':' block else_if_blocks {System.out.println("ELIF condition evaluated to "+$2.toString());}
 ;
 
 block:
