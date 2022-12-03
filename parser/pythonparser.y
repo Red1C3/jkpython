@@ -157,8 +157,11 @@ block:
 '\n' INDENT statements DEDENT {System.out.println("block detected");}
 ;
 
-exp: 
-TRUE_TOK {$$=(Boolean)true;}
+exp:
+IDENTIFIER {
+	$$=3.0; //JUST FOR TESTING REASONS, WE DO NOT HAVE SYMBOLS YET
+}
+| TRUE_TOK {$$=(Boolean)true;}
 | FALSE_TOK {$$=(Boolean)false;}
 | NUMBER {$$=(Double)$1;}
 | exp AND exp {$$=(Boolean)((Boolean)($1)&&(Boolean)($3));}
