@@ -30,6 +30,7 @@ public class Lexer {
     }
 
     public void printAllTokens(){
+        System.out.printf("%-5s%-10s%-5s%s%n","Type","Literal","Line","Column");
         for (Token token:tokens
              ) {
             System.out.println(token.toString());
@@ -89,7 +90,7 @@ public class Lexer {
             String[] items = line.split("[ \n]+");
             if (items.length == 4) {
                 tokens.add(new Token(Integer.parseInt(items[0]), items[1], Integer.parseInt(items[2]), Integer.parseInt(items[3])));
-            } else if (items[0].equals("WHITESPACE")) {
+            } else if (items[0].equals("287")) { //WHITESPACE case
                 tokens.add(new Token(Integer.parseInt(items[0]), " ", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
             } else {
                 tokens.add(new Token(Integer.parseInt(items[0]), "", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
@@ -100,6 +101,8 @@ public class Lexer {
         os.close();
 
         this.tokens = tokens.toArray(new Token[0]);
+
+        process.destroy();
 
         return this;
     }

@@ -9,7 +9,6 @@
 %code imports {
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
-  import compiler.lexer.Tokens;
 }
 
 %lex-param {compiler.lexer.Lexer lexer}
@@ -23,6 +22,7 @@
 
   public void yyerror(String s) {
     System.err.println(s);
+    System.exit(1);
   }
 
   private Object yylval;
@@ -37,21 +37,15 @@
         return YYEOF;
     }
     switch(token.getType()){
-      case Tokens.NUMBER:
+      case NUMBER:
           yylval=Double.parseDouble(token.getLiteral());
           return NUMBER;
-      case Tokens.NEWLINE:
+      case NEWLINE:
           return (int) '\n';
-      case Tokens.STRING:
+      case STRING:
           yylval=token.getLiteral();
           return STRING;
-      case Tokens.IF:
-          return IF;
-      case Tokens.INDENT:
-          return INDENT;
-      case Tokens.DEDENT:
-          return DEDENT;
-      case Tokens.IDENTIFIER:
+      case IDENTIFIER:
           if(token.getLiteral().equals("range"))
             return RANGE;
           else
@@ -67,27 +61,27 @@
 %token <Object> NEWLINE
 %token <Double> NUMBER
 %token <Object> COMMENT
-%token <Boolean> LESS_THAN_OR_EQUAL
-%token <Boolean> GREATER_THAN_OR_EQUAL
-%token <Boolean> EQUAL
-%token <Boolean> NOT_EQUAL
-%token <Boolean> NOT_EQUAL_2
-%token <Integer> BITWISE_SHIFT_LEFT
-%token <Integer> BITWISE_SHIFT_RIGHT
-%token <Double> POWER
+%token <Object> LESS_THAN_OR_EQUAL
+%token <Object> GREATER_THAN_OR_EQUAL
+%token <Object> EQUAL
+%token <Object> NOT_EQUAL
+%token <Object> NOT_EQUAL_2
+%token <Object> BITWISE_SHIFT_LEFT
+%token <Object> BITWISE_SHIFT_RIGHT
+%token <Object> POWER
 %token <Double> ADDITION_ASSIGNMENT
 %token <Double> SUBSTRACTION_ASSIGNMENT
 %token <Double> MULTIPLICATION_ASSIGNMENT
 %token <Double> DIVISION_ASSIGNMENT
 %token <Double> REMAINDER_ASSIGNMENT
-%token <Object> BITWISE_AND_ASSIGNMENT
-%token <Object> POWER_ASSIGNMENT
-%token <Object> BITWISE_OR_ASSIGNMENT
-%token <Object> BITWISE_XOR_ASSIGNMENT
-%token <Object> BITWISE_SHIFT_LEFT_ASSIGNMENT
-%token <Object> BITWISE_SHIFT_RIGHT_ASSIGNMENT
+%token <Integer> BITWISE_AND_ASSIGNMENT
+%token <Double> POWER_ASSIGNMENT
+%token <Integer> BITWISE_OR_ASSIGNMENT
+%token <Integer> BITWISE_XOR_ASSIGNMENT
+%token <Integer> BITWISE_SHIFT_LEFT_ASSIGNMENT
+%token <Integer> BITWISE_SHIFT_RIGHT_ASSIGNMENT
 %token <Object> FLOOR_DIVISION
-%token <Object> FLOOR_DIVISION_ASSIGNMENT
+%token <Double> FLOOR_DIVISION_ASSIGNMENT
 %token <Object> BACKSLASH_LOGICAL_LINE
 %token <String> STRING
 %token <Object> IDENTIFIER
@@ -102,9 +96,9 @@
 %token <Object> RETURN
 %token <Boolean> FALSE_TOK
 %token <Boolean> TRUE_TOK
-%token <Boolean> AND
-%token <Boolean> OR
-%token <Boolean> NOT
+%token <Object> AND
+%token <Object> OR
+%token <Object> NOT
 %token <Object> DEF
 %token <Object> IF
 %token <Object> ELSE
@@ -119,12 +113,12 @@
 %type <Object> exp
 %type <Boolean> if_pred
 
-%left ','
+%nonassoc ','
 %nonassoc '='
 %left OR
 %left AND
 %precedence NOT 
-%left EQUAL NOT_EQUAL NOT_EQUAL_2 '<' '>' GREATER_THAN_OR_EQUAL LESS_THAN_OR_EQUAL
+%nonassoc EQUAL NOT_EQUAL NOT_EQUAL_2 '<' '>' GREATER_THAN_OR_EQUAL LESS_THAN_OR_EQUAL
 %left '+' '-'
 %left '*' '/'
 %precedence NEG
@@ -155,6 +149,7 @@ statement:
 
 function_statement:
  DEF IDENTIFIER '('function_args')'':' block {System.out.println("FUNCTION detected");}
+ | DEF IDENTIFIER '('')'':' block {System.out.println("FUNCTION detected");}
  ;
 
 
@@ -197,6 +192,14 @@ IDENTIFIER {
 | TRUE_TOK {$$=(Boolean)true;}
 | FALSE_TOK {$$=(Boolean)false;}
 | NUMBER {$$=(Double)$1;}
+| STRING {
+	String str=(String)$1;
+	if(str.startsWith("'''") || str.startsWith("\"\"\""))
+		$$=str.substring(3,str.length()-3);
+	else
+		$$=str.substring(1,str.length()-1);
+
+}
 | exp AND exp {$$=(Boolean)((Boolean)($1)&&(Boolean)($3));}
 | exp OR exp {$$=(Boolean)((Boolean)($1)||(Boolean)($3));}
 | exp EQUAL exp {if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
@@ -234,9 +237,27 @@ IDENTIFIER {
 | exp LESS_THAN_OR_EQUAL exp {$$=((Double)$1).compareTo((Double)$3)<=0;}
 | exp '<' exp {$$=((Double)$1).compareTo((Double)$3)<0;}
 | exp '>' exp {$$=((Double)$1).compareTo((Double)$3)>0;}
-| exp '+' exp {$$=(Double)$1+(Double)$3;}
+| exp '+' exp {
+	if (($1 instanceof Double)&&($3 instanceof Double))
+		$$=(Double)$1+(Double)$3;
+	else if(($1 instanceof String)&&($3 instanceof String))
+		$$=(String)$1+(String)$3;
+	else{
+		yyerror("Unsupported addition operands");
+	}
+}
 | exp '-' exp {$$=(Double)$1-(Double)$3;}
-| exp '*' exp {$$=(Double)$1*(Double)$3;}
+| exp '*' exp {
+	if (($1 instanceof Double) && ($3 instanceof Double))
+		$$=(Double)$1*(Double)$3;
+	else if (($1 instanceof Double) && ($3 instanceof String)){
+		$$=((String)$3).repeat(((Double)$1).intValue());
+	} else if (($1 instanceof String) && ($3 instanceof Double)){
+		$$=((String)$1).repeat(((Double)$3).intValue());
+	}else{
+		yyerror("Unsupported multiplication operands");
+	}
+}
 | exp '/' exp {$$=(Double)$1/(Double)$3;}
 | '-' exp %prec NEG {$$=-(Double)$2;}
 | '(' exp ')' {$$=$2;}

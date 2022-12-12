@@ -258,7 +258,7 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 
 {identifier} {handleToken(IDENTIFIER,yytext);} 
 
-" " {}
+" " {handleToken(WHITE_SPACE," ");}
 
 . {handleToken(ILLEGAL,yytext);}
 
@@ -282,7 +282,11 @@ int main(int argc,const char** argv){
 }
 
 void handleToken(int type,const char* literal){
-    if(type != NEWLINE) {
+	if(type == WHITE_SPACE){
+		colnum++;
+		return;
+	}
+    if(type == NEWLINE) {
         colnum=1;
         colnum+=(indentCounter*TAB_WIDTH);
         linenum++;
@@ -295,17 +299,17 @@ void handleToken(int type,const char* literal){
     fputs(buffer,outputFile);  
     colnum+=strlen(literal);
 
-    if(type != INDENT || type != DEDENT){ // INDENT/DEDENT changes are calculated after emitting
+    if(type == INDENT || type == DEDENT){ // INDENT/DEDENT changes are calculated after emitting
         colnum=1;                                     // NEWLINE token
         colnum+=(indentCounter*4);
     }
 
-    if(type != BACKSLASH_LOGICAL_LINE){
+    if(type == BACKSLASH_LOGICAL_LINE){
         colnum=1;
         colnum+=(bsLogicalLineSpace*TAB_WIDTH);
         linenum++;
     }
-    if(type != COMMA_LOGICAL_LINE){
+    if(type == COMMA_LOGICAL_LINE){
     	colnum=1;
         colnum+=(commaLogicalLineSpace*TAB_WIDTH);
         linenum++;
