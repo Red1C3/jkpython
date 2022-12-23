@@ -11,8 +11,11 @@
   import compiler.lexer.Token;
 }
 
+//Bison's generated Parser class constructor parameter
 %lex-param {compiler.lexer.Lexer lexer}
 
+//Bison's generated Lexer class data members and methods (won't be directly used, This class is rather covered
+//in Bison's generated Parser class)
 %code lexer {
   private compiler.lexer.Lexer lexer;
 
@@ -194,6 +197,7 @@ IDENTIFIER {
 | NUMBER {$$=(Double)$1;}
 | STRING {
 	String str=(String)$1;
+	//Remove quotation marks to allow operations on strings
 	if(str.startsWith("'''") || str.startsWith("\"\"\""))
 		$$=str.substring(3,str.length()-3);
 	else

@@ -18,6 +18,7 @@ public class Main {
             return;
         }
         try {
+            //Run flex on the input file
             lexer.run(Paths.get(args[0]));
 
             lexer.printAllTokens();
@@ -34,6 +35,7 @@ public class Main {
         String line;
         System.out.print(PROMPT);
         while ((line = scanner.nextLine()) != null) {
+            //Run the interpreting process line by line
             try {
                 line += "\n";
                 lexer.run(line);

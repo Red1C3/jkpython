@@ -66,9 +66,13 @@
     int linenum=1;
     int bsLogicalLineSpace=1;
     int commaLogicalLineSpace=1;
-    
+
+    //Keeps track of the current indentation
     int indentCounter=0;
+
     FILE* inputFile=NULL, *outputFile=NULL;
+
+    //Outputs tokens data (type, lexeme, line number and column number) to stdout and outputFile
     void handleToken(int type, const char* literal);
 %}
 
@@ -76,10 +80,14 @@ identifier [_a-zA-Z][_a-zA-Z0-9]*
 
 newline \n|\r|\n\r|\r\n
 
+ //For cases where a line ends in a comma and there is still stuff after the comma, like function parameters
 commalogicalline ,{newline}[\t]*
 
+ //A backslash indicates that the current line is not finished yet and will continue in the next line
 bslogicalline \\{newline}[\t]*
 
+ //Deals with both indentations and dedentations, consuming all newlines which does not satisfy commalogicalline
+ //or bslogicalline in the process
 dent {newline}+[\t]*
 
 comment #.*
@@ -106,6 +114,8 @@ number_fraction_only \.{number_fraction}{number_exponent}?
 
 number {number_full}|{number_fraction_only}
 
+ //The next regexes are string-related only covering both normal strings and
+ //long ones (strings that span over multiple lines)
 escape \\.
 
 longstringchar [^\\]
@@ -158,17 +168,18 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
     for(int i=0;i<((nNewlineCount<=rNewlineCount)?rNewlineCount:nNewlineCount);++i)
         handleToken(NEWLINE,"");
 
+	//If the newline indents are less than the previous, insert (current line indents - prev line indents) dedents
     if (len<indentCounter){
         int tokensCount=indentCounter-len;
         indentCounter=len;
         for(int i=0;i<tokensCount;++i)
         	handleToken(DEDENT,"");
 
-    }else if (len==indentCounter+1){
+    }else if (len==indentCounter+1){ //If the newline indents are more than the prev by one, insert a single indent
         indentCounter=len;
         handleToken(INDENT,"");
       
-    }else if (len!=indentCounter){
+    }else if (len!=indentCounter){ //Otherwise is not valid
     	handleToken(ILLEGAL,yytext);
     }
 }
@@ -234,6 +245,7 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 "//="      { handleToken(FLOOR_DIVISION_ASSIGNMENT,yytext);}
 
 {commalogicalline} {
+						//Count the tabs so that the column number stays correct when handling the token
                         int tabsCount=0;
                         for(int i=0;i<strlen(yytext);++i){
                             if (yytext[i]=='\t') tabsCount++;
@@ -243,6 +255,7 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 }
 
 {bslogicalline}     {
+						//Count the tabs so that the column number stays correct when handling the token
                         int tabsCount=0;
                         for(int i=0;i<strlen(yytext);++i){
                             if (yytext[i]=='\t') tabsCount++;
@@ -264,6 +277,7 @@ longstringdouble \"\"\"{longstringitem}*\"\"\"
 
 %%
 int yywrap(){
+	//yywrap is called when yylex finishes, so it basically closes the opened files and exits the process
 	if(inputFile!=NULL)
 	    fclose(inputFile);
     fclose(outputFile);
@@ -271,9 +285,11 @@ int yywrap(){
 }
 
 int main(int argc,const char** argv){
+	//No argument provided, argc counts the executable as an argument too...
     if(argc==1){
         yyin=stdin;
-    }else{
+    } //Input file provided
+    else{
         inputFile=fopen(argv[1],"r");
         yyin=inputFile;
     }
@@ -282,6 +298,7 @@ int main(int argc,const char** argv){
 }
 
 void handleToken(int type,const char* literal){
+	//Count white space as a column and emit no token
 	if(type == WHITE_SPACE){
 		colnum++;
 		return;
@@ -292,15 +309,17 @@ void handleToken(int type,const char* literal){
         linenum++;
     }
 
+	//Output to stdout
     printf(OUTPUT_FORMAT,type,literal,linenum,colnum);
 
+	//Create a string so it can be output to the outputFile
     char buffer[128];
-    sprintf(buffer,OUTPUT_FORMAT,type,literal,linenum,colnum);
-    fputs(buffer,outputFile);  
+    sprintf(buffer,OUTPUT_FORMAT,type,literal,linenum,colnum); //Writes the formatted string in buffer
+    fputs(buffer,outputFile); //writes the buffer in outputFile
     colnum+=strlen(literal);
 
     if(type == INDENT || type == DEDENT){ // INDENT/DEDENT changes are calculated after emitting
-        colnum=1;                                     // NEWLINE token
+        colnum=1;                         // NEWLINE token
         colnum+=(indentCounter*4);
     }
 

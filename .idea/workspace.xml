@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Set a default value for identifier for testing" />
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Set a default value for identifier for testing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/pythonlexer.l" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/pythonlexer.l" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/Token.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -9,7 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Lexer {
     private static boolean isWindows;
+    //Run flex and GCC on linux
     private final static String SHELL_BUILD = "flex -o lexer/pythonlexer.c ./lexer/pythonlexer.l && gcc -o lexer/pythonlexer lexer/pythonlexer.c";
+    //Run compiled flex file on linux
 
     private final static String SHELL_RUN = "./lexer/pythonlexer";
     private Token[] tokens;
@@ -37,7 +39,7 @@ public class Lexer {
         }
         System.out.println("Finished printing tokens");
     }
-
+    //Run flex and GCC on the flex file
     private void buildLexer() {
         isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
         try {
@@ -62,7 +64,7 @@ public class Lexer {
         String input = Files.readString(path)+"\n";
         return run(input);
     }
-
+    //Feed *input* into flex stdin and builds Token array out of it and keep it in Lexer class
     public Lexer run(String input) throws IOException {
         cur=0;
         ProcessBuilder processBuilder = new ProcessBuilder();
@@ -86,6 +88,7 @@ public class Lexer {
 
         String line;
 
+        //Read flex stdout and construct Token array out of it
         while ((line = br.readLine()) != null) {
             String[] items = line.split("[ \n]+");
             if (items.length == 4) {
@@ -110,14 +113,14 @@ public class Lexer {
     public Token[] getTokens() {
         return tokens;
     }
-
+    //Return the next token and advance cur value
     public Token nextToken() {
         if (cur >= tokens.length) {
             return null;
         }
         return tokens[cur++];
     }
-
+    //Return the next token without advancing cur value
     public Token peekToken() {
         if (cur + 1 >= tokens.length) {
             return null;

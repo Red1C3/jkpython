@@ -20,6 +20,7 @@ public class Token {
         return literal;
     }
 
+    //Check if two tokens are the same
     @Override
     public boolean equals(Object obj) {
         Token other = (Token) obj;
@@ -27,6 +28,7 @@ public class Token {
                 lineNum == other.lineNum && colNum == other.colNum;
     }
 
+    //Format the token to a readable string
     @Override
     public String toString() {
         return String.format("%-5s%-10s%-5d%d",type,literal,lineNum,colNum);
