@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Fit addition into the evaluator, among statements,statement and program&#10;&#10;NOTE: Most grammar actions need to be adjusted too, so I commented most of them so the program compiles">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Integrate function calls, including identifiers too (no assignment yet tho)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671886992428</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Integrate function calls, including identifiers too (no assignment yet tho)">
+      <created>1671888219934</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1671888219934</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -311,6 +317,7 @@
     <MESSAGE value="Add some comments" />
     <MESSAGE value="Import calculator 5-6 from compiler-prototype" />
     <MESSAGE value="Fit addition into the evaluator, among statements,statement and program&#10;&#10;NOTE: Most grammar actions need to be adjusted too, so I commented most of them so the program compiles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fit addition into the evaluator, among statements,statement and program&#10;&#10;NOTE: Most grammar actions need to be adjusted too, so I commented most of them so the program compiles" />
+    <MESSAGE value="Integrate function calls, including identifiers too (no assignment yet tho)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrate function calls, including identifiers too (no assignment yet tho)" />
   </component>
 </project>

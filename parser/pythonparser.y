@@ -57,7 +57,12 @@
       case NEWLINE:
           return (int) '\n';
       case STRING:
-          yylval=token.getLiteral();
+          String str=token.getLiteral();
+          //Remove quotation marks to allow operations on strings
+          if(str.startsWith("'''") || str.startsWith("\"\"\""))
+          	yylval=new Literal(str.substring(3,str.length()-3));
+          else
+          	yylval=new Literal(str.substring(1,str.length()-1));
           return STRING;
       case IDENTIFIER:
           if(token.getLiteral().equals("range"))
@@ -101,7 +106,7 @@
 %token <Object> FLOOR_DIVISION
 %token <Double> FLOOR_DIVISION_ASSIGNMENT
 %token <Object> BACKSLASH_LOGICAL_LINE
-%token <String> STRING
+%token <Literal> STRING
 %token <Identifier> IDENTIFIER
 %token <Object> WHITE_SPACE
 %token <Object> ILLEGAL
@@ -229,15 +234,7 @@ IDENTIFIER {
 //$$=(Boolean)false;
 }
 | NUMBER {$$=$1;}
-| STRING {
-	/*String str=(String)$1;
-	//Remove quotation marks to allow operations on strings
-	if(str.startsWith("'''") || str.startsWith("\"\"\""))
-		$$=str.substring(3,str.length()-3);
-	else
-		$$=str.substring(1,str.length()-1);*/
-
-}
+| STRING {$$=$1;}
 | exp AND exp {
 //$$=(Boolean)((Boolean)($1)&&(Boolean)($3));
 }

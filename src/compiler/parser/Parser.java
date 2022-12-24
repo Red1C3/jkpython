@@ -518,7 +518,12 @@ public class Parser
       case NEWLINE:
           return (int) '\n';
       case STRING:
-          yylval=token.getLiteral();
+          String str=token.getLiteral();
+          //Remove quotation marks to allow operations on strings
+          if(str.startsWith("'''") || str.startsWith("\"\"\""))
+          	yylval=new Literal(str.substring(3,str.length()-3));
+          else
+          	yylval=new Literal(str.substring(1,str.length()-1));
           return STRING;
       case IDENTIFIER:
           if(token.getLiteral().equals("range"))
@@ -534,7 +539,7 @@ public class Parser
     }
   }
 
-/* "./src/compiler/parser/Parser.java":538  */
+/* "./src/compiler/parser/Parser.java":543  */
 
   }
 
@@ -717,7 +722,7 @@ public class Parser
       {
           case 3: /* prog: statements  */
   if (yyn == 3)
-    /* "./parser/pythonparser.y":155  */
+    /* "./parser/pythonparser.y":160  */
              {
 	//The AST root node
 	program = new Program(new StatementsBlock(((List<Statement>)(yystack.valueAt (0))).toArray(new Statement[0])));
@@ -727,14 +732,14 @@ public class Parser
 
   case 4: /* statements: statement  */
   if (yyn == 4)
-    /* "./parser/pythonparser.y":162  */
+    /* "./parser/pythonparser.y":167  */
           {yyval=new ArrayList<>(List.of(((Statement)(yystack.valueAt (0)))));};
   break;
 
 
   case 5: /* statements: statement statements  */
   if (yyn == 5)
-    /* "./parser/pythonparser.y":163  */
+    /* "./parser/pythonparser.y":168  */
                      {
 	yyval=new ArrayList<>(List.of(((Statement)(yystack.valueAt (1)))));
 	((List)(yyval)).addAll(((List<Statement>)(yystack.valueAt (0)))); //Combine all statements together
@@ -744,7 +749,7 @@ public class Parser
 
   case 6: /* statement: '\n'  */
   if (yyn == 6)
-    /* "./parser/pythonparser.y":170  */
+    /* "./parser/pythonparser.y":175  */
      {
 	//FIXME This should not return anything, or like a null value, but nulls are illegal
 };
@@ -753,63 +758,63 @@ public class Parser
 
   case 7: /* statement: exp '\n'  */
   if (yyn == 7)
-    /* "./parser/pythonparser.y":173  */
+    /* "./parser/pythonparser.y":178  */
            {yyval=((Expression)(yystack.valueAt (1)));};
   break;
 
 
   case 8: /* statement: if_statement  */
   if (yyn == 8)
-    /* "./parser/pythonparser.y":174  */
+    /* "./parser/pythonparser.y":179  */
                {};
   break;
 
 
   case 9: /* statement: IDENTIFIER '=' exp '\n'  */
   if (yyn == 9)
-    /* "./parser/pythonparser.y":175  */
+    /* "./parser/pythonparser.y":180  */
                           {System.out.println("assignment statement detected, assigned expression evaluated to "+((Expression)(yystack.valueAt (1))).toString());};
   break;
 
 
   case 10: /* statement: for_statement  */
   if (yyn == 10)
-    /* "./parser/pythonparser.y":176  */
+    /* "./parser/pythonparser.y":181  */
                 {};
   break;
 
 
   case 11: /* statement: function_statement  */
   if (yyn == 11)
-    /* "./parser/pythonparser.y":177  */
+    /* "./parser/pythonparser.y":182  */
                      {};
   break;
 
 
   case 12: /* statement: return_statement  */
   if (yyn == 12)
-    /* "./parser/pythonparser.y":178  */
+    /* "./parser/pythonparser.y":183  */
                    {};
   break;
 
 
   case 13: /* function_statement: DEF IDENTIFIER '(' function_args ')' ':' block  */
   if (yyn == 13)
-    /* "./parser/pythonparser.y":184  */
+    /* "./parser/pythonparser.y":189  */
                                              {System.out.println("FUNCTION detected");};
   break;
 
 
   case 14: /* function_statement: DEF IDENTIFIER '(' ')' ':' block  */
   if (yyn == 14)
-    /* "./parser/pythonparser.y":185  */
+    /* "./parser/pythonparser.y":190  */
                                   {System.out.println("FUNCTION detected");};
   break;
 
 
   case 17: /* for_statement: FOR IDENTIFIER IN RANGE '(' exp ',' exp ')' ':' block  */
   if (yyn == 17)
-    /* "./parser/pythonparser.y":195  */
+    /* "./parser/pythonparser.y":200  */
                                                   {System.out.println("FOR LOOP detected with range params "
   + ((Expression)(yystack.valueAt (5))).toString() + ", " + ((Expression)(yystack.valueAt (3))).toString());};
   break;
@@ -817,70 +822,70 @@ public class Parser
 
   case 18: /* return_statement: RETURN '\n'  */
   if (yyn == 18)
-    /* "./parser/pythonparser.y":201  */
+    /* "./parser/pythonparser.y":206  */
             {System.out.println("RETURN statement");};
   break;
 
 
   case 19: /* return_statement: RETURN exp '\n'  */
   if (yyn == 19)
-    /* "./parser/pythonparser.y":202  */
+    /* "./parser/pythonparser.y":207  */
                  {System.out.println("RETURN statement evaluated to "+((Expression)(yystack.valueAt (1))).toString());};
   break;
 
 
   case 20: /* if_statement: IF if_pred ':' block  */
   if (yyn == 20)
-    /* "./parser/pythonparser.y":206  */
+    /* "./parser/pythonparser.y":211  */
                      {System.out.println("IF statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (2))).toString());};
   break;
 
 
   case 21: /* if_statement: IF if_pred ':' block ELSE ':' block  */
   if (yyn == 21)
-    /* "./parser/pythonparser.y":207  */
+    /* "./parser/pythonparser.y":212  */
                                       {System.out.println("IF ELSE statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (5))).toString());};
   break;
 
 
   case 22: /* if_statement: IF if_pred ':' block else_if_blocks  */
   if (yyn == 22)
-    /* "./parser/pythonparser.y":208  */
+    /* "./parser/pythonparser.y":213  */
                                       {System.out.println("IF ELIF statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (3))).toString());};
   break;
 
 
   case 23: /* if_statement: IF if_pred ':' block else_if_blocks ELSE ':' block  */
   if (yyn == 23)
-    /* "./parser/pythonparser.y":209  */
+    /* "./parser/pythonparser.y":214  */
                                                      {System.out.println("IF ELIF ELSE statement detected, condition evaluated to "+ ((Boolean)(yystack.valueAt (6))).toString());};
   break;
 
 
   case 24: /* else_if_blocks: ELIF if_pred ':' block  */
   if (yyn == 24)
-    /* "./parser/pythonparser.y":213  */
+    /* "./parser/pythonparser.y":218  */
                        {System.out.println("ELIF condition evaluated to "+((Boolean)(yystack.valueAt (2))).toString());};
   break;
 
 
   case 25: /* else_if_blocks: ELIF if_pred ':' block else_if_blocks  */
   if (yyn == 25)
-    /* "./parser/pythonparser.y":214  */
+    /* "./parser/pythonparser.y":219  */
                                         {System.out.println("ELIF condition evaluated to "+((Boolean)(yystack.valueAt (3))).toString());};
   break;
 
 
   case 26: /* block: '\n' INDENT statements DEDENT  */
   if (yyn == 26)
-    /* "./parser/pythonparser.y":218  */
+    /* "./parser/pythonparser.y":223  */
                               {System.out.println("block detected");};
   break;
 
 
   case 27: /* exp: IDENTIFIER  */
   if (yyn == 27)
-    /* "./parser/pythonparser.y":222  */
+    /* "./parser/pythonparser.y":227  */
            {
 	//$$=3.0; //JUST FOR TESTING REASONS, WE DO NOT HAVE SYMBOLS YET
 };
@@ -889,7 +894,7 @@ public class Parser
 
   case 28: /* exp: TRUE_TOK  */
   if (yyn == 28)
-    /* "./parser/pythonparser.y":225  */
+    /* "./parser/pythonparser.y":230  */
            {
 //$$=(Boolean)true;
 };
@@ -898,38 +903,16 @@ public class Parser
 
   case 29: /* exp: FALSE_TOK  */
   if (yyn == 29)
-    /* "./parser/pythonparser.y":228  */
+    /* "./parser/pythonparser.y":233  */
             {
 //$$=(Boolean)false;
 };
   break;
 
 
-  case 30: /* exp: NUMBER  */
-  if (yyn == 30)
-    /* "./parser/pythonparser.y":231  */
-         {yyval=((Literal)(yystack.valueAt (0)));};
-  break;
-
-
-  case 31: /* exp: STRING  */
-  if (yyn == 31)
-    /* "./parser/pythonparser.y":232  */
-         {
-	/*String str=(String)$1;
-	//Remove quotation marks to allow operations on strings
-	if(str.startsWith("'''") || str.startsWith("\"\"\""))
-		$$=str.substring(3,str.length()-3);
-	else
-		$$=str.substring(1,str.length()-1);*/
-
-};
-  break;
-
-
   case 32: /* exp: exp AND exp  */
   if (yyn == 32)
-    /* "./parser/pythonparser.y":241  */
+    /* "./parser/pythonparser.y":238  */
               {
 //$$=(Boolean)((Boolean)($1)&&(Boolean)($3));
 };
@@ -938,7 +921,7 @@ public class Parser
 
   case 33: /* exp: exp OR exp  */
   if (yyn == 33)
-    /* "./parser/pythonparser.y":244  */
+    /* "./parser/pythonparser.y":241  */
              {
 //$$=(Boolean)((Boolean)($1)||(Boolean)($3));
 };
@@ -947,7 +930,7 @@ public class Parser
 
   case 34: /* exp: exp EQUAL exp  */
   if (yyn == 34)
-    /* "./parser/pythonparser.y":247  */
+    /* "./parser/pythonparser.y":244  */
                 {
 				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
                     $$=(Boolean)((Boolean)($1)==(Boolean)($3));
@@ -961,7 +944,7 @@ public class Parser
 
   case 35: /* exp: exp NOT_EQUAL exp  */
   if (yyn == 35)
-    /* "./parser/pythonparser.y":255  */
+    /* "./parser/pythonparser.y":252  */
                     {
 				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
                     $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
@@ -975,7 +958,7 @@ public class Parser
 
   case 36: /* exp: exp NOT_EQUAL_2 exp  */
   if (yyn == 36)
-    /* "./parser/pythonparser.y":263  */
+    /* "./parser/pythonparser.y":260  */
                       {
 				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
                     $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
@@ -989,7 +972,7 @@ public class Parser
 
   case 37: /* exp: NOT exp  */
   if (yyn == 37)
-    /* "./parser/pythonparser.y":271  */
+    /* "./parser/pythonparser.y":268  */
           {
   /*if($2 instanceof Boolean){
     $$=!(Boolean)$2;
@@ -1007,7 +990,7 @@ public class Parser
 
   case 38: /* exp: exp GREATER_THAN_OR_EQUAL exp  */
   if (yyn == 38)
-    /* "./parser/pythonparser.y":283  */
+    /* "./parser/pythonparser.y":280  */
                                 {
 //$$=((Double)$1).compareTo((Double)$3)>=0;
 };
@@ -1016,7 +999,7 @@ public class Parser
 
   case 39: /* exp: exp LESS_THAN_OR_EQUAL exp  */
   if (yyn == 39)
-    /* "./parser/pythonparser.y":286  */
+    /* "./parser/pythonparser.y":283  */
                              {
 //$$=((Double)$1).compareTo((Double)$3)<=0;
 };
@@ -1025,7 +1008,7 @@ public class Parser
 
   case 40: /* exp: exp '<' exp  */
   if (yyn == 40)
-    /* "./parser/pythonparser.y":289  */
+    /* "./parser/pythonparser.y":286  */
               {
 //$$=((Double)$1).compareTo((Double)$3)<0;
 };
@@ -1034,7 +1017,7 @@ public class Parser
 
   case 41: /* exp: exp '>' exp  */
   if (yyn == 41)
-    /* "./parser/pythonparser.y":292  */
+    /* "./parser/pythonparser.y":289  */
               {
 //$$=((Double)$1).compareTo((Double)$3)>0;
 };
@@ -1043,7 +1026,7 @@ public class Parser
 
   case 42: /* exp: exp '+' exp  */
   if (yyn == 42)
-    /* "./parser/pythonparser.y":295  */
+    /* "./parser/pythonparser.y":292  */
               {
 	yyval=new ArithmeticExpression(((Expression)(yystack.valueAt (2))),'+',((Expression)(yystack.valueAt (0)))); // An AST node for arithmetics
 	/*if (($1 instanceof Double)&&($3 instanceof Double))
@@ -1059,7 +1042,7 @@ public class Parser
 
   case 43: /* exp: exp '-' exp  */
   if (yyn == 43)
-    /* "./parser/pythonparser.y":305  */
+    /* "./parser/pythonparser.y":302  */
               {
 //$$=(Double)$1-(Double)$3;
 };
@@ -1068,7 +1051,7 @@ public class Parser
 
   case 44: /* exp: exp '*' exp  */
   if (yyn == 44)
-    /* "./parser/pythonparser.y":308  */
+    /* "./parser/pythonparser.y":305  */
               {
 	/*if (($1 instanceof Double) && ($3 instanceof Double))
 		$$=(Double)$1*(Double)$3;
@@ -1085,7 +1068,7 @@ public class Parser
 
   case 45: /* exp: exp '/' exp  */
   if (yyn == 45)
-    /* "./parser/pythonparser.y":319  */
+    /* "./parser/pythonparser.y":316  */
               {
 //$$=(Double)$1/(Double)$3;
 };
@@ -1094,7 +1077,7 @@ public class Parser
 
   case 46: /* exp: '-' exp  */
   if (yyn == 46)
-    /* "./parser/pythonparser.y":322  */
+    /* "./parser/pythonparser.y":319  */
                     {
 //$$=-(Double)$2;
 };
@@ -1103,7 +1086,7 @@ public class Parser
 
   case 47: /* exp: '(' exp ')'  */
   if (yyn == 47)
-    /* "./parser/pythonparser.y":325  */
+    /* "./parser/pythonparser.y":322  */
               {
 //$$=$2;
 };
@@ -1112,7 +1095,7 @@ public class Parser
 
   case 48: /* exp: IDENTIFIER '(' function_params ')'  */
   if (yyn == 48)
-    /* "./parser/pythonparser.y":328  */
+    /* "./parser/pythonparser.y":325  */
                                      {
 	//Define a function call using the identifier and the parameters list
 	yyval=new FunctionCall(((Identifier)(yystack.valueAt (3))),((List<Expression>)(yystack.valueAt (1))));
@@ -1122,14 +1105,14 @@ public class Parser
 
   case 49: /* function_params: exp  */
   if (yyn == 49)
-    /* "./parser/pythonparser.y":336  */
+    /* "./parser/pythonparser.y":333  */
     {yyval= new ArrayList<>(List.of(((Expression)(yystack.valueAt (0)))));};
   break;
 
 
   case 50: /* function_params: exp ',' function_params  */
   if (yyn == 50)
-    /* "./parser/pythonparser.y":337  */
+    /* "./parser/pythonparser.y":334  */
                           {
 	yyval=new ArrayList<>(List.of(((Expression)(yystack.valueAt (2)))));
 	((List)(yyval)).addAll(((List<Expression>)(yystack.valueAt (0)))); //Combine all expressions together
@@ -1139,7 +1122,7 @@ public class Parser
 
   case 51: /* if_pred: exp  */
   if (yyn == 51)
-    /* "./parser/pythonparser.y":344  */
+    /* "./parser/pythonparser.y":341  */
     {
 //$$=(Boolean)$1;
 };
@@ -1147,7 +1130,7 @@ public class Parser
 
 
 
-/* "./src/compiler/parser/Parser.java":1151  */
+/* "./src/compiler/parser/Parser.java":1134  */
 
         default: break;
       }
@@ -1777,8 +1760,8 @@ private static final byte[] yycheck_ = yycheck_init();
 
 	public Program program;
 
-/* "./src/compiler/parser/Parser.java":1781  */
+/* "./src/compiler/parser/Parser.java":1764  */
 
 }
-/* "./parser/pythonparser.y":348  */
+/* "./parser/pythonparser.y":345  */
 
