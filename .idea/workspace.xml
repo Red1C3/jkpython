@@ -1,58 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Add some comments">
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/Calculator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/constants/PyNone.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/constants/PyNotImplemented.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/functions/PyPrint.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyFloat.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyFunction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyString.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/Context.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/ExecutionSignal.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/PyCallable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/PyObject.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/StandardContext.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/Program.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/ReturnStatement.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/Statement.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/StatementsBlock.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/ArithmeticExpression.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/AssignmentExpression.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Expression.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Identifier.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Literal.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/Calculator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/constants/PyNone.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/constants/PyNotImplemented.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/functions/PyPrint.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyFloat.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyFunction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyString.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/Context.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/ExecutionSignal.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/ExplorerSignal.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/PyCallable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/PyObject.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/StandardContext.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/Program.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/SourceNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/ReturnStatement.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/Statement.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/StatementsBlock.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/ArithmeticExpression.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/AssignmentExpression.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Expression.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Identifier.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Literal.kt" afterDir="false" />
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Import calculator 5-6 from compiler-prototype">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/Calculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/Calculator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/Calculator.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/constants/PyNone.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/constants/PyNotImplemented.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/functions/PyPrint.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyFloat.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyFunction.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyString.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/Context.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/ExecutionSignal.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/ExplorerSignal.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/PyCallable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/PyObject.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/StandardContext.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/Program.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/SourceNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/FunctionDeclaration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/ReturnStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/Statement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/StatementsBlock.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/ArithmeticExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/AssignmentExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Expression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/FunctionCall.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Identifier.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Literal.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,39 +59,42 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2HMM5mW1poIbDYditnUcSzvWkT1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "/home/reddeadalice/Projects/python-compileruwu/src/compiler",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/reddeadalice/Projects/python-compileruwu/src/compiler&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/compiler" />
       <recent name="$PROJECT_DIR$/parser" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/compiler/parser" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.CalculatorKt">
+  <component name="RunManager" selected="Application.Main - File">
     <configuration name="Main - File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
@@ -308,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671798880087</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Import calculator 5-6 from compiler-prototype">
+      <created>1671860255850</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1671860255850</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -340,6 +331,7 @@
     <MESSAGE value="Improve assignement statement output" />
     <MESSAGE value="Set a default value for identifier for testing" />
     <MESSAGE value="Add some comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add some comments" />
+    <MESSAGE value="Import calculator 5-6 from compiler-prototype" />
+    <option name="LAST_COMMIT_MESSAGE" value="Import calculator 5-6 from compiler-prototype" />
   </component>
 </project>

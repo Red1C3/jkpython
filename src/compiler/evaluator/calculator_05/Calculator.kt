@@ -58,8 +58,16 @@ fun createTestingProgram(): Program {
     ))
 }
 
+fun createArithTest():Program{
+    return Program(StatementsBlock(
+            FunctionCall(Identifier("print"), listOf(
+                    ArithmeticExpression(Literal(1.0),'+',Literal(2.0))
+            ))
+    ))
+}
+
 fun main() {
-    val program = createTestingProgram()
+    val program = createArithTest()
     val context = StandardContext()
 
     program.run(context)

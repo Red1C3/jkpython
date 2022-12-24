@@ -2,10 +2,12 @@ package compiler;
 
 import compiler.lexer.Lexer;
 import compiler.parser.Parser;
+import evaluator.calculator_05.core.StandardContext;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
+
 public class Main {
     private static Lexer lexer;
 
@@ -25,6 +27,13 @@ public class Main {
 
             Parser parser = new Parser(lexer);
             parser.parse();
+
+            //Some global identifiers container
+            StandardContext context=new StandardContext();
+
+            //program.run evaluates the AST stored in program
+            parser.program.run(context);
+
         } catch (IOException e) {
             System.out.println("Failed to handle file " + args[0] + "\nError:" + e);
         }
@@ -42,6 +51,12 @@ public class Main {
                 lexer.printAllTokens(); //TODO if faced an INDENT don't parse until it DEDENTs?
                 Parser parser = new Parser(lexer);
                 parser.parse();
+
+                //Some global identifiers container
+                StandardContext context=new StandardContext();
+
+                //program.run evaluates the AST stored in program
+                parser.program.run(context);
             } catch (IOException e) {
                 System.out.println("Failed to handle line: " + line + "\nError:" + e);
             }

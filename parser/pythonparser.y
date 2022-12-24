@@ -6,9 +6,19 @@
 %define api.parser.class {Parser}
 %define api.parser.public
 
+
 %code imports {
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
+  import evaluator.calculator_05.source_tree.Program;
+  import evaluator.calculator_05.source_tree.statements.expressions.*;
+  import evaluator.calculator_05.source_tree.statements.*;
+  import java.util.List;
+  import java.util.ArrayList;
+}
+ // Add a "program" data member to Bison's Parser class
+%code {
+	public Program program;
 }
 
 //Bison's generated Parser class constructor parameter
@@ -41,7 +51,8 @@
     }
     switch(token.getType()){
       case NUMBER:
-          yylval=Double.parseDouble(token.getLiteral());
+      	  //Return a literal (AST leaf that contains a primitive type) so it gets added to the AST
+          yylval=new Literal(Double.parseDouble(token.getLiteral()));
           return NUMBER;
       case NEWLINE:
           return (int) '\n';
@@ -51,8 +62,10 @@
       case IDENTIFIER:
           if(token.getLiteral().equals("range"))
             return RANGE;
-          else
+          else{
+          	yylval=token.getLiteral();
             return IDENTIFIER;
+            }
       default:
           return token.getType();
     }
@@ -62,7 +75,7 @@
 %token <Object> INDENT
 %token <Object> DEDENT
 %token <Object> NEWLINE
-%token <Double> NUMBER
+%token <Literal> NUMBER
 %token <Object> COMMENT
 %token <Object> LESS_THAN_OR_EQUAL
 %token <Object> GREATER_THAN_OR_EQUAL
@@ -87,7 +100,7 @@
 %token <Double> FLOOR_DIVISION_ASSIGNMENT
 %token <Object> BACKSLASH_LOGICAL_LINE
 %token <String> STRING
-%token <Object> IDENTIFIER
+%token <String> IDENTIFIER
 %token <Object> WHITE_SPACE
 %token <Object> ILLEGAL
 %token <Object> IMPORT
@@ -113,8 +126,12 @@
 %token <Object> LAMBDA
 %token <Object> COMMA_LOGICAL_LINE
 %token <Object> RANGE
-%type <Object> exp
+%type <Expression> exp
 %type <Boolean> if_pred
+%type <Statement> statement
+%type <List<Statement>> statements
+ //"statements are not of type "StatementsBlock" because that will
+ //make "block" two "StatementsBlock" instead of one
 
 %nonassoc ','
 %nonassoc '='
@@ -130,22 +147,30 @@
 %%
 prog:
 %empty
-| statements
+| statements {
+	//The AST root node
+	program = new Program(new StatementsBlock($1.toArray(new Statement[0])));
+}
 ;
 
 statements:
-statement
-|statement statements
+statement {$$=new ArrayList<>(List.of($1));}
+|statement statements{
+	$$=new ArrayList<>(List.of($1));
+	((List)($$)).addAll($2); //Combine all statements together
+}
 ;
 
 statement:
-'\n'
-| exp '\n' {System.out.println($1.toString());}
-| if_statement
+'\n' {
+	//FIXME This should not return anything, or like a null value, but nulls are illegal
+}
+| exp '\n' {$$=$1;}
+| if_statement {}
 | IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected, assigned expression evaluated to "+$3.toString());}
-| for_statement
-| function_statement
-| return_statement
+| for_statement {}
+| function_statement {}
+| return_statement {}
 ;
 
 
@@ -190,43 +215,56 @@ block:
 
 exp:
 IDENTIFIER {
-	$$=3.0; //JUST FOR TESTING REASONS, WE DO NOT HAVE SYMBOLS YET
+	//$$=3.0; //JUST FOR TESTING REASONS, WE DO NOT HAVE SYMBOLS YET
 }
-| TRUE_TOK {$$=(Boolean)true;}
-| FALSE_TOK {$$=(Boolean)false;}
-| NUMBER {$$=(Double)$1;}
+| TRUE_TOK {
+//$$=(Boolean)true;
+}
+| FALSE_TOK {
+//$$=(Boolean)false;
+}
+| NUMBER {$$=$1;}
 | STRING {
-	String str=(String)$1;
+	/*String str=(String)$1;
 	//Remove quotation marks to allow operations on strings
 	if(str.startsWith("'''") || str.startsWith("\"\"\""))
 		$$=str.substring(3,str.length()-3);
 	else
-		$$=str.substring(1,str.length()-1);
+		$$=str.substring(1,str.length()-1);*/
 
 }
-| exp AND exp {$$=(Boolean)((Boolean)($1)&&(Boolean)($3));}
-| exp OR exp {$$=(Boolean)((Boolean)($1)||(Boolean)($3));}
-| exp EQUAL exp {if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
+| exp AND exp {
+//$$=(Boolean)((Boolean)($1)&&(Boolean)($3));
+}
+| exp OR exp {
+//$$=(Boolean)((Boolean)($1)||(Boolean)($3));
+}
+| exp EQUAL exp {
+				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
                     $$=(Boolean)((Boolean)($1)==(Boolean)($3));
                   }
                 if(($1 instanceof Double)&&($3 instanceof Double)){
                     $$=(((Double)$1).compareTo((Double)$3)==0);
-                  }
+                  }*/
                 }
-| exp NOT_EQUAL exp {if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
+| exp NOT_EQUAL exp {
+				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
                     $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
                   }
                 if(($1 instanceof Double)&&($3 instanceof Double)){
                     $$=(((Double)$1).compareTo((Double)$3)!=0);
-                  }}
-| exp NOT_EQUAL_2 exp {if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
+                  }*/
+                  }
+| exp NOT_EQUAL_2 exp {
+				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
                     $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
                   }
                 if(($1 instanceof Double)&&($3 instanceof Double)){
                     $$=(((Double)$1).compareTo((Double)$3)!=0);
-                  }}
+                  }*/
+                  }
 | NOT exp {
-  if($2 instanceof Boolean){
+  /*if($2 instanceof Boolean){
     $$=!(Boolean)$2;
   }
   if($2 instanceof Double){
@@ -235,24 +273,35 @@ IDENTIFIER {
     }else{
       $$=false;
     }
+  }*/
   }
-  }
-| exp GREATER_THAN_OR_EQUAL exp {$$=((Double)$1).compareTo((Double)$3)>=0;}
-| exp LESS_THAN_OR_EQUAL exp {$$=((Double)$1).compareTo((Double)$3)<=0;}
-| exp '<' exp {$$=((Double)$1).compareTo((Double)$3)<0;}
-| exp '>' exp {$$=((Double)$1).compareTo((Double)$3)>0;}
+| exp GREATER_THAN_OR_EQUAL exp {
+//$$=((Double)$1).compareTo((Double)$3)>=0;
+}
+| exp LESS_THAN_OR_EQUAL exp {
+//$$=((Double)$1).compareTo((Double)$3)<=0;
+}
+| exp '<' exp {
+//$$=((Double)$1).compareTo((Double)$3)<0;
+}
+| exp '>' exp {
+//$$=((Double)$1).compareTo((Double)$3)>0;
+}
 | exp '+' exp {
-	if (($1 instanceof Double)&&($3 instanceof Double))
+	$$=new ArithmeticExpression($1,'+',$3); // An AST node for arithmetics
+	/*if (($1 instanceof Double)&&($3 instanceof Double))
 		$$=(Double)$1+(Double)$3;
 	else if(($1 instanceof String)&&($3 instanceof String))
 		$$=(String)$1+(String)$3;
 	else{
 		yyerror("Unsupported addition operands");
-	}
+	}*/
 }
-| exp '-' exp {$$=(Double)$1-(Double)$3;}
+| exp '-' exp {
+//$$=(Double)$1-(Double)$3;
+}
 | exp '*' exp {
-	if (($1 instanceof Double) && ($3 instanceof Double))
+	/*if (($1 instanceof Double) && ($3 instanceof Double))
 		$$=(Double)$1*(Double)$3;
 	else if (($1 instanceof Double) && ($3 instanceof String)){
 		$$=((String)$3).repeat(((Double)$1).intValue());
@@ -260,14 +309,22 @@ IDENTIFIER {
 		$$=((String)$1).repeat(((Double)$3).intValue());
 	}else{
 		yyerror("Unsupported multiplication operands");
-	}
+	}*/
 }
-| exp '/' exp {$$=(Double)$1/(Double)$3;}
-| '-' exp %prec NEG {$$=-(Double)$2;}
-| '(' exp ')' {$$=$2;}
+| exp '/' exp {
+//$$=(Double)$1/(Double)$3;
+}
+| '-' exp %prec NEG {
+//$$=-(Double)$2;
+}
+| '(' exp ')' {
+//$$=$2;
+}
 ;
 
 if_pred:
-exp {$$=(Boolean)$1;}
+exp {
+//$$=(Boolean)$1;
+}
 ;
 %%
