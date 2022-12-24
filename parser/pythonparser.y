@@ -63,7 +63,9 @@
           if(token.getLiteral().equals("range"))
             return RANGE;
           else{
-          	yylval=token.getLiteral();
+            //AST node that marks an identifier (Also Identifier type is now
+            //Identifier (as in the evaluator's))
+          	yylval=new Identifier(token.getLiteral());
             return IDENTIFIER;
             }
       default:
@@ -100,7 +102,7 @@
 %token <Double> FLOOR_DIVISION_ASSIGNMENT
 %token <Object> BACKSLASH_LOGICAL_LINE
 %token <String> STRING
-%token <String> IDENTIFIER
+%token <Identifier> IDENTIFIER
 %token <Object> WHITE_SPACE
 %token <Object> ILLEGAL
 %token <Object> IMPORT
@@ -129,9 +131,12 @@
 %type <Expression> exp
 %type <Boolean> if_pred
 %type <Statement> statement
-%type <List<Statement>> statements
+
  //"statements are not of type "StatementsBlock" because that will
  //make "block" two "StatementsBlock" instead of one
+%type <List<Statement>> statements
+%type <List<Expression>> function_params
+
 
 %nonassoc ','
 %nonassoc '='
@@ -319,6 +324,19 @@ IDENTIFIER {
 }
 | '(' exp ')' {
 //$$=$2;
+}
+| IDENTIFIER '(' function_params ')' {
+	//Define a function call using the identifier and the parameters list
+	$$=new FunctionCall($1,$3);
+}
+;
+
+ //Function parameters grammar (only used in function call NOT defination)
+function_params:
+exp {$$= new ArrayList<>(List.of($1));}
+| exp ',' function_params {
+	$$=new ArrayList<>(List.of($1));
+	((List)($$)).addAll($3); //Combine all expressions together
 }
 ;
 
