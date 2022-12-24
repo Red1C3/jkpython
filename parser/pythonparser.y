@@ -177,7 +177,6 @@ statement:
 }
 | exp '\n' {$$=$1;}
 | if_statement {}
-| IDENTIFIER '=' exp '\n' {System.out.println("assignment statement detected, assigned expression evaluated to "+$3.toString());}
 | for_statement {}
 | function_statement {}
 | return_statement {}
@@ -225,7 +224,7 @@ block:
 
 exp:
 IDENTIFIER {
-	//$$=3.0; //JUST FOR TESTING REASONS, WE DO NOT HAVE SYMBOLS YET
+	$$=$1; //Just so types cast
 }
 | TRUE_TOK {
 //$$=(Boolean)true;
@@ -306,6 +305,9 @@ IDENTIFIER {
 }
 | '(' exp ')' {
 	$$=$2;
+}
+| IDENTIFIER '=' exp {
+	$$=new AssignmentExpression($1,$3); //Adds a new symbol to the context (NO SCOPES YET)
 }
 | IDENTIFIER '(' function_params ')' {
 	//Define a function call using the identifier and the parameters list

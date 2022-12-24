@@ -43,6 +43,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String line;
         System.out.print(PROMPT);
+
+        //Some global identifiers container, outside the loop to preserve symbols
+        StandardContext context=new StandardContext();
+
         while ((line = scanner.nextLine()) != null) {
             //Run the interpreting process line by line
             try {
@@ -51,9 +55,6 @@ public class Main {
                 lexer.printAllTokens(); //TODO if faced an INDENT don't parse until it DEDENTs?
                 Parser parser = new Parser(lexer);
                 parser.parse();
-
-                //Some global identifiers container
-                StandardContext context=new StandardContext();
 
                 //program.run evaluates the AST stored in program
                 parser.program.run(context);

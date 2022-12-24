@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Integrate strings">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Integrate expressions opertaions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -291,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671904263269</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Integrate expressions opertaions">
+      <created>1671904999380</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1671904999380</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -327,6 +335,7 @@
     <MESSAGE value="Fit addition into the evaluator, among statements,statement and program&#10;&#10;NOTE: Most grammar actions need to be adjusted too, so I commented most of them so the program compiles" />
     <MESSAGE value="Integrate function calls, including identifiers too (no assignment yet tho)" />
     <MESSAGE value="Integrate strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrate strings" />
+    <MESSAGE value="Integrate expressions opertaions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrate expressions opertaions" />
   </component>
 </project>
