@@ -910,6 +910,20 @@ public class Parser
   break;
 
 
+  case 30: /* exp: NUMBER  */
+  if (yyn == 30)
+    /* "./parser/pythonparser.y":236  */
+         {yyval=((Literal)(yystack.valueAt (0)));};
+  break;
+
+
+  case 31: /* exp: STRING  */
+  if (yyn == 31)
+    /* "./parser/pythonparser.y":237  */
+         {yyval=((Literal)(yystack.valueAt (0)));};
+  break;
+
+
   case 32: /* exp: exp AND exp  */
   if (yyn == 32)
     /* "./parser/pythonparser.y":238  */
@@ -1029,73 +1043,58 @@ public class Parser
     /* "./parser/pythonparser.y":292  */
               {
 	yyval=new ArithmeticExpression(((Expression)(yystack.valueAt (2))),'+',((Expression)(yystack.valueAt (0)))); // An AST node for arithmetics
-	/*if (($1 instanceof Double)&&($3 instanceof Double))
-		$$=(Double)$1+(Double)$3;
-	else if(($1 instanceof String)&&($3 instanceof String))
-		$$=(String)$1+(String)$3;
-	else{
-		yyerror("Unsupported addition operands");
-	}*/
 };
   break;
 
 
   case 43: /* exp: exp '-' exp  */
   if (yyn == 43)
-    /* "./parser/pythonparser.y":302  */
+    /* "./parser/pythonparser.y":295  */
               {
-//$$=(Double)$1-(Double)$3;
+	yyval=new ArithmeticExpression(((Expression)(yystack.valueAt (2))),'-',((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
   case 44: /* exp: exp '*' exp  */
   if (yyn == 44)
-    /* "./parser/pythonparser.y":305  */
+    /* "./parser/pythonparser.y":298  */
               {
-	/*if (($1 instanceof Double) && ($3 instanceof Double))
-		$$=(Double)$1*(Double)$3;
-	else if (($1 instanceof Double) && ($3 instanceof String)){
-		$$=((String)$3).repeat(((Double)$1).intValue());
-	} else if (($1 instanceof String) && ($3 instanceof Double)){
-		$$=((String)$1).repeat(((Double)$3).intValue());
-	}else{
-		yyerror("Unsupported multiplication operands");
-	}*/
+	yyval=new ArithmeticExpression(((Expression)(yystack.valueAt (2))),'*',((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
   case 45: /* exp: exp '/' exp  */
   if (yyn == 45)
-    /* "./parser/pythonparser.y":316  */
+    /* "./parser/pythonparser.y":301  */
               {
-//$$=(Double)$1/(Double)$3;
+	yyval=new ArithmeticExpression(((Expression)(yystack.valueAt (2))),'/',((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
   case 46: /* exp: '-' exp  */
   if (yyn == 46)
-    /* "./parser/pythonparser.y":319  */
+    /* "./parser/pythonparser.y":304  */
                     {
-//$$=-(Double)$2;
+	yyval=new ArithmeticExpression(new Literal(0.0),'-',((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
   case 47: /* exp: '(' exp ')'  */
   if (yyn == 47)
-    /* "./parser/pythonparser.y":322  */
+    /* "./parser/pythonparser.y":307  */
               {
-//$$=$2;
+	yyval=((Expression)(yystack.valueAt (1)));
 };
   break;
 
 
   case 48: /* exp: IDENTIFIER '(' function_params ')'  */
   if (yyn == 48)
-    /* "./parser/pythonparser.y":325  */
+    /* "./parser/pythonparser.y":310  */
                                      {
 	//Define a function call using the identifier and the parameters list
 	yyval=new FunctionCall(((Identifier)(yystack.valueAt (3))),((List<Expression>)(yystack.valueAt (1))));
@@ -1105,14 +1104,14 @@ public class Parser
 
   case 49: /* function_params: exp  */
   if (yyn == 49)
-    /* "./parser/pythonparser.y":333  */
+    /* "./parser/pythonparser.y":318  */
     {yyval= new ArrayList<>(List.of(((Expression)(yystack.valueAt (0)))));};
   break;
 
 
   case 50: /* function_params: exp ',' function_params  */
   if (yyn == 50)
-    /* "./parser/pythonparser.y":334  */
+    /* "./parser/pythonparser.y":319  */
                           {
 	yyval=new ArrayList<>(List.of(((Expression)(yystack.valueAt (2)))));
 	((List)(yyval)).addAll(((List<Expression>)(yystack.valueAt (0)))); //Combine all expressions together
@@ -1122,7 +1121,7 @@ public class Parser
 
   case 51: /* if_pred: exp  */
   if (yyn == 51)
-    /* "./parser/pythonparser.y":341  */
+    /* "./parser/pythonparser.y":326  */
     {
 //$$=(Boolean)$1;
 };
@@ -1130,7 +1129,7 @@ public class Parser
 
 
 
-/* "./src/compiler/parser/Parser.java":1134  */
+/* "./src/compiler/parser/Parser.java":1133  */
 
         default: break;
       }
@@ -1760,8 +1759,8 @@ private static final byte[] yycheck_ = yycheck_init();
 
 	public Program program;
 
-/* "./src/compiler/parser/Parser.java":1764  */
+/* "./src/compiler/parser/Parser.java":1763  */
 
 }
-/* "./parser/pythonparser.y":345  */
+/* "./parser/pythonparser.y":330  */
 

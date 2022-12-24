@@ -291,36 +291,21 @@ IDENTIFIER {
 }
 | exp '+' exp {
 	$$=new ArithmeticExpression($1,'+',$3); // An AST node for arithmetics
-	/*if (($1 instanceof Double)&&($3 instanceof Double))
-		$$=(Double)$1+(Double)$3;
-	else if(($1 instanceof String)&&($3 instanceof String))
-		$$=(String)$1+(String)$3;
-	else{
-		yyerror("Unsupported addition operands");
-	}*/
 }
 | exp '-' exp {
-//$$=(Double)$1-(Double)$3;
+	$$=new ArithmeticExpression($1,'-',$3); // An AST node for arithmetics
 }
 | exp '*' exp {
-	/*if (($1 instanceof Double) && ($3 instanceof Double))
-		$$=(Double)$1*(Double)$3;
-	else if (($1 instanceof Double) && ($3 instanceof String)){
-		$$=((String)$3).repeat(((Double)$1).intValue());
-	} else if (($1 instanceof String) && ($3 instanceof Double)){
-		$$=((String)$1).repeat(((Double)$3).intValue());
-	}else{
-		yyerror("Unsupported multiplication operands");
-	}*/
+	$$=new ArithmeticExpression($1,'*',$3); // An AST node for arithmetics
 }
 | exp '/' exp {
-//$$=(Double)$1/(Double)$3;
+	$$=new ArithmeticExpression($1,'/',$3); // An AST node for arithmetics
 }
 | '-' exp %prec NEG {
-//$$=-(Double)$2;
+	$$=new ArithmeticExpression(new Literal(0.0),'-',$2); // An AST node for arithmetics
 }
 | '(' exp ')' {
-//$$=$2;
+	$$=$2;
 }
 | IDENTIFIER '(' function_params ')' {
 	//Define a function call using the identifier and the parameters list
