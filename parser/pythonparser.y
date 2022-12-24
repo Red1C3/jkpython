@@ -144,6 +144,7 @@
 %type <StatementsBlock> block
 %type <List<Identifier>> function_args
 %type <FunctionDeclaration> function_statement
+%type <ReturnStatement> return_statement
 
 
 %nonassoc ','
@@ -182,7 +183,7 @@ statement:
 | if_statement {}
 | for_statement {}
 | function_statement {$$=$1;}
-| return_statement {}
+| return_statement {$$=$1;}
 ;
 
 
@@ -210,8 +211,8 @@ FOR IDENTIFIER IN RANGE '('exp','exp')' ':' block {System.out.println("FOR LOOP 
 
 
 return_statement:
-RETURN '\n' {System.out.println("RETURN statement");}
-|RETURN exp '\n' {System.out.println("RETURN statement evaluated to "+$2.toString());}
+RETURN '\n' {$$=new ReturnStatement();}
+|RETURN exp '\n' {$$=new ReturnStatement($2);}
 ;
 
 if_statement:

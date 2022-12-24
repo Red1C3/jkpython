@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Integrate assignment expression">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Integrate function declarations">
       <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671906549811</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Integrate function declarations">
+      <created>1671909347366</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1671909347366</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -343,6 +348,7 @@
     <MESSAGE value="Integrate strings" />
     <MESSAGE value="Integrate expressions opertaions" />
     <MESSAGE value="Integrate assignment expression" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrate assignment expression" />
+    <MESSAGE value="Integrate function declarations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrate function declarations" />
   </component>
 </project>
