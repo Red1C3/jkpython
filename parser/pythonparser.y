@@ -141,6 +141,9 @@
  //make "block" two "StatementsBlock" instead of one
 %type <List<Statement>> statements
 %type <List<Expression>> function_params
+%type <StatementsBlock> block
+%type <List<Identifier>> function_args
+%type <FunctionDeclaration> function_statement
 
 
 %nonassoc ','
@@ -178,21 +181,26 @@ statement:
 | exp '\n' {$$=$1;}
 | if_statement {}
 | for_statement {}
-| function_statement {}
+| function_statement {$$=$1;}
 | return_statement {}
 ;
 
 
 
 function_statement:
- DEF IDENTIFIER '('function_args')'':' block {System.out.println("FUNCTION detected");}
- | DEF IDENTIFIER '('')'':' block {System.out.println("FUNCTION detected");}
+ DEF IDENTIFIER '('function_args')'':' block {$$=new FunctionDeclaration($2,$4,$7);}
+ | DEF IDENTIFIER '('')'':' block {
+ 	$$=new FunctionDeclaration($2,new ArrayList<Identifier>(),$6); //Declare a function with empty arguments list
+ }
  ;
 
 
 function_args:
-IDENTIFIER 
-| IDENTIFIER ',' function_args 
+IDENTIFIER {$$= new ArrayList<>(List.of($1));}
+| IDENTIFIER ',' function_args {
+	$$=new ArrayList<>(List.of($1));
+    ((List)($$)).addAll($3); //Combine all identifiers together
+}
 ;
 
 for_statement:
@@ -219,7 +227,7 @@ ELIF if_pred ':' block {System.out.println("ELIF condition evaluated to "+$2.toS
 ;
 
 block:
-'\n' INDENT statements DEDENT {System.out.println("block detected");}
+'\n' INDENT statements DEDENT {$$=new StatementsBlock($3.toArray(new Statement[0]));}
 ;
 
 exp:
@@ -312,6 +320,10 @@ IDENTIFIER {
 | IDENTIFIER '(' function_params ')' {
 	//Define a function call using the identifier and the parameters list
 	$$=new FunctionCall($1,$3);
+}
+| IDENTIFIER '(' ')'{
+	//Define a function call using the identifier
+    $$=new FunctionCall($1,new ArrayList<Expression>());
 }
 ;
 
