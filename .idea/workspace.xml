@@ -1,13 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Set a default value for identifier for testing">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Add some comments">
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/Calculator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/constants/PyNone.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/constants/PyNotImplemented.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/functions/PyPrint.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyFloat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyFunction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyString.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/Context.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/ExecutionSignal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/PyCallable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/PyObject.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/StandardContext.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/Program.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/ReturnStatement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/Statement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/StatementsBlock.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/ArithmeticExpression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/AssignmentExpression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Expression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Identifier.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Literal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/Calculator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/constants/PyNone.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/constants/PyNotImplemented.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/functions/PyPrint.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyFloat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyFunction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/builtins/types/PyString.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/Context.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/ExecutionSignal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/ExplorerSignal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/PyCallable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/PyObject.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/core/StandardContext.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/Program.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/SourceNode.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/ReturnStatement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/Statement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/StatementsBlock.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/ArithmeticExpression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/AssignmentExpression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Expression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Identifier.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/calculator_06/source_tree/statements/expressions/Literal.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/pythonlexer.l" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/pythonlexer.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,24 +84,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/reddeadalice/Projects/python-compileruwu&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "/home/reddeadalice/Projects/python-compileruwu/src/compiler",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/parser" />
@@ -65,7 +110,7 @@
       <recent name="$PROJECT_DIR$/src/compiler/parser" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main - File">
+  <component name="RunManager" selected="Kotlin.CalculatorKt">
     <configuration name="Main - File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
@@ -131,20 +176,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CalculatorKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="evaluator.calculator_05.CalculatorKt" />
+      <module name="python-compileruwu" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main - File" />
       <item itemvalue="Application.Main - Interactve" />
       <item itemvalue="JUnit.LexerTest.test" />
       <item itemvalue="JUnit.LexerTest.testa" />
       <item itemvalue="JUnit.LexerTest.testTest" />
+      <item itemvalue="Kotlin.CalculatorKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.CalculatorKt" />
         <item itemvalue="Application.Main - Interactve" />
         <item itemvalue="JUnit.LexerTest.testTest" />
         <item itemvalue="JUnit.LexerTest.testa" />
         <item itemvalue="JUnit.LexerTest.test" />
-        <item itemvalue="Application.Main - Interactve" />
       </list>
     </recent_temporary>
   </component>
@@ -248,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670060990187</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add some comments">
+      <created>1671798880087</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671798880087</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -279,6 +339,7 @@
     <MESSAGE value="Print conditions evaluations" />
     <MESSAGE value="Improve assignement statement output" />
     <MESSAGE value="Set a default value for identifier for testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set a default value for identifier for testing" />
+    <MESSAGE value="Add some comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add some comments" />
   </component>
 </project>
