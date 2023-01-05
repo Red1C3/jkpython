@@ -153,13 +153,14 @@
     S_function_statement(76),      /* function_statement  */
     S_function_args(77),           /* function_args  */
     S_for_statement(78),           /* for_statement  */
-    S_return_statement(79),        /* return_statement  */
-    S_if_statement(80),            /* if_statement  */
-    S_else_if_blocks(81),          /* else_if_blocks  */
-    S_block(82),                   /* block  */
-    S_exp(83),                     /* exp  */
-    S_exp_list(84),                /* exp_list  */
-    S_if_pred(85);                 /* if_pred  */
+    S_while_statement(79),         /* while_statement  */
+    S_return_statement(80),        /* return_statement  */
+    S_if_statement(81),            /* if_statement  */
+    S_else_if_blocks(82),          /* else_if_blocks  */
+    S_block(83),                   /* block  */
+    S_exp(84),                     /* exp  */
+    S_exp_list(85),                /* exp_list  */
+    S_if_pred(86);                 /* if_pred  */
 
 
     private final int yycode_;
@@ -248,6 +249,7 @@
       SymbolKind.S_function_statement,
       SymbolKind.S_function_args,
       SymbolKind.S_for_statement,
+      SymbolKind.S_while_statement,
       SymbolKind.S_return_statement,
       SymbolKind.S_if_statement,
       SymbolKind.S_else_if_blocks,
@@ -321,8 +323,8 @@
   "'+'", "'-'", "'*'", "'/'", "NEG", "'^'", "'\\n'", "'('", "')'", "':'",
   "'['", "']'", "$accept", "prog", "statements", "statement",
   "function_statement", "function_args", "for_statement",
-  "return_statement", "if_statement", "else_if_blocks", "block", "exp",
-  "exp_list", "if_pred", null
+  "while_statement", "return_statement", "if_statement", "else_if_blocks",
+  "block", "exp", "exp_list", "if_pred", null
     };
   }
 
@@ -544,7 +546,7 @@ private class YYLexer implements Lexer {
     }
   }
 
-/* "./src/compiler/parser/Parser.java":548  */
+/* "./src/compiler/parser/Parser.java":550  */
 
 }
 
@@ -727,7 +729,7 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
         {
           case 3: /* prog: statements  */
   if (yyn == 3)
-    /* "./parser/pythonparser.y":171  */
+    /* "./parser/pythonparser.y":172  */
              {
 	//The AST root node
 	program = new Program(new StatementsBlock(((List<Statement>)(yystack.valueAt (0))).toArray(new Statement[0])));
@@ -737,14 +739,14 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
 
   case 4: /* statements: statement  */
   if (yyn == 4)
-    /* "./parser/pythonparser.y":178  */
+    /* "./parser/pythonparser.y":179  */
           {yyval=new ArrayList<>(List.of(((Statement)(yystack.valueAt (0)))));};
   break;
 
 
   case 5: /* statements: statement statements  */
   if (yyn == 5)
-    /* "./parser/pythonparser.y":179  */
+    /* "./parser/pythonparser.y":180  */
                      {
 	yyval=new ArrayList<>(List.of(((Statement)(yystack.valueAt (1)))));
 	((List)(yyval)).addAll(((List<Statement>)(yystack.valueAt (0)))); //Combine all statements together
@@ -754,7 +756,7 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
 
   case 6: /* statement: '\n'  */
   if (yyn == 6)
-    /* "./parser/pythonparser.y":186  */
+    /* "./parser/pythonparser.y":187  */
      {
 	//FIXME This should not return anything, or like a null value, but nulls are illegal
 };
@@ -763,79 +765,86 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
 
   case 7: /* statement: exp '\n'  */
   if (yyn == 7)
-    /* "./parser/pythonparser.y":189  */
+    /* "./parser/pythonparser.y":190  */
            {yyval=((Expression)(yystack.valueAt (1)));};
   break;
 
 
   case 8: /* statement: if_statement  */
   if (yyn == 8)
-    /* "./parser/pythonparser.y":190  */
+    /* "./parser/pythonparser.y":191  */
                {yyval=((IfStatement)(yystack.valueAt (0)));};
   break;
 
 
   case 9: /* statement: for_statement  */
   if (yyn == 9)
-    /* "./parser/pythonparser.y":191  */
+    /* "./parser/pythonparser.y":192  */
                 {yyval=((ForStatement)(yystack.valueAt (0)));};
   break;
 
 
-  case 10: /* statement: function_statement  */
+  case 10: /* statement: while_statement  */
   if (yyn == 10)
-    /* "./parser/pythonparser.y":192  */
+    /* "./parser/pythonparser.y":193  */
+                  {yyval=((WhileStatement)(yystack.valueAt (0)));};
+  break;
+
+
+  case 11: /* statement: function_statement  */
+  if (yyn == 11)
+    /* "./parser/pythonparser.y":194  */
                      {yyval=((FunctionDeclaration)(yystack.valueAt (0)));};
   break;
 
 
-  case 11: /* statement: return_statement  */
-  if (yyn == 11)
-    /* "./parser/pythonparser.y":193  */
+  case 12: /* statement: return_statement  */
+  if (yyn == 12)
+    /* "./parser/pythonparser.y":195  */
                    {yyval=((ReturnStatement)(yystack.valueAt (0)));};
   break;
 
 
-  case 12: /* statement: CONTINUE  */
-  if (yyn == 12)
-    /* "./parser/pythonparser.y":194  */
+  case 13: /* statement: CONTINUE  */
+  if (yyn == 13)
+    /* "./parser/pythonparser.y":196  */
            {yyval=new ContinueStatement();};
   break;
 
 
-  case 13: /* statement: BREAK  */
-  if (yyn == 13)
-    /* "./parser/pythonparser.y":195  */
+  case 14: /* statement: BREAK  */
+  if (yyn == 14)
+    /* "./parser/pythonparser.y":197  */
         {yyval=new BreakStatement();};
   break;
 
 
-  case 14: /* function_statement: DEF IDENTIFIER '(' function_args ')' ':' block  */
-  if (yyn == 14)
-    /* "./parser/pythonparser.y":201  */
+  case 15: /* function_statement: DEF IDENTIFIER '(' function_args ')' ':' block  */
+  if (yyn == 15)
+    /* "./parser/pythonparser.y":203  */
                                              {yyval=new FunctionDeclaration(((Identifier)(yystack.valueAt (5))),((List<Identifier>)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
-  case 15: /* function_statement: DEF IDENTIFIER '(' ')' ':' block  */
-  if (yyn == 15)
-    /* "./parser/pythonparser.y":202  */
+  case 16: /* function_statement: DEF IDENTIFIER '(' ')' ':' block  */
+  if (yyn == 16)
+    /* "./parser/pythonparser.y":204  */
                                   {
  	yyval=new FunctionDeclaration(((Identifier)(yystack.valueAt (4))),new ArrayList<Identifier>(),((StatementsBlock)(yystack.valueAt (0)))); //Declare a function with empty arguments list
  };
   break;
 
 
-  case 16: /* function_args: IDENTIFIER  */
-  if (yyn == 16)
-    /* "./parser/pythonparser.y":209  */
+  case 17: /* function_args: IDENTIFIER  */
+  if (yyn == 17)
+    /* "./parser/pythonparser.y":211  */
            {yyval= new ArrayList<>(List.of(((Identifier)(yystack.valueAt (0)))));};
   break;
 
 
-  case 17: /* function_args: IDENTIFIER ',' function_args  */
-  if (yyn == 17)
-    /* "./parser/pythonparser.y":210  */
+  case 18: /* function_args: IDENTIFIER ',' function_args  */
+  if (yyn == 18)
+    /* "./parser/pythonparser.y":212  */
                                {
 	yyval=new ArrayList<>(List.of(((Identifier)(yystack.valueAt (2)))));
     ((List)(yyval)).addAll(((List<Identifier>)(yystack.valueAt (0)))); //Combine all identifiers together
@@ -843,65 +852,72 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
   break;
 
 
-  case 18: /* for_statement: FOR IDENTIFIER IN exp ':' block  */
-  if (yyn == 18)
-    /* "./parser/pythonparser.y":217  */
+  case 19: /* for_statement: FOR IDENTIFIER IN exp ':' block  */
+  if (yyn == 19)
+    /* "./parser/pythonparser.y":219  */
                                 {yyval=new ForStatement(((Identifier)(yystack.valueAt (4))),((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
-  case 19: /* return_statement: RETURN '\n'  */
-  if (yyn == 19)
-    /* "./parser/pythonparser.y":222  */
+  case 20: /* while_statement: WHILE exp ':' block  */
+  if (yyn == 20)
+    /* "./parser/pythonparser.y":223  */
+                   {yyval= new WhileStatement(((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))));};
+  break;
+
+
+  case 21: /* return_statement: RETURN '\n'  */
+  if (yyn == 21)
+    /* "./parser/pythonparser.y":227  */
             {yyval=new ReturnStatement();};
   break;
 
 
-  case 20: /* return_statement: RETURN exp '\n'  */
-  if (yyn == 20)
-    /* "./parser/pythonparser.y":223  */
+  case 22: /* return_statement: RETURN exp '\n'  */
+  if (yyn == 22)
+    /* "./parser/pythonparser.y":228  */
                  {yyval=new ReturnStatement(((Expression)(yystack.valueAt (1))));};
   break;
 
 
-  case 21: /* if_statement: IF if_pred ':' block  */
-  if (yyn == 21)
-    /* "./parser/pythonparser.y":227  */
+  case 23: /* if_statement: IF if_pred ':' block  */
+  if (yyn == 23)
+    /* "./parser/pythonparser.y":232  */
                      {yyval=new IfStatement(((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))),new ArrayList<Pair<Expression,StatementsBlock>>(),null);};
   break;
 
 
-  case 22: /* if_statement: IF if_pred ':' block ELSE ':' block  */
-  if (yyn == 22)
-    /* "./parser/pythonparser.y":228  */
+  case 24: /* if_statement: IF if_pred ':' block ELSE ':' block  */
+  if (yyn == 24)
+    /* "./parser/pythonparser.y":233  */
                                       {yyval=new IfStatement(((Expression)(yystack.valueAt (5))),((StatementsBlock)(yystack.valueAt (3))),new ArrayList<Pair<Expression,StatementsBlock>>(),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
-  case 23: /* if_statement: IF if_pred ':' block else_if_blocks  */
-  if (yyn == 23)
-    /* "./parser/pythonparser.y":229  */
+  case 25: /* if_statement: IF if_pred ':' block else_if_blocks  */
+  if (yyn == 25)
+    /* "./parser/pythonparser.y":234  */
                                       {yyval=new IfStatement(((Expression)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (1))),((List<Pair<Expression,StatementsBlock>>)(yystack.valueAt (0))),null);};
   break;
 
 
-  case 24: /* if_statement: IF if_pred ':' block else_if_blocks ELSE ':' block  */
-  if (yyn == 24)
-    /* "./parser/pythonparser.y":230  */
+  case 26: /* if_statement: IF if_pred ':' block else_if_blocks ELSE ':' block  */
+  if (yyn == 26)
+    /* "./parser/pythonparser.y":235  */
                                                      {yyval=new IfStatement(((Expression)(yystack.valueAt (6))),((StatementsBlock)(yystack.valueAt (4))),((List<Pair<Expression,StatementsBlock>>)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
-  case 25: /* else_if_blocks: ELIF if_pred ':' block  */
-  if (yyn == 25)
-    /* "./parser/pythonparser.y":234  */
+  case 27: /* else_if_blocks: ELIF if_pred ':' block  */
+  if (yyn == 27)
+    /* "./parser/pythonparser.y":239  */
                        {yyval= new ArrayList<>(List.of(new Pair<Expression,StatementsBlock>(((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))))));};
   break;
 
 
-  case 26: /* else_if_blocks: ELIF if_pred ':' block else_if_blocks  */
-  if (yyn == 26)
-    /* "./parser/pythonparser.y":235  */
+  case 28: /* else_if_blocks: ELIF if_pred ':' block else_if_blocks  */
+  if (yyn == 28)
+    /* "./parser/pythonparser.y":240  */
                                         {
 	yyval=new ArrayList<>(List.of(new Pair<Expression,StatementsBlock>(((Expression)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (1))))));
 	((List)(yyval)).addAll(((List<Pair<Expression,StatementsBlock>>)(yystack.valueAt (0)))); //Combine all else ifs together
@@ -909,237 +925,228 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
   break;
 
 
-  case 27: /* block: '\n' INDENT statements DEDENT  */
-  if (yyn == 27)
-    /* "./parser/pythonparser.y":242  */
+  case 29: /* block: '\n' INDENT statements DEDENT  */
+  if (yyn == 29)
+    /* "./parser/pythonparser.y":247  */
                               {yyval=new StatementsBlock(((List<Statement>)(yystack.valueAt (1))).toArray(new Statement[0]));};
   break;
 
 
-  case 28: /* exp: IDENTIFIER  */
-  if (yyn == 28)
-    /* "./parser/pythonparser.y":246  */
+  case 30: /* exp: IDENTIFIER  */
+  if (yyn == 30)
+    /* "./parser/pythonparser.y":251  */
            {
 	yyval=((Identifier)(yystack.valueAt (0))); //Just so types cast
 };
   break;
 
 
-  case 29: /* exp: TRUE_TOK  */
-  if (yyn == 29)
-    /* "./parser/pythonparser.y":249  */
+  case 31: /* exp: TRUE_TOK  */
+  if (yyn == 31)
+    /* "./parser/pythonparser.y":254  */
            {
 	yyval=((Literal)(yystack.valueAt (0)));
 };
   break;
 
 
-  case 30: /* exp: FALSE_TOK  */
-  if (yyn == 30)
-    /* "./parser/pythonparser.y":252  */
+  case 32: /* exp: FALSE_TOK  */
+  if (yyn == 32)
+    /* "./parser/pythonparser.y":257  */
             {
 	yyval=((Literal)(yystack.valueAt (0)));
 };
   break;
 
 
-  case 31: /* exp: NUMBER  */
-  if (yyn == 31)
-    /* "./parser/pythonparser.y":255  */
-         {yyval=((Literal)(yystack.valueAt (0)));};
-  break;
-
-
-  case 32: /* exp: STRING  */
-  if (yyn == 32)
-    /* "./parser/pythonparser.y":256  */
-         {yyval=((Literal)(yystack.valueAt (0)));};
-  break;
-
-
-  case 33: /* exp: '[' exp_list ']'  */
+  case 33: /* exp: NUMBER  */
   if (yyn == 33)
-    /* "./parser/pythonparser.y":257  */
+    /* "./parser/pythonparser.y":260  */
+         {yyval=((Literal)(yystack.valueAt (0)));};
+  break;
+
+
+  case 34: /* exp: STRING  */
+  if (yyn == 34)
+    /* "./parser/pythonparser.y":261  */
+         {yyval=((Literal)(yystack.valueAt (0)));};
+  break;
+
+
+  case 35: /* exp: '[' exp_list ']'  */
+  if (yyn == 35)
+    /* "./parser/pythonparser.y":262  */
                    {
 	yyval=new ListExpression(((List<Expression>)(yystack.valueAt (1)))); //Create a list in the host language
 };
   break;
 
 
-  case 34: /* exp: '[' ']'  */
-  if (yyn == 34)
-    /* "./parser/pythonparser.y":260  */
+  case 36: /* exp: '[' ']'  */
+  if (yyn == 36)
+    /* "./parser/pythonparser.y":265  */
          {
 	yyval=new ListExpression(new ArrayList<Expression>()); //Empty list
 };
   break;
 
 
-  case 35: /* exp: IDENTIFIER '[' NUMBER ']'  */
-  if (yyn == 35)
-    /* "./parser/pythonparser.y":263  */
-                           {
-
-};
-  break;
-
-
-  case 36: /* exp: exp AND exp  */
-  if (yyn == 36)
-    /* "./parser/pythonparser.y":266  */
+  case 37: /* exp: exp AND exp  */
+  if (yyn == 37)
+    /* "./parser/pythonparser.y":268  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"&&",((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
-  case 37: /* exp: exp OR exp  */
-  if (yyn == 37)
-    /* "./parser/pythonparser.y":269  */
+  case 38: /* exp: exp OR exp  */
+  if (yyn == 38)
+    /* "./parser/pythonparser.y":271  */
              {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"||",((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
-  case 38: /* exp: exp EQUAL exp  */
-  if (yyn == 38)
-    /* "./parser/pythonparser.y":272  */
+  case 39: /* exp: exp EQUAL exp  */
+  if (yyn == 39)
+    /* "./parser/pythonparser.y":274  */
                 {
 				yyval= new InfixExpression(((Expression)(yystack.valueAt (2))),"==",((Expression)(yystack.valueAt (0))));
                 };
   break;
 
 
-  case 39: /* exp: exp NOT_EQUAL exp  */
-  if (yyn == 39)
-    /* "./parser/pythonparser.y":275  */
+  case 40: /* exp: exp NOT_EQUAL exp  */
+  if (yyn == 40)
+    /* "./parser/pythonparser.y":277  */
                     {
 				yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"!=",((Expression)(yystack.valueAt (0))));
                 };
   break;
 
 
-  case 40: /* exp: exp NOT_EQUAL_2 exp  */
-  if (yyn == 40)
-    /* "./parser/pythonparser.y":278  */
+  case 41: /* exp: exp NOT_EQUAL_2 exp  */
+  if (yyn == 41)
+    /* "./parser/pythonparser.y":280  */
                       {
 				yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"!=",((Expression)(yystack.valueAt (0))));
                 };
   break;
 
 
-  case 41: /* exp: NOT exp  */
-  if (yyn == 41)
-    /* "./parser/pythonparser.y":281  */
+  case 42: /* exp: NOT exp  */
+  if (yyn == 42)
+    /* "./parser/pythonparser.y":283  */
           {
 	yyval=new PrefixExpression("!",((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
-  case 42: /* exp: exp GREATER_THAN_OR_EQUAL exp  */
-  if (yyn == 42)
-    /* "./parser/pythonparser.y":284  */
+  case 43: /* exp: exp GREATER_THAN_OR_EQUAL exp  */
+  if (yyn == 43)
+    /* "./parser/pythonparser.y":286  */
                                 {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),">=",((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
-  case 43: /* exp: exp LESS_THAN_OR_EQUAL exp  */
-  if (yyn == 43)
-    /* "./parser/pythonparser.y":287  */
+  case 44: /* exp: exp LESS_THAN_OR_EQUAL exp  */
+  if (yyn == 44)
+    /* "./parser/pythonparser.y":289  */
                              {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"<=",((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
-  case 44: /* exp: exp '<' exp  */
-  if (yyn == 44)
-    /* "./parser/pythonparser.y":290  */
+  case 45: /* exp: exp '<' exp  */
+  if (yyn == 45)
+    /* "./parser/pythonparser.y":292  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"<",((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
-  case 45: /* exp: exp '>' exp  */
-  if (yyn == 45)
-    /* "./parser/pythonparser.y":293  */
+  case 46: /* exp: exp '>' exp  */
+  if (yyn == 46)
+    /* "./parser/pythonparser.y":295  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),">",((Expression)(yystack.valueAt (0))));
 };
   break;
 
 
-  case 46: /* exp: exp '+' exp  */
-  if (yyn == 46)
-    /* "./parser/pythonparser.y":296  */
+  case 47: /* exp: exp '+' exp  */
+  if (yyn == 47)
+    /* "./parser/pythonparser.y":298  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"+",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
   break;
 
 
-  case 47: /* exp: exp '-' exp  */
-  if (yyn == 47)
-    /* "./parser/pythonparser.y":299  */
+  case 48: /* exp: exp '-' exp  */
+  if (yyn == 48)
+    /* "./parser/pythonparser.y":301  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"-",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
   break;
 
 
-  case 48: /* exp: exp '*' exp  */
-  if (yyn == 48)
-    /* "./parser/pythonparser.y":302  */
+  case 49: /* exp: exp '*' exp  */
+  if (yyn == 49)
+    /* "./parser/pythonparser.y":304  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"*",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
   break;
 
 
-  case 49: /* exp: exp '/' exp  */
-  if (yyn == 49)
-    /* "./parser/pythonparser.y":305  */
+  case 50: /* exp: exp '/' exp  */
+  if (yyn == 50)
+    /* "./parser/pythonparser.y":307  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"/",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
   break;
 
 
-  case 50: /* exp: '-' exp  */
-  if (yyn == 50)
-    /* "./parser/pythonparser.y":308  */
+  case 51: /* exp: '-' exp  */
+  if (yyn == 51)
+    /* "./parser/pythonparser.y":310  */
                     {
 	yyval=new InfixExpression(new Literal(0.0),"-",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
   break;
 
 
-  case 51: /* exp: '(' exp ')'  */
-  if (yyn == 51)
-    /* "./parser/pythonparser.y":311  */
+  case 52: /* exp: '(' exp ')'  */
+  if (yyn == 52)
+    /* "./parser/pythonparser.y":313  */
               {
 	yyval=((Expression)(yystack.valueAt (1)));
 };
   break;
 
 
-  case 52: /* exp: IDENTIFIER '=' exp  */
-  if (yyn == 52)
-    /* "./parser/pythonparser.y":314  */
+  case 53: /* exp: IDENTIFIER '=' exp  */
+  if (yyn == 53)
+    /* "./parser/pythonparser.y":316  */
                      {
 	yyval=new AssignmentExpression(((Identifier)(yystack.valueAt (2))),((Expression)(yystack.valueAt (0)))); //Adds a new symbol to the context (NO SCOPES YET)
 };
   break;
 
 
-  case 53: /* exp: IDENTIFIER '(' exp_list ')'  */
-  if (yyn == 53)
-    /* "./parser/pythonparser.y":317  */
+  case 54: /* exp: IDENTIFIER '(' exp_list ')'  */
+  if (yyn == 54)
+    /* "./parser/pythonparser.y":319  */
                               {
 	//Define a function call using the identifier and the parameters list
 	yyval=new FunctionCall(((Identifier)(yystack.valueAt (3))),((List<Expression>)(yystack.valueAt (1))));
@@ -1147,9 +1154,9 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
   break;
 
 
-  case 54: /* exp: IDENTIFIER '(' ')'  */
-  if (yyn == 54)
-    /* "./parser/pythonparser.y":321  */
+  case 55: /* exp: IDENTIFIER '(' ')'  */
+  if (yyn == 55)
+    /* "./parser/pythonparser.y":323  */
                     {
 	//Define a function call using the identifier
     yyval=new FunctionCall(((Identifier)(yystack.valueAt (2))),new ArrayList<Expression>());
@@ -1157,16 +1164,16 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
   break;
 
 
-  case 55: /* exp_list: exp  */
-  if (yyn == 55)
-    /* "./parser/pythonparser.y":330  */
+  case 56: /* exp_list: exp  */
+  if (yyn == 56)
+    /* "./parser/pythonparser.y":332  */
     {yyval= new ArrayList<>(List.of(((Expression)(yystack.valueAt (0)))));};
   break;
 
 
-  case 56: /* exp_list: exp ',' exp_list  */
-  if (yyn == 56)
-    /* "./parser/pythonparser.y":331  */
+  case 57: /* exp_list: exp ',' exp_list  */
+  if (yyn == 57)
+    /* "./parser/pythonparser.y":333  */
                    {
 	yyval=new ArrayList<>(List.of(((Expression)(yystack.valueAt (2)))));
 	((List)(yyval)).addAll(((List<Expression>)(yystack.valueAt (0)))); //Combine all expressions together
@@ -1174,9 +1181,9 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
   break;
 
 
-  case 57: /* if_pred: exp  */
-  if (yyn == 57)
-    /* "./parser/pythonparser.y":338  */
+  case 58: /* if_pred: exp  */
+  if (yyn == 58)
+    /* "./parser/pythonparser.y":340  */
     {
 //$$=(Boolean)$1;
 };
@@ -1184,7 +1191,7 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
 
 
 
-/* "./src/compiler/parser/Parser.java":1188  */
+/* "./src/compiler/parser/Parser.java":1195  */
 
 default: break;
         }
@@ -1537,7 +1544,7 @@ private static boolean yyTableValueIsError(int yyvalue) {
         return yyvalue == yytable_ninf_;
         }
 
-private static final short yypact_ninf_ = -85;
+private static final short yypact_ninf_ = -58;
 private static final byte yytable_ninf_ = -1;
 
         /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -1547,18 +1554,18 @@ private static final byte yytable_ninf_ = -1;
   {
     return new short[]
     {
-      62,   -85,   -85,   -48,   -85,    80,   -85,   -85,   112,   -29,
-     112,   -27,   -85,   112,   -85,   112,    20,     7,   -85,    62,
-     -85,   -85,   -85,   -85,   188,   112,   107,     8,   -85,   214,
-     294,   -49,   257,   -46,    -8,   -85,   177,   -85,   251,   -39,
-     -85,   -85,   112,   112,   112,   112,   112,   112,   112,   112,
-     112,   112,   112,   112,   112,   -85,   257,   -85,   -34,   -38,
-     -85,   -15,   -31,   112,   -85,   112,   -85,   314,   314,   314,
-     314,   314,   294,   278,   314,   314,   -35,   -35,   -85,   -85,
-     -85,   -85,   -20,   -14,   -12,    51,   -19,   150,   -85,    26,
-     -31,   -10,    62,    -6,   112,    16,   -31,   -85,   -85,   -31,
-      63,   -31,    -3,     0,   -85,   -85,   -85,   -85,   -31,   -31,
-      21,   -85,   -85
+      54,   -58,   -58,   -53,   -58,    67,   -58,   -58,   119,   -29,
+     119,   -25,   119,   -58,   119,   -58,   119,    22,     8,   -58,
+      54,   -58,   -58,   -58,   -58,   -58,   207,   119,   101,   -58,
+     228,   307,   -57,   270,   -56,   -21,   144,   -58,   186,   -58,
+     249,   -47,   -58,   -58,   119,   119,   119,   119,   119,   119,
+     119,   119,   119,   119,   119,   119,   119,   -58,   270,   -58,
+     -43,   -58,   -12,   -40,   119,   -40,   -58,   119,   -58,   313,
+     313,   313,   313,   313,   307,   291,   313,   313,   -46,   -46,
+     -58,   -58,   -58,   -27,   -42,   -38,    28,   -28,   165,   -58,
+     -58,     1,   -40,   -36,    54,   -35,   119,   -11,   -40,   -58,
+     -58,   -40,    31,   -40,   -33,   -31,   -58,   -58,   -58,   -58,
+     -40,   -40,     6,   -58,   -58
     };
   }
 
@@ -1570,18 +1577,18 @@ private static final byte yytable_ninf_ = -1;
   {
     return new byte[]
     {
-       2,    31,    32,    28,    12,     0,    30,    29,     0,     0,
-       0,     0,    13,     0,     6,     0,     0,     0,     3,     4,
-      10,     9,    11,     8,     0,     0,     0,     0,    19,     0,
-      41,     0,    57,     0,     0,    50,     0,    34,    55,     0,
-       1,     5,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     7,    52,    54,     0,     0,
-      20,     0,     0,     0,    51,     0,    33,    43,    42,    38,
-      39,    40,    36,    37,    44,    45,    46,    47,    48,    49,
-      53,    35,    16,     0,     0,     0,    21,     0,    56,     0,
-       0,     0,     0,     0,     0,    23,     0,    17,    15,     0,
-       0,     0,     0,     0,    18,    14,    27,    22,     0,     0,
-      25,    24,    26
+       2,    33,    34,    30,    13,     0,    32,    31,     0,     0,
+       0,     0,     0,    14,     0,     6,     0,     0,     0,     3,
+       4,    11,     9,    10,    12,     8,     0,     0,     0,    21,
+       0,    42,     0,    58,     0,     0,     0,    51,     0,    36,
+      56,     0,     1,     5,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     7,    53,    55,
+       0,    22,     0,     0,     0,     0,    52,     0,    35,    44,
+      43,    39,    40,    41,    37,    38,    45,    46,    47,    48,
+      49,    50,    54,    17,     0,     0,     0,    23,     0,    20,
+      57,     0,     0,     0,     0,     0,     0,    25,     0,    18,
+      16,     0,     0,     0,     0,     0,    19,    15,    29,    24,
+       0,     0,    27,    26,    28
     };
   }
 
@@ -1591,8 +1598,8 @@ private static final byte yytable_ninf_ = -1;
   {
     return new byte[]
     {
-     -85,   -85,   -18,   -85,   -85,   -17,   -85,   -85,   -85,   -37,
-     -84,    -5,   -13,   -23
+     -58,   -58,   -19,   -58,   -58,   -34,   -58,   -58,   -58,   -58,
+     -54,    37,    -5,   -13,   -30
     };
   }
 
@@ -1602,8 +1609,8 @@ private static final byte yytable_ninf_ = -1;
   {
     return new byte[]
     {
-       0,    17,    18,    19,    20,    84,    21,    22,    23,    95,
-      86,    24,    39,    33
+       0,    18,    19,    20,    21,    85,    22,    23,    24,    25,
+      97,    87,    26,    41,    34
     };
   }
 
@@ -1615,44 +1622,44 @@ private static final byte yytable_ninf_ = -1;
   {
     return new byte[]
     {
-      29,    41,    31,    30,    34,    32,    98,    40,    35,    25,
-      36,    38,   104,    58,    59,   105,    82,   107,    61,    26,
-      56,    38,    27,    62,   110,   111,     1,    53,    54,    93,
-      94,    63,    66,    81,    80,    85,    89,    67,    68,    69,
+      30,    43,    32,    31,    27,    33,    35,    36,    42,    37,
+      62,    38,    40,    63,    28,    60,    55,    56,    64,    83,
+      95,    96,    58,    40,    68,    82,    86,    92,     1,    91,
+      93,    94,    83,   101,   103,   108,   110,   105,   111,    69,
       70,    71,    72,    73,    74,    75,    76,    77,    78,    79,
-       2,     3,    88,    83,    92,    90,    91,    82,    87,    99,
-      38,     6,     7,   101,   103,     8,   108,   106,     1,   109,
-      94,   102,    97,   112,   100,     0,     0,     0,     0,     0,
-       0,    13,     0,     0,     0,     0,     1,    15,     0,    32,
-      16,    37,     2,     3,     0,     0,     0,     0,     4,     0,
-       0,     0,     5,     6,     7,     0,     0,     8,     9,    10,
-       2,     3,    11,     1,    12,     0,     0,     0,     1,     0,
-       0,     6,     7,    13,     0,     8,     0,     0,    14,    15,
-       0,     0,    16,     0,     0,     0,     0,     2,     3,     0,
-       0,    13,     2,     3,     0,     0,    28,    15,     6,     7,
-      16,     0,     8,     6,     7,     0,     0,     8,    42,    43,
-      44,    45,    46,     0,     0,     0,     0,     0,    13,     0,
-       0,     0,     0,    13,    15,    57,     0,    16,     0,    15,
-       0,     0,    16,     0,     0,    42,    43,    44,    45,    46,
-       0,     0,     0,    47,    48,     0,    42,    43,    44,    45,
-      46,     0,     0,     0,     0,     0,     0,     0,    49,    50,
-      51,    52,    53,    54,     0,     0,     0,     0,     0,    96,
-      47,    48,    42,    43,    44,    45,    46,     0,     0,     0,
-       0,    47,    48,     0,     0,    49,    50,    51,    52,    53,
-      54,     0,     0,     0,     0,    64,    49,    50,    51,    52,
-      53,    54,     0,     0,    55,     0,     0,    47,    48,    42,
-      43,    44,    45,    46,     0,    42,    43,    44,    45,    46,
-       0,     0,    49,    50,    51,    52,    53,    54,     0,     0,
-      60,     0,     0,     0,     0,     0,    42,    43,    44,    45,
-      46,     0,     0,     0,    47,    48,     0,     0,     0,     0,
-      47,    48,    42,    43,    44,    45,    46,    65,     0,    49,
-      50,    51,    52,    53,    54,    49,    50,    51,    52,    53,
-      54,    47,    -1,    -1,    -1,    -1,    -1,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,    49,    50,    51,    52,
-      53,    54,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    49,    50,    51,    52,    53,    54,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    -1,    -1,    51,    52,    53,    54
+      80,    81,     2,     3,    90,    96,    84,    99,   114,    88,
+       1,     0,    40,     6,     7,     0,   104,     8,     0,     0,
+       0,     0,     0,     1,     0,   102,     0,     0,     0,     0,
+       0,     0,     0,    14,     2,     3,     0,     0,     0,    16,
+       4,    33,    17,    39,     5,     6,     7,     2,     3,     8,
+       9,    10,    89,     0,    11,    12,    13,     1,     6,     7,
+       0,     0,     8,     0,     0,    14,     0,     0,     0,     0,
+      15,    16,     0,     0,    17,     1,     0,     0,    14,   100,
+       0,     2,     3,    29,    16,   106,     0,    17,   107,     0,
+     109,     0,     6,     7,     0,     0,     8,   112,   113,     2,
+       3,     0,    44,    45,    46,    47,    48,     0,     0,     0,
+       6,     7,    14,     0,     8,     0,     0,     0,    16,    59,
+       0,    17,     0,    44,    45,    46,    47,    48,     0,     0,
+      14,     0,     0,     0,     0,     0,    16,    49,    50,    17,
+       0,     0,     0,     0,    44,    45,    46,    47,    48,     0,
+       0,     0,    51,    52,    53,    54,    55,    56,    49,    50,
+       0,     0,     0,    65,     0,    44,    45,    46,    47,    48,
+       0,     0,     0,    51,    52,    53,    54,    55,    56,    49,
+      50,     0,     0,     0,    98,     0,    44,    45,    46,    47,
+      48,     0,     0,     0,    51,    52,    53,    54,    55,    56,
+      49,    50,     0,     0,    66,     0,     0,    44,    45,    46,
+      47,    48,     0,     0,     0,    51,    52,    53,    54,    55,
+      56,    49,    50,    57,     0,     0,     0,     0,    44,    45,
+      46,    47,    48,     0,     0,     0,    51,    52,    53,    54,
+      55,    56,    49,    50,    61,     0,     0,     0,     0,    44,
+      45,    46,    47,    48,     0,    67,     0,    51,    52,    53,
+      54,    55,    56,    49,    50,    44,    45,    46,    47,    48,
+       0,    -1,    -1,    -1,    -1,    -1,     0,     0,    51,    52,
+      53,    54,    55,    56,    49,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,    51,
+      52,    53,    54,    55,    56,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    51,    52,    53,    54,    55,
+      56,    -1,    -1,    53,    54,    55,    56
     };
   }
 
@@ -1661,44 +1668,44 @@ private static final byte[] yycheck_ = yycheck_init();
   {
     return new byte[]
     {
-       5,    19,    31,     8,    31,    10,    90,     0,    13,    57,
-      15,    16,    96,    26,     6,    99,    31,   101,    67,    67,
-      25,    26,    70,    69,   108,   109,     6,    62,    63,    48,
-      49,    39,    71,    71,    68,    66,    56,    42,    43,    44,
+       5,    20,    31,     8,    57,    10,    31,    12,     0,    14,
+      67,    16,    17,    69,    67,    28,    62,    63,    39,    31,
+      48,    49,    27,    28,    71,    68,    66,    69,     6,    56,
+      68,     3,    31,    69,    69,     4,    69,    48,    69,    44,
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
-      30,    31,    65,    68,     3,    69,    68,    31,    63,    69,
-      65,    41,    42,    69,    48,    45,    69,     4,     6,    69,
-      49,    94,    89,   110,    92,    -1,    -1,    -1,    -1,    -1,
-      -1,    61,    -1,    -1,    -1,    -1,     6,    67,    -1,    94,
-      70,    71,    30,    31,    -1,    -1,    -1,    -1,    36,    -1,
-      -1,    -1,    40,    41,    42,    -1,    -1,    45,    46,    47,
-      30,    31,    50,     6,    52,    -1,    -1,    -1,     6,    -1,
-      -1,    41,    42,    61,    -1,    45,    -1,    -1,    66,    67,
-      -1,    -1,    70,    -1,    -1,    -1,    -1,    30,    31,    -1,
-      -1,    61,    30,    31,    -1,    -1,    66,    67,    41,    42,
-      70,    -1,    45,    41,    42,    -1,    -1,    45,     8,     9,
-      10,    11,    12,    -1,    -1,    -1,    -1,    -1,    61,    -1,
-      -1,    -1,    -1,    61,    67,    68,    -1,    70,    -1,    67,
-      -1,    -1,    70,    -1,    -1,     8,     9,    10,    11,    12,
-      -1,    -1,    -1,    43,    44,    -1,     8,     9,    10,    11,
-      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    58,    59,
-      60,    61,    62,    63,    -1,    -1,    -1,    -1,    -1,    69,
-      43,    44,     8,     9,    10,    11,    12,    -1,    -1,    -1,
-      -1,    43,    44,    -1,    -1,    58,    59,    60,    61,    62,
-      63,    -1,    -1,    -1,    -1,    68,    58,    59,    60,    61,
-      62,    63,    -1,    -1,    66,    -1,    -1,    43,    44,     8,
-       9,    10,    11,    12,    -1,     8,     9,    10,    11,    12,
-      -1,    -1,    58,    59,    60,    61,    62,    63,    -1,    -1,
-      66,    -1,    -1,    -1,    -1,    -1,     8,     9,    10,    11,
-      12,    -1,    -1,    -1,    43,    44,    -1,    -1,    -1,    -1,
-      43,    44,     8,     9,    10,    11,    12,    56,    -1,    58,
-      59,    60,    61,    62,    63,    58,    59,    60,    61,    62,
-      63,    43,     8,     9,    10,    11,    12,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    58,    59,    60,    61,
-      62,    63,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    58,    59,    60,    61,    62,    63,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    58,    59,    60,    61,    62,    63
+      55,    56,    30,    31,    67,    49,    68,    91,   112,    64,
+       6,    -1,    67,    41,    42,    -1,    96,    45,    -1,    -1,
+      -1,    -1,    -1,     6,    -1,    94,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    61,    30,    31,    -1,    -1,    -1,    67,
+      36,    96,    70,    71,    40,    41,    42,    30,    31,    45,
+      46,    47,    65,    -1,    50,    51,    52,     6,    41,    42,
+      -1,    -1,    45,    -1,    -1,    61,    -1,    -1,    -1,    -1,
+      66,    67,    -1,    -1,    70,     6,    -1,    -1,    61,    92,
+      -1,    30,    31,    66,    67,    98,    -1,    70,   101,    -1,
+     103,    -1,    41,    42,    -1,    -1,    45,   110,   111,    30,
+      31,    -1,     8,     9,    10,    11,    12,    -1,    -1,    -1,
+      41,    42,    61,    -1,    45,    -1,    -1,    -1,    67,    68,
+      -1,    70,    -1,     8,     9,    10,    11,    12,    -1,    -1,
+      61,    -1,    -1,    -1,    -1,    -1,    67,    43,    44,    70,
+      -1,    -1,    -1,    -1,     8,     9,    10,    11,    12,    -1,
+      -1,    -1,    58,    59,    60,    61,    62,    63,    43,    44,
+      -1,    -1,    -1,    69,    -1,     8,     9,    10,    11,    12,
+      -1,    -1,    -1,    58,    59,    60,    61,    62,    63,    43,
+      44,    -1,    -1,    -1,    69,    -1,     8,     9,    10,    11,
+      12,    -1,    -1,    -1,    58,    59,    60,    61,    62,    63,
+      43,    44,    -1,    -1,    68,    -1,    -1,     8,     9,    10,
+      11,    12,    -1,    -1,    -1,    58,    59,    60,    61,    62,
+      63,    43,    44,    66,    -1,    -1,    -1,    -1,     8,     9,
+      10,    11,    12,    -1,    -1,    -1,    58,    59,    60,    61,
+      62,    63,    43,    44,    66,    -1,    -1,    -1,    -1,     8,
+       9,    10,    11,    12,    -1,    56,    -1,    58,    59,    60,
+      61,    62,    63,    43,    44,     8,     9,    10,    11,    12,
+      -1,     8,     9,    10,    11,    12,    -1,    -1,    58,    59,
+      60,    61,    62,    63,    43,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    58,
+      59,    60,    61,    62,    63,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    58,    59,    60,    61,    62,
+      63,    58,    59,    60,    61,    62,    63
     };
   }
 
@@ -1710,17 +1717,17 @@ private static final byte[] yycheck_ = yycheck_init();
     return new byte[]
     {
        0,     6,    30,    31,    36,    40,    41,    42,    45,    46,
-      47,    50,    52,    61,    66,    67,    70,    73,    74,    75,
-      76,    78,    79,    80,    83,    57,    67,    70,    66,    83,
-      83,    31,    83,    85,    31,    83,    83,    71,    83,    84,
-       0,    74,     8,     9,    10,    11,    12,    43,    44,    58,
-      59,    60,    61,    62,    63,    66,    83,    68,    84,     6,
-      66,    67,    69,    39,    68,    56,    71,    83,    83,    83,
-      83,    83,    83,    83,    83,    83,    83,    83,    83,    83,
-      68,    71,    31,    68,    77,    66,    82,    83,    84,    56,
-      69,    68,     3,    48,    49,    81,    69,    77,    82,    69,
-      74,    69,    85,    48,    82,    82,     4,    82,    69,    69,
-      82,    82,    81
+      47,    50,    51,    52,    61,    66,    67,    70,    73,    74,
+      75,    76,    78,    79,    80,    81,    84,    57,    67,    66,
+      84,    84,    31,    84,    86,    31,    84,    84,    84,    71,
+      84,    85,     0,    74,     8,     9,    10,    11,    12,    43,
+      44,    58,    59,    60,    61,    62,    63,    66,    84,    68,
+      85,    66,    67,    69,    39,    69,    68,    56,    71,    84,
+      84,    84,    84,    84,    84,    84,    84,    84,    84,    84,
+      84,    84,    68,    31,    68,    77,    66,    83,    84,    83,
+      85,    56,    69,    68,     3,    48,    49,    82,    69,    77,
+      83,    69,    74,    69,    86,    48,    83,    83,     4,    83,
+      69,    69,    83,    83,    82
     };
   }
 
@@ -1731,11 +1738,11 @@ private static final byte[] yycheck_ = yycheck_init();
     return new byte[]
     {
        0,    72,    73,    73,    74,    74,    75,    75,    75,    75,
-      75,    75,    75,    75,    76,    76,    77,    77,    78,    79,
-      79,    80,    80,    80,    80,    81,    81,    82,    83,    83,
-      83,    83,    83,    83,    83,    83,    83,    83,    83,    83,
-      83,    83,    83,    83,    83,    83,    83,    83,    83,    83,
-      83,    83,    83,    83,    83,    84,    84,    85
+      75,    75,    75,    75,    75,    76,    76,    77,    77,    78,
+      79,    80,    80,    81,    81,    81,    81,    82,    82,    83,
+      84,    84,    84,    84,    84,    84,    84,    84,    84,    84,
+      84,    84,    84,    84,    84,    84,    84,    84,    84,    84,
+      84,    84,    84,    84,    84,    84,    85,    85,    86
     };
   }
 
@@ -1746,11 +1753,11 @@ private static final byte[] yycheck_ = yycheck_init();
     return new byte[]
     {
        0,     2,     0,     1,     1,     2,     1,     2,     1,     1,
-       1,     1,     1,     1,     7,     6,     1,     3,     6,     2,
-       3,     4,     7,     5,     8,     4,     5,     4,     1,     1,
-       1,     1,     1,     3,     2,     4,     3,     3,     3,     3,
-       3,     2,     3,     3,     3,     3,     3,     3,     3,     3,
-       2,     3,     3,     4,     3,     1,     3,     1
+       1,     1,     1,     1,     1,     7,     6,     1,     3,     6,
+       4,     2,     3,     4,     7,     5,     8,     4,     5,     4,
+       1,     1,     1,     1,     1,     3,     2,     3,     3,     3,
+       3,     3,     2,     3,     3,     3,     3,     3,     3,     3,
+       3,     2,     3,     3,     4,     3,     1,     3,     1
     };
   }
 
@@ -1811,9 +1818,9 @@ private static final SymbolKind yytranslate_(int t)
   }
         
 
-private static final int YYLAST_ = 377;
+private static final int YYLAST_ = 376;
 private static final int YYEMPTY_ = -2;
-private static final int YYFINAL_ = 40;
+private static final int YYFINAL_ = 42;
 private static final int YYNTOKENS_ = 72;
 
         /* Unqualified %code blocks.  */
@@ -1821,9 +1828,9 @@ private static final int YYNTOKENS_ = 72;
 
 	public Program program;
 
-/* "./src/compiler/parser/Parser.java":1825  */
+/* "./src/compiler/parser/Parser.java":1832  */
 
         }
-                /* "./parser/pythonparser.y":342  */
+                /* "./parser/pythonparser.y":344  */
 
         

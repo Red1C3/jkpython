@@ -152,6 +152,7 @@
 %type <IfStatement> if_statement
 %type <List<Pair<Expression,StatementsBlock>>> else_if_blocks
 %type <ForStatement> for_statement
+%type <WhileStatement> while_statement
 
 
 %nonassoc ','
@@ -183,12 +184,11 @@ statement {$$=new ArrayList<>(List.of($1));}
 ;
 
 statement:
-'\n' {
-	//FIXME This should not return anything, or like a null value, but nulls are illegal
-}
+'\n' {}
 | exp '\n' {$$=$1;}
 | if_statement {$$=$1;}
 | for_statement {$$=$1;}
+| while_statement {$$=$1;}
 | function_statement {$$=$1;}
 | return_statement {$$=$1;}
 | CONTINUE {$$=new ContinueStatement();}
@@ -217,6 +217,9 @@ for_statement:
 FOR IDENTIFIER IN exp ':' block {$$=new ForStatement($2,$4,$6);}
 ;
 
+while_statement:
+WHILE exp ':' block{$$= new WhileStatement($2,$4);}
+;
 
 return_statement:
 RETURN '\n' {$$=new ReturnStatement();}
@@ -259,9 +262,6 @@ IDENTIFIER {
 }
 | '[' ']'{
 	$$=new ListExpression(new ArrayList<Expression>()); //Empty list
-}
-| IDENTIFIER '[' NUMBER ']'{
-
 }
 | exp AND exp {
 	$$=new InfixExpression($1,"&&",$3);
