@@ -10,7 +10,9 @@ class WhileStatement(
         private val block: StatementsBlock
         ):Statement() {
     override fun execute(context: Context): ExecutionSignal {
-        while((condition.evaluate(context) as PyBool).value){
+        // Evaluate the condition expression until it returns false
+        while((condition.evaluate(context) as PyBool).value){ //TODO handle floats and string conditions
+            // Execute the statements block each loop unless it faces a break statement
             val signal = block.execute(context)
             if(signal==ExecutionSignal.BreakOperation) break
         }

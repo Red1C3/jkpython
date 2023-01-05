@@ -7,7 +7,7 @@ import compiler.evaluator.builtins.types.PyString
 import compiler.evaluator.core.PyObject
 
 class Literal (
-    value: Any
+    val value: Any
 ) : Expression() {
     private val pyValue: PyObject = when (value) {
         is Float -> PyFloat.of(value.toDouble())

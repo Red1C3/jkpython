@@ -13,6 +13,7 @@
   import compiler.evaluator.source_tree.Program;
   import compiler.evaluator.source_tree.statements.expressions.*;
   import compiler.evaluator.source_tree.statements.*;
+  import compiler.evaluator.builtins.types.*;
   import java.util.List;
   import java.util.ArrayList;
   import kotlin.Pair;
@@ -310,6 +311,9 @@ IDENTIFIER {
 }
 | '(' exp ')' {
 	$$=$2;
+}
+| IDENTIFIER '[' NUMBER ']' {
+	$$=new IndexExpression($3,$1);
 }
 | IDENTIFIER '=' exp {
 	$$=new AssignmentExpression($1,$3); //Adds a new symbol to the context (NO SCOPES YET)

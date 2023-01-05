@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="VERY BIG CHANGES">
-      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/WhileStatement.kt" afterDir="false" />
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Parse and execute while statements">
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/IndexExpression.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/WhileStatement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/WhileStatement.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Literal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Literal.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +73,7 @@
       <recent name="compiler" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main - File">
+  <component name="RunManager" selected="Application.Main - Interactve">
     <configuration name="Main - File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
@@ -332,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672945443431</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Parse and execute while statements">
+      <created>1672946797847</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1672946797847</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -373,6 +382,7 @@
     <MESSAGE value="Integrate function declarations" />
     <MESSAGE value="Integrate return statements" />
     <MESSAGE value="VERY BIG CHANGES" />
-    <option name="LAST_COMMIT_MESSAGE" value="VERY BIG CHANGES" />
+    <MESSAGE value="Parse and execute while statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Parse and execute while statements" />
   </component>
 </project>
