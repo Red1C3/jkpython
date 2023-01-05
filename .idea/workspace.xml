@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Integrate function declarations">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Integrate return statements">
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/constants/PyNone.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/constants/PyNotImplemented.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyBool.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFloat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyString.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/StandardContext.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/BreakStatement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ContinueStatement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ForStatement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/IfStatement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ReturnStatement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/Statement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/AssignmentExpression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Identifier.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/InfixExpression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/ListExpression.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/PrefixExpression.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/lalr1-patched.java" beforeDir="false" afterPath="$PROJECT_DIR$/parser/lalr1-patched.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/Calculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/Calculator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/constants/PyNone.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/constants/PyNotImplemented.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/functions/PyPrint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyFloat.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyFunction.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/builtins/types/PyString.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/Context.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/ExecutionSignal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/ExecutionSignal.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/PyCallable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/PyCallable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/PyObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/PyObject.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/core/StandardContext.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/Program.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/Program.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/FunctionDeclaration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/ReturnStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/Statement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/StatementsBlock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/StatementsBlock.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/ArithmeticExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/AssignmentExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Expression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Expression.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/FunctionCall.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Identifier.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/calculator_05/source_tree/statements/expressions/Literal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Literal.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +101,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
@@ -61,6 +112,10 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/compiler/parser" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="compiler.parser" />
+      <recent name="compiler" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main - File">
@@ -310,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671909347366</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Integrate return statements">
+      <created>1671910001127</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1671910001127</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -349,6 +411,7 @@
     <MESSAGE value="Integrate expressions opertaions" />
     <MESSAGE value="Integrate assignment expression" />
     <MESSAGE value="Integrate function declarations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrate function declarations" />
+    <MESSAGE value="Integrate return statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrate return statements" />
   </component>
 </project>

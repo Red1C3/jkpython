@@ -1,8 +1,8 @@
 package compiler;
 
+import compiler.evaluator.core.StandardContext;
 import compiler.lexer.Lexer;
 import compiler.parser.Parser;
-import evaluator.calculator_05.core.StandardContext;
 
 import java.io.IOException;
 import java.nio.file.Paths;

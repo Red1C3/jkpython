@@ -10,11 +10,12 @@
 %code imports {
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
-  import evaluator.calculator_05.source_tree.Program;
-  import evaluator.calculator_05.source_tree.statements.expressions.*;
-  import evaluator.calculator_05.source_tree.statements.*;
+  import compiler.evaluator.source_tree.Program;
+  import compiler.evaluator.source_tree.statements.expressions.*;
+  import compiler.evaluator.source_tree.statements.*;
   import java.util.List;
   import java.util.ArrayList;
+  import kotlin.Pair;
 }
  // Add a "program" data member to Bison's Parser class
 %code {
@@ -52,6 +53,7 @@
     switch(token.getType()){
       case NUMBER:
       	  //Return a literal (AST leaf that contains a primitive type) so it gets added to the AST
+      	  //Literals are host language variables
           yylval=new Literal(Double.parseDouble(token.getLiteral()));
           return NUMBER;
       case NEWLINE:
@@ -65,14 +67,17 @@
           	yylval=new Literal(str.substring(1,str.length()-1));
           return STRING;
       case IDENTIFIER:
-          if(token.getLiteral().equals("range"))
-            return RANGE;
-          else{
-            //AST node that marks an identifier (Also Identifier type is now
-            //Identifier (as in the evaluator's))
-          	yylval=new Identifier(token.getLiteral());
-            return IDENTIFIER;
-            }
+          //AST node that marks an identifier (Also Identifier type is now
+          //Identifier (as in the evaluator's))
+          yylval=new Identifier(token.getLiteral());
+          return IDENTIFIER;
+
+      case TRUE_TOK:
+          yylval=new Literal(true);
+          return TRUE_TOK;
+      case FALSE_TOK:
+      	  yylval=new Literal(false);
+      	  return FALSE_TOK;
       default:
           return token.getType();
     }
@@ -112,13 +117,13 @@
 %token <Object> ILLEGAL
 %token <Object> IMPORT
 %token <Object> NONLOCAL
-%token <Object> CONTINUE
+%token <ContinueStatement> CONTINUE
 %token <Object> NONE
 %token <Object> GLOBAL
 %token <Object> IN
 %token <Object> RETURN
-%token <Boolean> FALSE_TOK
-%token <Boolean> TRUE_TOK
+%token <Literal> FALSE_TOK
+%token <Literal> TRUE_TOK
 %token <Object> AND
 %token <Object> OR
 %token <Object> NOT
@@ -128,30 +133,32 @@
 %token <Object> ELIF
 %token <Object> FOR
 %token <Object> WHILE
-%token <Object> BREAK
+%token <BreakStatement> BREAK
 %token <Object> PASS
 %token <Object> LAMBDA
 %token <Object> COMMA_LOGICAL_LINE
-%token <Object> RANGE
 %type <Expression> exp
-%type <Boolean> if_pred
+%type <Expression> if_pred
 %type <Statement> statement
 
  //"statements are not of type "StatementsBlock" because that will
  //make "block" two "StatementsBlock" instead of one
 %type <List<Statement>> statements
-%type <List<Expression>> function_params
+%type <List<Expression>> exp_list
 %type <StatementsBlock> block
 %type <List<Identifier>> function_args
 %type <FunctionDeclaration> function_statement
 %type <ReturnStatement> return_statement
+%type <IfStatement> if_statement
+%type <List<Pair<Expression,StatementsBlock>>> else_if_blocks
+%type <ForStatement> for_statement
 
 
 %nonassoc ','
 %nonassoc '='
 %left OR
 %left AND
-%precedence NOT 
+%precedence NOT
 %nonassoc EQUAL NOT_EQUAL NOT_EQUAL_2 '<' '>' GREATER_THAN_OR_EQUAL LESS_THAN_OR_EQUAL
 %left '+' '-'
 %left '*' '/'
@@ -180,10 +187,12 @@ statement:
 	//FIXME This should not return anything, or like a null value, but nulls are illegal
 }
 | exp '\n' {$$=$1;}
-| if_statement {}
-| for_statement {}
+| if_statement {$$=$1;}
+| for_statement {$$=$1;}
 | function_statement {$$=$1;}
 | return_statement {$$=$1;}
+| CONTINUE {$$=new ContinueStatement();}
+| BREAK {$$=new BreakStatement();}
 ;
 
 
@@ -205,8 +214,7 @@ IDENTIFIER {$$= new ArrayList<>(List.of($1));}
 ;
 
 for_statement:
-FOR IDENTIFIER IN RANGE '('exp','exp')' ':' block {System.out.println("FOR LOOP detected with range params "
-  + $6.toString() + ", " + $8.toString());}
+FOR IDENTIFIER IN exp ':' block {$$=new ForStatement($2,$4,$6);}
 ;
 
 
@@ -216,15 +224,18 @@ RETURN '\n' {$$=new ReturnStatement();}
 ;
 
 if_statement:
-IF if_pred ':' block {System.out.println("IF statement detected, condition evaluated to "+ $2.toString());}
-| IF if_pred ':' block ELSE ':' block {System.out.println("IF ELSE statement detected, condition evaluated to "+ $2.toString());}
-| IF if_pred ':' block else_if_blocks {System.out.println("IF ELIF statement detected, condition evaluated to "+ $2.toString());}
-| IF if_pred ':' block else_if_blocks ELSE ':' block {System.out.println("IF ELIF ELSE statement detected, condition evaluated to "+ $2.toString());}
+IF if_pred ':' block {$$=new IfStatement($2,$4,new ArrayList<Pair<Expression,StatementsBlock>>(),null);}
+| IF if_pred ':' block ELSE ':' block {$$=new IfStatement($2,$4,new ArrayList<Pair<Expression,StatementsBlock>>(),$7);}
+| IF if_pred ':' block else_if_blocks {$$=new IfStatement($2,$4,$5,null);}
+| IF if_pred ':' block else_if_blocks ELSE ':' block {$$=new IfStatement($2,$4,$5,$8);}
 ;
 
 else_if_blocks:
-ELIF if_pred ':' block {System.out.println("ELIF condition evaluated to "+$2.toString());}
-| ELIF if_pred ':' block else_if_blocks {System.out.println("ELIF condition evaluated to "+$2.toString());}
+ELIF if_pred ':' block {$$= new ArrayList<>(List.of(new Pair<Expression,StatementsBlock>($2,$4)));}
+| ELIF if_pred ':' block else_if_blocks {
+	$$=new ArrayList<>(List.of(new Pair<Expression,StatementsBlock>($2,$4)));
+	((List)($$)).addAll($5); //Combine all else ifs together
+}
 ;
 
 block:
@@ -236,81 +247,66 @@ IDENTIFIER {
 	$$=$1; //Just so types cast
 }
 | TRUE_TOK {
-//$$=(Boolean)true;
+	$$=$1;
 }
 | FALSE_TOK {
-//$$=(Boolean)false;
+	$$=$1;
 }
 | NUMBER {$$=$1;}
 | STRING {$$=$1;}
+| '[' exp_list ']' {
+	$$=new ListExpression($2); //Create a list in the host language
+}
+| '[' ']'{
+	$$=new ListExpression(new ArrayList<Expression>()); //Empty list
+}
+| IDENTIFIER '[' NUMBER ']'{
+
+}
 | exp AND exp {
-//$$=(Boolean)((Boolean)($1)&&(Boolean)($3));
+	$$=new InfixExpression($1,"&&",$3);
 }
 | exp OR exp {
-//$$=(Boolean)((Boolean)($1)||(Boolean)($3));
+	$$=new InfixExpression($1,"||",$3);
 }
 | exp EQUAL exp {
-				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
-                    $$=(Boolean)((Boolean)($1)==(Boolean)($3));
-                  }
-                if(($1 instanceof Double)&&($3 instanceof Double)){
-                    $$=(((Double)$1).compareTo((Double)$3)==0);
-                  }*/
+				$$= new InfixExpression($1,"==",$3);
                 }
 | exp NOT_EQUAL exp {
-				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
-                    $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
-                  }
-                if(($1 instanceof Double)&&($3 instanceof Double)){
-                    $$=(((Double)$1).compareTo((Double)$3)!=0);
-                  }*/
-                  }
+				$$=new InfixExpression($1,"!=",$3);
+                }
 | exp NOT_EQUAL_2 exp {
-				/*if(($1 instanceof Boolean)&&($3 instanceof Boolean)){
-                    $$=(Boolean)((Boolean)($1)!=(Boolean)($3));
-                  }
-                if(($1 instanceof Double)&&($3 instanceof Double)){
-                    $$=(((Double)$1).compareTo((Double)$3)!=0);
-                  }*/
-                  }
+				$$=new InfixExpression($1,"!=",$3);
+                }
 | NOT exp {
-  /*if($2 instanceof Boolean){
-    $$=!(Boolean)$2;
-  }
-  if($2 instanceof Double){
-    if(((Double)$2)==0){
-      $$=true;
-    }else{
-      $$=false;
-    }
-  }*/
-  }
+	$$=new PrefixExpression("!",$2);
+}
 | exp GREATER_THAN_OR_EQUAL exp {
-//$$=((Double)$1).compareTo((Double)$3)>=0;
+	$$=new InfixExpression($1,">=",$3);
 }
 | exp LESS_THAN_OR_EQUAL exp {
-//$$=((Double)$1).compareTo((Double)$3)<=0;
+	$$=new InfixExpression($1,"<=",$3);
 }
 | exp '<' exp {
-//$$=((Double)$1).compareTo((Double)$3)<0;
+	$$=new InfixExpression($1,"<",$3);
 }
 | exp '>' exp {
-//$$=((Double)$1).compareTo((Double)$3)>0;
+	$$=new InfixExpression($1,">",$3);
 }
 | exp '+' exp {
-	$$=new ArithmeticExpression($1,'+',$3); // An AST node for arithmetics
+	$$=new InfixExpression($1,"+",$3); // An AST node for binary ops
 }
 | exp '-' exp {
-	$$=new ArithmeticExpression($1,'-',$3); // An AST node for arithmetics
+	$$=new InfixExpression($1,"-",$3); // An AST node for binary ops
 }
 | exp '*' exp {
-	$$=new ArithmeticExpression($1,'*',$3); // An AST node for arithmetics
+	$$=new InfixExpression($1,"*",$3); // An AST node for binary ops
 }
 | exp '/' exp {
-	$$=new ArithmeticExpression($1,'/',$3); // An AST node for arithmetics
+	$$=new InfixExpression($1,"/",$3); // An AST node for binary ops
 }
 | '-' exp %prec NEG {
-	$$=new ArithmeticExpression(new Literal(0.0),'-',$2); // An AST node for arithmetics
+	$$=new InfixExpression(new Literal(0.0),"-",$2); // An AST node for binary ops
 }
 | '(' exp ')' {
 	$$=$2;
@@ -318,7 +314,7 @@ IDENTIFIER {
 | IDENTIFIER '=' exp {
 	$$=new AssignmentExpression($1,$3); //Adds a new symbol to the context (NO SCOPES YET)
 }
-| IDENTIFIER '(' function_params ')' {
+| IDENTIFIER '(' exp_list ')' {
 	//Define a function call using the identifier and the parameters list
 	$$=new FunctionCall($1,$3);
 }
@@ -329,9 +325,10 @@ IDENTIFIER {
 ;
 
  //Function parameters grammar (only used in function call NOT defination)
-function_params:
+ //Used in lists too
+exp_list:
 exp {$$= new ArrayList<>(List.of($1));}
-| exp ',' function_params {
+| exp ',' exp_list {
 	$$=new ArrayList<>(List.of($1));
 	((List)($$)).addAll($3); //Combine all expressions together
 }

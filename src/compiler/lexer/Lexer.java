@@ -91,9 +91,16 @@ public class Lexer {
         //Read flex stdout and construct Token array out of it
         while ((line = br.readLine()) != null) {
             String[] items = line.split("[ \n]+");
-            if (items.length == 4) {
-                tokens.add(new Token(Integer.parseInt(items[0]), items[1], Integer.parseInt(items[2]), Integer.parseInt(items[3])));
-            } else if (items[0].equals("287")) { //WHITESPACE case
+            if (items.length >= 4) {
+                StringBuilder lexeme= new StringBuilder(items[1]);
+                //In case a token has a space the regex will split these too, the loop rejoins them
+                for (int i=2;i<items.length-2;i++){
+                    lexeme.append(" ");
+                    lexeme.append(items[i]);
+                }
+                tokens.add(new Token(Integer.parseInt(items[0]), lexeme.toString(), Integer.parseInt(items[items.length-2]), Integer.parseInt(items[items.length-1])));
+            }
+            else if (items[0].equals("287")) { //WHITESPACE case
                 tokens.add(new Token(Integer.parseInt(items[0]), " ", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
             } else {
                 tokens.add(new Token(Integer.parseInt(items[0]), "", Integer.parseInt(items[1]), Integer.parseInt(items[2])));
