@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Implement list indexing (no setter tho for indexed values)">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Implement setting a value to a list element">
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyAppend.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/Calculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/Calculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/AssignmentExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/AssignmentExpression.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/PyCallable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/PyCallable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +23,7 @@
         <option value="Enum" />
         <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
       </list>
     </option>
   </component>
@@ -73,7 +77,7 @@
       <recent name="compiler" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main - Interactve">
+  <component name="RunManager" selected="Application.Main - File">
     <configuration name="Main - File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
@@ -348,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672950048998</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Implement setting a value to a list element">
+      <created>1672996926377</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1672996926377</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -366,7 +377,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add junit package and create a Java package" />
     <MESSAGE value="Implement running lexer functions" />
     <MESSAGE value="Implement Unit class" />
     <MESSAGE value="Improve Lexer testing, Create Token class" />
@@ -391,6 +401,7 @@
     <MESSAGE value="VERY BIG CHANGES" />
     <MESSAGE value="Parse and execute while statements" />
     <MESSAGE value="Implement list indexing (no setter tho for indexed values)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement list indexing (no setter tho for indexed values)" />
+    <MESSAGE value="Implement setting a value to a list element" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement setting a value to a list element" />
   </component>
 </project>

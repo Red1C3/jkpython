@@ -12,7 +12,7 @@ import kotlin.math.roundToInt
 //In case of a single parameter, it returns a list from 0 to that param exclusive
 //In case of two params, it returns a list from the first param to the second exclusive
 object PyRange:PyCallable {
-    override fun call(context: Context, arguments: List<PyObject>): PyObject {
+    override fun call(arguments: List<PyObject>): PyObject {
         if (arguments.size==1 && arguments[0] is PyFloat){
             val top=(arguments[0] as PyFloat).value
             val rangeList= arrayListOf<PyObject>()

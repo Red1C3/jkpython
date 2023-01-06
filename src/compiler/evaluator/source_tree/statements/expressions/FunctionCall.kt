@@ -15,6 +15,6 @@ class FunctionCall(
         // TODO: throw proper python exception with a standard message format.
         if (function !is PyCallable) error("'${function.javaClass.name}' object is not callable")
 
-        return function.call(context, parametersValues)
+        return function.call(parametersValues)
     }
 }

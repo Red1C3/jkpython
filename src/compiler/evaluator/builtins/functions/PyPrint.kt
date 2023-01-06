@@ -8,7 +8,7 @@ import compiler.evaluator.core.PyObject
 object PyPrint : PyCallable {
     // TODO: Add key based arguments
     // TODO: Do string casting the python way
-    override fun call(context: Context, arguments: List<PyObject>): PyObject {
+    override fun call(arguments: List<PyObject>): PyObject {
         println(arguments.joinToString(" ") { it.toString() })
         return PyNone
     }

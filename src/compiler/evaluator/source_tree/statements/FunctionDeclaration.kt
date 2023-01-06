@@ -3,6 +3,7 @@ package compiler.evaluator.source_tree.statements
 import compiler.evaluator.core.Context
 import compiler.evaluator.builtins.types.PyFunction
 import compiler.evaluator.core.ExecutionSignal
+import compiler.evaluator.core.StandardContext
 import compiler.evaluator.source_tree.statements.expressions.Identifier
 
 class FunctionDeclaration(
@@ -11,7 +12,7 @@ class FunctionDeclaration(
         private val body: StatementsBlock,
 ): Statement() {
     override fun execute(context: Context): ExecutionSignal {
-        context.setVariable(id.name, PyFunction(id, parametersNames, body))
+        context.setVariable(id.name, PyFunction(id, parametersNames, body,context))
         return ExecutionSignal.NormalOperation
     }
 }

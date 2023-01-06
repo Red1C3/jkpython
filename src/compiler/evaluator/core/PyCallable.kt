@@ -5,5 +5,5 @@ package compiler.evaluator.core
  * should be able to tell if an object is callable or not, and that could be done using the Kotlin `is` operator.
  */
 interface PyCallable : PyObject {
-    fun call(context: Context, arguments: List<PyObject> = listOf()): PyObject
+    fun call(arguments: List<PyObject> = listOf()): PyObject
 }
