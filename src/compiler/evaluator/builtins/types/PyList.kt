@@ -8,6 +8,9 @@ class PyList(
     public fun size():Int{
         return value.size
     }
+    public fun addElement(elem:PyObject){
+        value.add(elem)
+    }
     operator fun get(index:Int):PyObject{
         return value[index]
     }

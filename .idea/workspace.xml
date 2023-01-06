@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Implement setting a value to a list element">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Patch functions scoping">
       <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyAppend.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/PyCallable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/PyCallable.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/StandardContext.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/StandardContext.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,7 @@
       <recent name="compiler" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main - File">
+  <component name="RunManager" selected="Application.Main - Interactve">
     <configuration name="Main - File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
@@ -359,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672996926377</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Patch functions scoping">
+      <created>1673001161017</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1673001161017</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -377,7 +379,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implement running lexer functions" />
     <MESSAGE value="Implement Unit class" />
     <MESSAGE value="Improve Lexer testing, Create Token class" />
     <MESSAGE value="Improve Token printing" />
@@ -402,6 +403,7 @@
     <MESSAGE value="Parse and execute while statements" />
     <MESSAGE value="Implement list indexing (no setter tho for indexed values)" />
     <MESSAGE value="Implement setting a value to a list element" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement setting a value to a list element" />
+    <MESSAGE value="Patch functions scoping" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch functions scoping" />
   </component>
 </project>
