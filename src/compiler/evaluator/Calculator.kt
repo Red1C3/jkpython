@@ -34,12 +34,14 @@ fun createTestingProgram(): Program {
         // a_side = 5
         AssignmentExpression(
             Identifier("a_side"),
+                null,
             Literal(5.0),
         ),
 
         // space = calc_space(a_side)
         AssignmentExpression(
             Identifier("space"),
+                null,
             FunctionCall(
                 Identifier("calc_space"),
                 listOf(Identifier("a_side"))

@@ -316,7 +316,10 @@ IDENTIFIER {
 	$$=new IndexExpression($3,$1);
 }
 | IDENTIFIER '=' exp {
-	$$=new AssignmentExpression($1,$3); //Adds a new symbol to the context (NO SCOPES YET)
+	$$=new AssignmentExpression($1,null,$3); //Adds a new symbol to the context
+}
+| IDENTIFIER '[' NUMBER ']' '=' exp{
+	$$=new AssignmentExpression($1,$3,$6); //Assign a list element to a new value
 }
 | IDENTIFIER '(' exp_list ')' {
 	//Define a function call using the identifier and the parameters list
