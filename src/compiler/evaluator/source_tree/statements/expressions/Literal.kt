@@ -5,10 +5,14 @@ import compiler.evaluator.core.Context
 import compiler.evaluator.builtins.types.PyFloat
 import compiler.evaluator.builtins.types.PyString
 import compiler.evaluator.core.PyObject
+import compiler.evaluator.visualization.AST
 
-class Literal (
+class Literal constructor (
     val value: Any
-) : Expression() {
+): Expression() {
+    init {
+        AST.instance().g.addVertex(this)
+    }
     private val pyValue: PyObject = when (value) {
         is Float -> PyFloat.of(value.toDouble())
         is Double -> PyFloat.of(value)
@@ -18,5 +22,8 @@ class Literal (
         else -> error("Unsupported literal value type: ${value.javaClass.canonicalName}")
     }
 
-    override fun evaluate(context: Context) = pyValue
+    override fun evaluate(context: Context)= pyValue
+    public override fun  toString():String{
+        return value.toString()
+    }
 }

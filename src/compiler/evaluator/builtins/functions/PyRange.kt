@@ -32,4 +32,8 @@ object PyRange:PyCallable {
         }
         return PyNotImplemented
     }
+
+    override fun toString(): String {
+        return "Function"
+    }
 }

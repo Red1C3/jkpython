@@ -3,11 +3,20 @@ package compiler.evaluator.source_tree.statements.expressions
 import compiler.evaluator.core.Context
 import compiler.evaluator.core.PyCallable
 import compiler.evaluator.core.PyObject
+import compiler.evaluator.visualization.AST
+import compiler.evaluator.visualization.LabeledEdge
 
 class FunctionCall(
         private val id: Identifier,
         private val parameters: List<Expression>,
 ): Expression() {
+    init {
+        AST.instance().g.addVertex(this)
+        AST.instance().g.addEdge(this,id,LabeledEdge("Func"))
+        for (param in parameters){
+            AST.instance().g.addEdge(this,param,LabeledEdge("Arg"))
+        }
+    }
     override fun evaluate(context: Context): PyObject {
         val function = context.lookupVariable(id.name)
         val parametersValues = parameters.map { it.evaluate(context) }
@@ -16,5 +25,9 @@ class FunctionCall(
         if (function !is PyCallable) error("'${function.javaClass.name}' object is not callable")
 
         return function.call(parametersValues)
+    }
+
+    override fun toString(): String {
+        return "Function Call"
     }
 }

@@ -1,6 +1,7 @@
 package compiler;
 
 import compiler.evaluator.core.StandardContext;
+import compiler.evaluator.visualization.AST;
 import compiler.lexer.Lexer;
 import compiler.parser.Parser;
 
@@ -27,6 +28,8 @@ public class Main {
 
             Parser parser = new Parser(lexer);
             parser.parse();
+
+            AST.instance().outputGraph();
 
             //Some global identifiers container
             StandardContext context=new StandardContext();

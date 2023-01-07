@@ -1,15 +1,23 @@
 package compiler.evaluator.core
 
+import compiler.evaluator.visualization.SymbolTable
+
 /**
  * The execution context.
  * Stores the variables list and their contents.
  */
 abstract class Context(
-    private val parent: Context?
+    public val parent: Context?
 ) {
     constructor() : this(null)
+    private val id:Int = i
 
-    private val variables = HashMap<String, PyObject>()
+    init {
+        i++
+    }
+
+    public val variables = HashMap<String, PyObject>()
+
 
     fun lookupVariable(name: String): PyObject = (variables[name] ?: parent?.lookupVariable(name))!!
 
@@ -20,5 +28,16 @@ abstract class Context(
         return SubContext(this)
     }
 
-    private class SubContext(parent: Context?) : Context(parent)
+    private class SubContext(parent: Context?) : Context(parent){
+        init {
+            SymbolTable.instance().addContext(this)
+        }
+    }
+
+    override fun toString(): String {
+        return id.toString()
+    }
+    companion object{
+        var i=0
+    }
 }

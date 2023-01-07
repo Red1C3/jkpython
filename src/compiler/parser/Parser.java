@@ -1,4 +1,4 @@
-        /* A Bison parser, made by GNU Bison 3.8.2.  */
+/* A Bison parser, made by GNU Bison 3.8.2.  */
 
 /* Skeleton implementation for Bison LALR(1) parsers in Java
 
@@ -30,17 +30,17 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-        /* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-        package compiler.parser;
-        
-        
-        
-        import java.text.MessageFormat;
-        import java.util.ArrayList;
-        /* "%code imports" blocks.  */
+package compiler.parser;
+
+
+
+import java.text.MessageFormat;
+import java.util.ArrayList;
+/* "%code imports" blocks.  */
 /* "./parser/pythonparser.y":10  */
 
   import compiler.lexer.Lexer;
@@ -60,20 +60,20 @@
  *
  * @author LALR (1) parser skeleton written by Paolo Bonzini.
  */
-        public class Parser
-        {
-          /** Version number for the Bison executable that generated this parser.  */
+public class Parser
+{
+  /** Version number for the Bison executable that generated this parser.  */
   public static final String bisonVersion = "3.8.2";
 
   /** Name of the skeleton that generated this parser.  */
   public static final String bisonSkeleton = "./parser/./lalr1-patched.java";
 
-        
-        
 
-        
 
-          public enum SymbolKind
+
+
+
+  public enum SymbolKind
   {
     S_YYEOF(0),                    /* "end of file"  */
     S_YYerror(1),                  /* error  */
@@ -337,11 +337,11 @@
   };
 
 
-/**
- * Communication interface between the scanner and the Bison-generated
- * parser <tt>Parser</tt>.
- */
-public interface Lexer {
+  /**
+   * Communication interface between the scanner and the Bison-generated
+   * parser <tt>Parser</tt>.
+   */
+  public interface Lexer {
     /* Token kinds.  */
     /** Token "end of file", to be returned by the scanner.  */
     static final int YYEOF = 0;
@@ -458,37 +458,37 @@ public interface Lexer {
     /** Token NEG, to be returned by the scanner.  */
     static final int NEG = 311;
 
-  /** Deprecated, use YYEOF instead.  */
-  public static final int EOF = YYEOF;
+    /** Deprecated, use YYEOF instead.  */
+    public static final int EOF = YYEOF;
 
 
-          /**
-           * Method to retrieve the semantic value of the last scanned token.
-           * @return the semantic value of the last scanned token.
-           */
-          Object getLVal();
+    /**
+     * Method to retrieve the semantic value of the last scanned token.
+     * @return the semantic value of the last scanned token.
+     */
+    Object getLVal();
 
-  /**
-   * Entry point for the scanner.  Returns the token identifier corresponding
-   * to the next token and prepares to return the semantic value
-   * of the token.
-   * @return the token identifier corresponding to the next token.
-   */
-  int yylex() throws java.io.IOException;
+    /**
+     * Entry point for the scanner.  Returns the token identifier corresponding
+     * to the next token and prepares to return the semantic value
+     * of the token.
+     * @return the token identifier corresponding to the next token.
+     */
+    int yylex() throws java.io.IOException;
 
-  /**
-   * Emit an errorin a user-defined way.
-   *
-   *
-   * @param msg The string for the error message.
-   */
-  void yyerror(String msg);
-
-
-}
+    /**
+     * Emit an errorin a user-defined way.
+     *
+     *
+     * @param msg The string for the error message.
+     */
+     void yyerror(String msg);
 
 
-private class YYLexer implements Lexer {
+  }
+
+
+  private class YYLexer implements Lexer {
 /* "%code lexer" blocks.  */
 /* "./parser/pythonparser.y":31  */
 
@@ -549,115 +549,115 @@ private class YYLexer implements Lexer {
 
 /* "./src/compiler/parser/Parser.java":551  */
 
-}
+  }
 
 
-/**
- * The object doing lexical analysis for us.
- */
-private Lexer yylexer;
+  /**
+   * The object doing lexical analysis for us.
+   */
+  private Lexer yylexer;
 
-        
 
-        
-/**
- * Instantiates the Bison-generated parser.
- */
-public Parser(compiler.lexer.Lexer lexer)
-        {
-        
-        this.yylexer = new YYLexer(lexer);
-        
-        }
-        
 
-        /**
-         * Instantiates the Bison-generated parser.
-         * @param yylexer The scanner that will supply tokens to the parser.
-         */
-        protected Parser(Lexer yylexer)
-        {
-        
-        this.yylexer = yylexer;
-        
-        }
 
-        
+  /**
+   * Instantiates the Bison-generated parser.
+   */
+  public Parser(compiler.lexer.Lexer lexer)
+  {
 
-private int yynerrs = 0;
+    this.yylexer = new YYLexer(lexer);
 
-/**
- * The number of syntax errors so far.
- */
-public final int getNumberOfErrors() { return yynerrs; }
+  }
 
-/**
- * Print an error message via the lexer.
- *
- * @param msg The error message.
- */
-public final void yyerror(String msg) {
-        yylexer.yyerror(msg);
-        }
-        
-        
 
-private final class YYStack {
-  private int[] stateStack = new int[16];
-  private Object[] valueStack = new Object[16];
+  /**
+   * Instantiates the Bison-generated parser.
+   * @param yylexer The scanner that will supply tokens to the parser.
+   */
+  protected Parser(Lexer yylexer)
+  {
 
-  public int size = 16;
-  public int height = -1;
+    this.yylexer = yylexer;
 
-  public final void push(int state, Object value) {
-    height++;
-    if (size == height) {
-      int[] newStateStack = new int[size * 2];
-      System.arraycopy(stateStack, 0, newStateStack, 0, height);
-      stateStack = newStateStack;
+  }
 
-      Object[] newValueStack = new Object[size * 2];
-      System.arraycopy(valueStack, 0, newValueStack, 0, height);
-      valueStack = newValueStack;
 
-      size *= 2;
+
+  private int yynerrs = 0;
+
+  /**
+   * The number of syntax errors so far.
+   */
+  public final int getNumberOfErrors() { return yynerrs; }
+
+  /**
+   * Print an error message via the lexer.
+   *
+   * @param msg The error message.
+   */
+  public final void yyerror(String msg) {
+      yylexer.yyerror(msg);
+  }
+
+
+
+  private final class YYStack {
+    private int[] stateStack = new int[16];
+    private Object[] valueStack = new Object[16];
+
+    public int size = 16;
+    public int height = -1;
+
+    public final void push(int state, Object value) {
+      height++;
+      if (size == height) {
+        int[] newStateStack = new int[size * 2];
+        System.arraycopy(stateStack, 0, newStateStack, 0, height);
+        stateStack = newStateStack;
+
+        Object[] newValueStack = new Object[size * 2];
+        System.arraycopy(valueStack, 0, newValueStack, 0, height);
+        valueStack = newValueStack;
+
+        size *= 2;
+      }
+
+      stateStack[height] = state;
+      valueStack[height] = value;
     }
 
-    stateStack[height] = state;
-    valueStack[height] = value;
-  }
-
-  public final void pop() {
-    pop(1);
-  }
-
-  public final void pop(int num) {
-    // Avoid memory leaks... garbage collection is a white lie!
-    if (0 < num) {
-      java.util.Arrays.fill(valueStack, height - num + 1, height + 1, null);
+    public final void pop() {
+      pop(1);
     }
-    height -= num;
-  }
 
-  public final int stateAt(int i) {
-    return stateStack[height - i];
-  }
-
-  public final Object valueAt(int i) {
-    return valueStack[height - i];
-  }
-
-  // Print the state stack on the debug stream.
-  public void print(java.io.PrintStream out) {
-    out.print ("Stack now");
-
-    for (int i = 0; i <= height; i++) {
-      out.print(' ');
-      out.print(stateStack[i]);
+    public final void pop(int num) {
+      // Avoid memory leaks... garbage collection is a white lie!
+      if (0 < num) {
+        java.util.Arrays.fill(valueStack, height - num + 1, height + 1, null);
+      }
+      height -= num;
     }
-    out.println();
+
+    public final int stateAt(int i) {
+      return stateStack[height - i];
+    }
+
+    public final Object valueAt(int i) {
+      return valueStack[height - i];
+    }
+
+    // Print the state stack on the debug stream.
+    public void print(java.io.PrintStream out) {
+      out.print ("Stack now");
+
+      for (int i = 0; i <= height; i++) {
+        out.print(' ');
+        out.print(stateStack[i]);
+      }
+      out.println();
+    }
   }
-}
 
   /**
    * Returned by a Bison action in order to stop the parsing process and
@@ -673,61 +673,61 @@ private final class YYStack {
 
 
 
-/**
- * Returned by a Bison action in order to start error recovery without
- * printing an error message.
- */
-public static final int YYERROR = 2;
+  /**
+   * Returned by a Bison action in order to start error recovery without
+   * printing an error message.
+   */
+  public static final int YYERROR = 2;
 
-/**
- * Internal return codes that are not supported for user semantic
- * actions.
- */
-private static final int YYERRLAB = 3;
-private static final int YYNEWSTATE = 4;
-private static final int YYDEFAULT = 5;
-private static final int YYREDUCE = 6;
-private static final int YYERRLAB1 = 7;
-private static final int YYRETURN = 8;
-        
+  /**
+   * Internal return codes that are not supported for user semantic
+   * actions.
+   */
+  private static final int YYERRLAB = 3;
+  private static final int YYNEWSTATE = 4;
+  private static final int YYDEFAULT = 5;
+  private static final int YYREDUCE = 6;
+  private static final int YYERRLAB1 = 7;
+  private static final int YYRETURN = 8;
 
-private int yyerrstatus_ = 0;
 
-        
-/**
- * Whether error recovery is being done.  In this state, the parser
- * reads token until it reaches a known state, and then restarts normal
- * operation.
- */
-public final boolean recovering ()
-        {
-        return yyerrstatus_ == 0;
-        }
+  private int yyerrstatus_ = 0;
 
-/** Compute post-reduction state.
- * @param yystate   the current state
- * @param yysym     the nonterminal to push on the stack
- */
-private int yyLRGotoState(int yystate, int yysym) {
-        int yyr = yypgoto_[yysym - YYNTOKENS_] + yystate;
-        if (0 <= yyr && yyr <= YYLAST_ && yycheck_[yyr] == yystate)
-        return yytable_[yyr];
-        else
-        return yydefgoto_[yysym - YYNTOKENS_];
-        }
 
-private int yyaction(int yyn, YYStack yystack, int yylen)
-        {
+  /**
+   * Whether error recovery is being done.  In this state, the parser
+   * reads token until it reaches a known state, and then restarts normal
+   * operation.
+   */
+  public final boolean recovering ()
+  {
+    return yyerrstatus_ == 0;
+  }
+
+  /** Compute post-reduction state.
+   * @param yystate   the current state
+   * @param yysym     the nonterminal to push on the stack
+   */
+  private int yyLRGotoState(int yystate, int yysym) {
+    int yyr = yypgoto_[yysym - YYNTOKENS_] + yystate;
+    if (0 <= yyr && yyr <= YYLAST_ && yycheck_[yyr] == yystate)
+      return yytable_[yyr];
+    else
+      return yydefgoto_[yysym - YYNTOKENS_];
+  }
+
+  private int yyaction(int yyn, YYStack yystack, int yylen)
+  {
     /* If YYLEN is nonzero, implement the default value of the action:
        '$$ = $1'.  Otherwise, use the top of the stack.
 
        Otherwise, the following line sets YYVAL to garbage.
        This behavior is undocumented and Bison
        users should not rely upon it.  */
-        Object yyval = (0 < yylen) ? yystack.valueAt(yylen - 1) : yystack.valueAt(0);
+    Object yyval = (0 < yylen) ? yystack.valueAt(yylen - 1) : yystack.valueAt(0);
 
-        switch (yyn)
-        {
+    switch (yyn)
+      {
           case 3: /* prog: statements  */
   if (yyn == 3)
     /* "./parser/pythonparser.y":173  */
@@ -1134,11 +1134,11 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
   break;
 
 
-  case 53: /* exp: IDENTIFIER '[' NUMBER ']'  */
+  case 53: /* exp: IDENTIFIER '[' exp ']'  */
   if (yyn == 53)
     /* "./parser/pythonparser.y":315  */
-                            {
-	yyval=new IndexExpression(((Literal)(yystack.valueAt (1))),((Identifier)(yystack.valueAt (3))));
+                         {
+	yyval=new IndexExpression(((Expression)(yystack.valueAt (1))),((Identifier)(yystack.valueAt (3))));
 };
   break;
 
@@ -1152,11 +1152,11 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
   break;
 
 
-  case 55: /* exp: IDENTIFIER '[' NUMBER ']' '=' exp  */
+  case 55: /* exp: IDENTIFIER '[' exp ']' '=' exp  */
   if (yyn == 55)
     /* "./parser/pythonparser.y":321  */
-                                   {
-	yyval=new AssignmentExpression(((Identifier)(yystack.valueAt (5))),((Literal)(yystack.valueAt (3))),((Expression)(yystack.valueAt (0)))); //Assign a list element to a new value
+                                {
+	yyval=new AssignmentExpression(((Identifier)(yystack.valueAt (5))),((Expression)(yystack.valueAt (3))),((Expression)(yystack.valueAt (0)))); //Assign a list element to a new value
 };
   break;
 
@@ -1210,153 +1210,153 @@ private int yyaction(int yyn, YYStack yystack, int yylen)
 
 /* "./src/compiler/parser/Parser.java":1212  */
 
-default: break;
-        }
+        default: break;
+      }
 
-        yystack.pop(yylen);
-        yylen = 0;
-        /* Shift the result of the reduction.  */
-        int yystate = yyLRGotoState(yystack.stateAt(0), yyr1_[yyn]);
-        yystack.push(yystate, yyval);
-        return YYNEWSTATE;
-        }
+    yystack.pop(yylen);
+    yylen = 0;
+    /* Shift the result of the reduction.  */
+    int yystate = yyLRGotoState(yystack.stateAt(0), yyr1_[yyn]);
+    yystack.push(yystate, yyval);
+    return YYNEWSTATE;
+  }
 
-        
 
-        
-/**
- * Parse input from the scanner that was specified at object construction
- * time.  Return whether the end of the input was reached successfully.
- *
- * @return <tt>true</tt> if the parsing succeeds.  Note that this does not
- *          imply that there were no syntax errors.
- */
-public boolean parse() throws java.io.IOException
-        
-        {
-        
-        
-        /* Lookahead token kind.  */
-        int yychar = YYEMPTY_;
-        /* Lookahead symbol kind.  */
-        SymbolKind yytoken = null;
 
-        /* State.  */
-        int yyn = 0;
-        int yylen = 0;
-        int yystate = 0;
-        YYStack yystack = new YYStack ();
-        int label = YYNEWSTATE;
 
-        
+  /**
+   * Parse input from the scanner that was specified at object construction
+   * time.  Return whether the end of the input was reached successfully.
+   *
+   * @return <tt>true</tt> if the parsing succeeds.  Note that this does not
+   *          imply that there were no syntax errors.
+   */
+  public boolean parse() throws java.io.IOException
 
-        /* Semantic value of the lookahead.  */
-        Object yylval = null;
-        
-        
-        
-        yyerrstatus_ = 0;
-        yynerrs = 0;
+  {
 
-        /* Initialize the stack.  */
-        yystack.push (yystate, yylval);
-        
-        
-        
-        for (;;)
-        switch (label)
-        {
+
+    /* Lookahead token kind.  */
+    int yychar = YYEMPTY_;
+    /* Lookahead symbol kind.  */
+    SymbolKind yytoken = null;
+
+    /* State.  */
+    int yyn = 0;
+    int yylen = 0;
+    int yystate = 0;
+    YYStack yystack = new YYStack ();
+    int label = YYNEWSTATE;
+
+
+
+    /* Semantic value of the lookahead.  */
+    Object yylval = null;
+
+
+
+    yyerrstatus_ = 0;
+    yynerrs = 0;
+
+    /* Initialize the stack.  */
+    yystack.push (yystate, yylval);
+
+
+
+    for (;;)
+      switch (label)
+      {
         /* New state.  Unlike in the C/C++ skeletons, the state is already
            pushed when we come here.  */
-        case YYNEWSTATE:
+      case YYNEWSTATE:
 
         /* Accept?  */
         if (yystate == YYFINAL_)
-        return true;
+          return true;
 
         /* Take a decision.  First try without lookahead.  */
         yyn = yypact_[yystate];
         if (yyPactValueIsDefault (yyn))
-        {
-        label = YYDEFAULT;
-        break;
-        }
-        
+          {
+            label = YYDEFAULT;
+            break;
+          }
+
         /* Read a lookahead token.  */
         if (yychar == YYEMPTY_)
-        {
-        
-        yychar = yylexer.yylex ();
-        yylval = yylexer.getLVal();
-        
-        }
+          {
+
+            yychar = yylexer.yylex ();
+            yylval = yylexer.getLVal();
+
+          }
 
         /* Convert token to internal form.  */
         yytoken = yytranslate_ (yychar);
 
         if (yytoken == SymbolKind.S_YYerror)
-        {
-        // The scanner already issued an error message, process directly
-        // to error recovery.  But do not keep the error token as
-        // lookahead, it is too special and may lead us to an endless
-        // loop in error recovery. */
-        yychar = Lexer.YYUNDEF;
-        yytoken = SymbolKind.S_YYUNDEF;
-        label = YYERRLAB1;
-        }
+          {
+            // The scanner already issued an error message, process directly
+            // to error recovery.  But do not keep the error token as
+            // lookahead, it is too special and may lead us to an endless
+            // loop in error recovery. */
+            yychar = Lexer.YYUNDEF;
+            yytoken = SymbolKind.S_YYUNDEF;
+            label = YYERRLAB1;
+          }
         else
-        {
+          {
             /* If the proper action on seeing token YYTOKEN is to reduce or to
                detect an error, take that action.  */
-        yyn += yytoken.getCode();
-        if (yyn < 0 || YYLAST_ < yyn || yycheck_[yyn] != yytoken.getCode()) {
-        label = YYDEFAULT;
-        }
+            yyn += yytoken.getCode();
+            if (yyn < 0 || YYLAST_ < yyn || yycheck_[yyn] != yytoken.getCode()) {
+              label = YYDEFAULT;
+            }
 
-        /* <= 0 means reduce or error.  */
-        else if ((yyn = yytable_[yyn]) <= 0)
-        {
-        if (yyTableValueIsError(yyn)) {
-        label = YYERRLAB;
-        } else {
-        yyn = -yyn;
-        label = YYREDUCE;
-        }
-        }
+            /* <= 0 means reduce or error.  */
+            else if ((yyn = yytable_[yyn]) <= 0)
+              {
+                if (yyTableValueIsError(yyn)) {
+                  label = YYERRLAB;
+                } else {
+                  yyn = -yyn;
+                  label = YYREDUCE;
+                }
+              }
 
-        else
-        {
-        /* Shift the lookahead token.  */
-        /* Discard the token being shifted.  */
-        yychar = YYEMPTY_;
+            else
+              {
+                /* Shift the lookahead token.  */
+                /* Discard the token being shifted.  */
+                yychar = YYEMPTY_;
 
                 /* Count tokens shifted since error; after three, turn off error
                    status.  */
-        if (yyerrstatus_ > 0)
-        --yyerrstatus_;
+                if (yyerrstatus_ > 0)
+                  --yyerrstatus_;
 
-        yystate = yyn;
-        yystack.push(yystate, yylval);
-        label = YYNEWSTATE;
-        }
-        }
+                yystate = yyn;
+                yystack.push(yystate, yylval);
+                label = YYNEWSTATE;
+              }
+          }
         break;
 
       /*-----------------------------------------------------------.
       | yydefault -- do the default action for the current state.  |
       `-----------------------------------------------------------*/
-        case YYDEFAULT:
+      case YYDEFAULT:
         yyn = yydefact_[yystate];
         if (yyn == 0)
-        label = YYERRLAB;
+          label = YYERRLAB;
         else
-        label = YYREDUCE;
+          label = YYREDUCE;
         break;
 
       /*-----------------------------.
       | yyreduce -- Do a reduction.  |
       `-----------------------------*/
-        case YYREDUCE:
+      case YYREDUCE:
         yylen = yyr2_[yyn];
         label = yyaction(yyn, yystack, yylen);
         yystate = yystack.stateAt(0);
@@ -1365,30 +1365,30 @@ public boolean parse() throws java.io.IOException
       /*------------------------------------.
       | yyerrlab -- here on detecting error |
       `------------------------------------*/
-        case YYERRLAB:
+      case YYERRLAB:
         /* If not already recovering from an error, report this error.  */
         if (yyerrstatus_ == 0)
-        {
-        ++yynerrs;
-        if (yychar == YYEMPTY_)
-        yytoken = null;
-        yyreportSyntaxError(new Context(this, yystack, yytoken));
-        }
-        
+          {
+            ++yynerrs;
+            if (yychar == YYEMPTY_)
+              yytoken = null;
+            yyreportSyntaxError(new Context(this, yystack, yytoken));
+          }
+
         if (yyerrstatus_ == 3)
-        {
+          {
             /* If just tried and failed to reuse lookahead token after an
                error, discard it.  */
 
-        if (yychar <= Lexer.YYEOF)
-        {
-        /* Return failure if at end of input.  */
-        if (yychar == Lexer.YYEOF)
-        return false;
-        }
-        else
-        yychar = YYEMPTY_;
-        }
+            if (yychar <= Lexer.YYEOF)
+              {
+                /* Return failure if at end of input.  */
+                if (yychar == Lexer.YYEOF)
+                  return false;
+              }
+            else
+              yychar = YYEMPTY_;
+          }
 
         /* Else will try to reuse lookahead token after shifting the error
            token.  */
@@ -1398,7 +1398,7 @@ public boolean parse() throws java.io.IOException
       /*-------------------------------------------------.
       | errorlab -- error raised explicitly by YYERROR.  |
       `-------------------------------------------------*/
-        case YYERROR:
+      case YYERROR:
         /* Do not reclaim the symbols of the rule which action triggered
            this YYERROR.  */
         yystack.pop (yylen);
@@ -1410,40 +1410,40 @@ public boolean parse() throws java.io.IOException
       /*-------------------------------------------------------------.
       | yyerrlab1 -- common code for both syntax error and YYERROR.  |
       `-------------------------------------------------------------*/
-        case YYERRLAB1:
+      case YYERRLAB1:
         yyerrstatus_ = 3;       /* Each real token shifted decrements this.  */
 
         // Pop stack until we find a state that shifts the error token.
         for (;;)
-        {
-        yyn = yypact_[yystate];
-        if (!yyPactValueIsDefault (yyn))
-        {
-        yyn += SymbolKind.S_YYerror.getCode();
-        if (0 <= yyn && yyn <= YYLAST_
-        && yycheck_[yyn] == SymbolKind.S_YYerror.getCode())
-        {
-        yyn = yytable_[yyn];
-        if (0 < yyn)
-        break;
-        }
-        }
+          {
+            yyn = yypact_[yystate];
+            if (!yyPactValueIsDefault (yyn))
+              {
+                yyn += SymbolKind.S_YYerror.getCode();
+                if (0 <= yyn && yyn <= YYLAST_
+                    && yycheck_[yyn] == SymbolKind.S_YYerror.getCode())
+                  {
+                    yyn = yytable_[yyn];
+                    if (0 < yyn)
+                      break;
+                  }
+              }
 
-        /* Pop the current state because it cannot handle the
-         * error token.  */
-        if (yystack.height == 0)
-        return false;
+            /* Pop the current state because it cannot handle the
+             * error token.  */
+            if (yystack.height == 0)
+              return false;
 
-        
-        yystack.pop ();
-        yystate = yystack.stateAt(0);
-        }
+
+            yystack.pop ();
+            yystate = yystack.stateAt(0);
+          }
 
         if (label == YYABORT)
-        /* Leave the switch.  */
-        break;
+          /* Leave the switch.  */
+          break;
 
-        
+
 
         /* Shift the error token.  */
 
@@ -1453,136 +1453,136 @@ public boolean parse() throws java.io.IOException
         break;
 
         /* Accept.  */
-        case YYACCEPT:
+      case YYACCEPT:
         return true;
 
         /* Abort.  */
-        case YYABORT:
+      case YYABORT:
         return false;
-        }
-        }
-        
-
-        
-
-/**
- * Information needed to get the list of expected tokens and to forge
- * a syntax error diagnostic.
- */
-public static final class Context {
-  Context(Parser parser, YYStack stack, SymbolKind token) {
-    yyparser = parser;
-    yystack = stack;
-    yytoken = token;
-  }
-
-  private Parser yyparser;
-  private YYStack yystack;
-
-
-  /**
-   * The symbol kind of the lookahead token.
-   */
-  public final SymbolKind getToken() {
-    return yytoken;
-  }
-
-  private SymbolKind yytoken;
-  static final int NTOKENS = Parser.YYNTOKENS_;
-
-  /**
-   * Put in YYARG at most YYARGN of the expected tokens given the
-   * current YYCTX, and return the number of tokens stored in YYARG.  If
-   * YYARG is null, return the number of expected tokens (guaranteed to
-   * be less than YYNTOKENS).
-   */
-  int getExpectedTokens(SymbolKind yyarg[], int yyargn) {
-    return getExpectedTokens (yyarg, 0, yyargn);
-  }
-
-  int getExpectedTokens(SymbolKind yyarg[], int yyoffset, int yyargn) {
-    int yycount = yyoffset;
-    int yyn = yypact_[this.yystack.stateAt(0)];
-    if (!yyPactValueIsDefault(yyn))
-    {
-          /* Start YYX at -YYN if negative to avoid negative
-             indexes in YYCHECK.  In other words, skip the first
-             -YYN actions for this state because they are default
-             actions.  */
-      int yyxbegin = yyn < 0 ? -yyn : 0;
-      /* Stay within bounds of both yycheck and yytname.  */
-      int yychecklim = YYLAST_ - yyn + 1;
-      int yyxend = yychecklim < NTOKENS ? yychecklim : NTOKENS;
-      for (int yyx = yyxbegin; yyx < yyxend; ++yyx)
-        if (yycheck_[yyx + yyn] == yyx && yyx != SymbolKind.S_YYerror.getCode()
-            && !yyTableValueIsError(yytable_[yyx + yyn]))
-      {
-        if (yyarg == null)
-          yycount += 1;
-        else if (yycount == yyargn)
-          return 0; // FIXME: this is incorrect.
-        else
-          yyarg[yycount++] = SymbolKind.get(yyx);
       }
-    }
-    if (yyarg != null && yycount == yyoffset && yyoffset < yyargn)
-      yyarg[yycount] = null;
-    return yycount - yyoffset;
-  }
 }
 
 
 
-        
 
-/**
- * Build and emit a "syntax error" message in a user-defined way.
- *
- * @param yyctx  The context of the error.
- */
-private void yyreportSyntaxError(Context yyctx) {
-        yyerror("syntax error");
+  /**
+   * Information needed to get the list of expected tokens and to forge
+   * a syntax error diagnostic.
+   */
+  public static final class Context {
+    Context(Parser parser, YYStack stack, SymbolKind token) {
+      yyparser = parser;
+      yystack = stack;
+      yytoken = token;
+    }
+
+    private Parser yyparser;
+    private YYStack yystack;
+
+
+    /**
+     * The symbol kind of the lookahead token.
+     */
+    public final SymbolKind getToken() {
+      return yytoken;
+    }
+
+    private SymbolKind yytoken;
+    static final int NTOKENS = Parser.YYNTOKENS_;
+
+    /**
+     * Put in YYARG at most YYARGN of the expected tokens given the
+     * current YYCTX, and return the number of tokens stored in YYARG.  If
+     * YYARG is null, return the number of expected tokens (guaranteed to
+     * be less than YYNTOKENS).
+     */
+    int getExpectedTokens(SymbolKind yyarg[], int yyargn) {
+      return getExpectedTokens (yyarg, 0, yyargn);
+    }
+
+    int getExpectedTokens(SymbolKind yyarg[], int yyoffset, int yyargn) {
+      int yycount = yyoffset;
+      int yyn = yypact_[this.yystack.stateAt(0)];
+      if (!yyPactValueIsDefault(yyn))
+        {
+          /* Start YYX at -YYN if negative to avoid negative
+             indexes in YYCHECK.  In other words, skip the first
+             -YYN actions for this state because they are default
+             actions.  */
+          int yyxbegin = yyn < 0 ? -yyn : 0;
+          /* Stay within bounds of both yycheck and yytname.  */
+          int yychecklim = YYLAST_ - yyn + 1;
+          int yyxend = yychecklim < NTOKENS ? yychecklim : NTOKENS;
+          for (int yyx = yyxbegin; yyx < yyxend; ++yyx)
+            if (yycheck_[yyx + yyn] == yyx && yyx != SymbolKind.S_YYerror.getCode()
+                && !yyTableValueIsError(yytable_[yyx + yyn]))
+              {
+                if (yyarg == null)
+                  yycount += 1;
+                else if (yycount == yyargn)
+                  return 0; // FIXME: this is incorrect.
+                else
+                  yyarg[yycount++] = SymbolKind.get(yyx);
+              }
         }
+      if (yyarg != null && yycount == yyoffset && yyoffset < yyargn)
+        yyarg[yycount] = null;
+      return yycount - yyoffset;
+    }
+  }
 
-/**
- * Whether the given <code>yypact_</code> value indicates a defaulted state.
- * @param yyvalue   the value to check
- */
-private static boolean yyPactValueIsDefault(int yyvalue) {
-        return yyvalue == yypact_ninf_;
-        }
 
-/**
- * Whether the given <code>yytable_</code>
- * value indicates a syntax error.
- * @param yyvalue the value to check
- */
-private static boolean yyTableValueIsError(int yyvalue) {
-        return yyvalue == yytable_ninf_;
-        }
 
-private static final short yypact_ninf_ = -52;
-private static final byte yytable_ninf_ = -1;
 
-        /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
+
+  /**
+   * Build and emit a "syntax error" message in a user-defined way.
+   *
+   * @param yyctx  The context of the error.
+   */
+  private void yyreportSyntaxError(Context yyctx) {
+      yyerror("syntax error");
+  }
+
+  /**
+   * Whether the given <code>yypact_</code> value indicates a defaulted state.
+   * @param yyvalue   the value to check
+   */
+  private static boolean yyPactValueIsDefault(int yyvalue) {
+    return yyvalue == yypact_ninf_;
+  }
+
+  /**
+   * Whether the given <code>yytable_</code>
+   * value indicates a syntax error.
+   * @param yyvalue the value to check
+   */
+  private static boolean yyTableValueIsError(int yyvalue) {
+    return yyvalue == yytable_ninf_;
+  }
+
+  private static final short yypact_ninf_ = -53;
+  private static final byte yytable_ninf_ = -1;
+
+/* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
   private static final short[] yypact_ = yypact_init();
   private static final short[] yypact_init()
   {
     return new short[]
     {
-      68,   -52,   -52,   -51,   -52,    24,   -52,   -52,   118,   -27,
-     118,   -23,   118,   -52,   118,   -52,   118,    26,    10,   -52,
-      68,   -52,   -52,   -52,   -52,   -52,   198,   118,    86,     9,
-     -52,   224,   304,   -43,   267,   -44,   -21,   131,   -52,   187,
-     -52,   261,   -45,   -52,   -52,   118,   118,   118,   118,   118,
-     118,   118,   118,   118,   118,   118,   118,   118,   -52,   267,
-     -52,   -41,   -42,   -52,   -29,   -38,   118,   -38,   -52,   118,
-     -52,   324,   324,   324,   324,   324,   304,   288,   324,   324,
-     -49,   -49,   -52,   -52,   -52,   -26,   -22,   -36,   -33,    33,
-     -28,   158,   -52,   -52,   118,     6,   -38,   -31,    68,   -16,
-     118,    11,   -38,   267,   -52,   -52,   -38,    58,   -38,    -9,
-      -6,   -52,   -52,   -52,   -52,   -38,   -38,    21,   -52,   -52
+      68,   -53,   -53,   -51,   -53,    24,   -53,   -53,   118,   -27,
+     118,   -23,   118,   -53,   118,   -53,   118,    26,    10,   -53,
+      68,   -53,   -53,   -53,   -53,   -53,   239,   118,    86,   118,
+     -53,   260,   339,   -52,   302,   -44,   -21,   156,   -53,   218,
+     -53,   281,   -45,   -53,   -53,   118,   118,   118,   118,   118,
+     118,   118,   118,   118,   118,   118,   118,   118,   -53,   302,
+     -53,   -41,   131,   -53,   -29,   -38,   118,   -38,   -53,   118,
+     -53,   345,   345,   345,   345,   345,   339,   323,   345,   345,
+     -49,   -49,   -53,   -53,   -53,   -26,   -22,   -40,   -35,    32,
+     -28,   195,   -53,   -53,   118,     5,   -38,   -32,    68,   -31,
+     118,    11,   -38,   302,   -53,   -53,   -38,    49,   -38,    -9,
+      -7,   -53,   -53,   -53,   -53,   -38,   -38,    14,   -53,   -53
     };
   }
 
@@ -1610,13 +1610,13 @@ private static final byte yytable_ninf_ = -1;
   }
 
 /* YYPGOTO[NTERM-NUM].  */
-  private static final byte[] yypgoto_ = yypgoto_init();
-  private static final byte[] yypgoto_init()
+  private static final short[] yypgoto_ = yypgoto_init();
+  private static final short[] yypgoto_init()
   {
-    return new byte[]
+    return new short[]
     {
-     -52,   -52,   -19,   -52,   -52,   -20,   -52,   -52,   -52,   -52,
-     -40,    56,    -5,   -11,   -24
+     -53,   -53,   -19,   -53,   -53,   -25,   -53,   -53,   -53,   -53,
+     -42,   313,    -5,   -11,   -24
     };
   }
 
@@ -1640,44 +1640,48 @@ private static final byte yytable_ninf_ = -1;
     return new byte[]
     {
       31,    44,    86,    32,    33,    34,    27,    37,    36,    38,
-      43,    39,    41,    56,    57,    62,    28,    61,    66,    29,
-      99,   100,    59,    41,    64,    65,    70,    84,    89,    85,
-       1,    94,     1,    96,    95,    97,    98,    86,   106,    87,
+      43,    39,    41,    56,    57,    64,    28,    61,    66,    29,
+      99,   100,    59,    41,    62,    65,    70,    84,    89,    96,
+       1,    94,     1,    97,    95,    98,    86,   106,   108,    87,
       71,    72,    73,    74,    75,    76,    77,    78,    79,    80,
-      81,    82,    83,   108,     2,     3,     2,     3,    93,   110,
-     115,    91,   113,   116,    41,     6,     7,     6,     7,     8,
-     100,     8,     0,     0,     1,   104,   109,   119,     0,   107,
+      81,    82,    83,   113,     2,     3,     2,     3,    93,   110,
+     115,    91,   116,   100,    41,     6,     7,     6,     7,     8,
+     104,     8,     0,     0,     1,   119,   109,     0,     0,   107,
        0,     0,     0,     0,     0,    14,     0,    14,     0,   103,
       30,    16,     1,    16,    17,    34,    17,    40,     2,     3,
        0,     0,     0,     0,     4,     0,     0,     0,     5,     6,
        7,     0,     0,     8,     9,    10,     2,     3,    11,    12,
-      13,     0,     0,    92,     1,     0,     0,     6,     7,    14,
+      13,     0,     0,     0,     1,     0,     0,     6,     7,    14,
        0,     8,     0,     0,    15,    16,     0,     0,    17,    45,
       46,    47,    48,    49,     0,     0,     0,    14,     2,     3,
-       0,     0,   105,    16,    60,     0,    17,     0,   111,     6,
-       7,     0,   112,     8,   114,     0,    45,    46,    47,    48,
-      49,   117,   118,     0,    50,    51,     0,     0,     0,    14,
+       0,     0,     0,    16,    60,     0,    17,     0,     0,     6,
+       7,     0,     0,     8,    45,    46,    47,    48,    49,     0,
+       0,     0,     0,     0,    50,    51,     0,     0,     0,    14,
        0,     0,     0,     0,     0,    16,     0,     0,    17,    52,
-      53,    54,    55,    56,    57,    45,    46,    47,    48,    49,
-      67,    50,    51,     0,     0,     0,    45,    46,    47,    48,
-      49,     0,     0,     0,     0,     0,    52,    53,    54,    55,
-      56,    57,     0,     0,     0,     0,     0,   102,     0,     0,
-      50,    51,    45,    46,    47,    48,    49,     0,     0,     0,
-       0,    50,    51,     0,     0,    52,    53,    54,    55,    56,
-      57,     0,     0,     0,     0,    68,    52,    53,    54,    55,
-      56,    57,     0,     0,    58,     0,     0,    50,    51,    45,
-      46,    47,    48,    49,     0,    45,    46,    47,    48,    49,
-       0,     0,    52,    53,    54,    55,    56,    57,     0,     0,
-      63,     0,     0,     0,     0,     0,    45,    46,    47,    48,
-      49,     0,     0,     0,    50,    51,     0,     0,     0,     0,
-      50,    51,    45,    46,    47,    48,    49,    69,     0,    52,
-      53,    54,    55,    56,    57,    52,    53,    54,    55,    56,
-      57,    50,    -1,    -1,    -1,    -1,    -1,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,    52,    53,    54,    55,
-      56,    57,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    52,    53,    54,    55,    56,    57,     0,     0,
+      53,    54,    55,    56,    57,     0,     0,     0,     0,    50,
+      51,     0,    85,    45,    46,    47,    48,    49,     0,     0,
+       0,     0,     0,     0,    52,    53,    54,    55,    56,    57,
+       0,     0,     0,     0,     0,    67,    45,    46,    47,    48,
+      49,     0,     0,     0,     0,     0,     0,     0,    50,    51,
+       0,     0,     0,     0,     0,     0,     0,    45,    46,    47,
+      48,    49,     0,    52,    53,    54,    55,    56,    57,     0,
+       0,    50,    51,     0,   102,     0,     0,     0,    45,    46,
+      47,    48,    49,     0,     0,     0,    52,    53,    54,    55,
+      56,    57,    50,    51,     0,     0,    68,     0,     0,    45,
+      46,    47,    48,    49,     0,     0,     0,    52,    53,    54,
+      55,    56,    57,    50,    51,    58,     0,     0,     0,     0,
+      45,    46,    47,    48,    49,     0,     0,     0,    52,    53,
+      54,    55,    56,    57,    50,    51,    63,     0,     0,     0,
+       0,    45,    46,    47,    48,    49,     0,    69,     0,    52,
+      53,    54,    55,    56,    57,    50,    51,    45,    46,    47,
+      48,    49,     0,    -1,    -1,    -1,    -1,    -1,     0,     0,
+      52,    53,    54,    55,    56,    57,    50,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    -1,    -1,    54,    55,    56,    57
+      92,    52,    53,    54,    55,    56,    57,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,    52,    53,    54,
+      55,    56,    57,    -1,    -1,    54,    55,    56,    57,   105,
+       0,     0,     0,     0,     0,   111,     0,     0,     0,   112,
+       0,   114,     0,     0,     0,     0,     0,     0,   117,   118
     };
   }
 
@@ -1687,44 +1691,48 @@ private static final byte[] yycheck_ = yycheck_init();
     return new byte[]
     {
        5,    20,    31,     8,    31,    10,    57,    12,    31,    14,
-       0,    16,    17,    62,    63,     6,    67,    28,    39,    70,
-      48,    49,    27,    28,    67,    69,    71,    68,    66,    71,
-       6,    57,     6,    69,    56,    68,     3,    31,    69,    68,
+       0,    16,    17,    62,    63,    67,    67,    28,    39,    70,
+      48,    49,    27,    28,    29,    69,    71,    68,    66,    69,
+       6,    57,     6,    68,    56,     3,    31,    69,    69,    68,
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
-      55,    56,    57,    69,    30,    31,    30,    31,    69,    48,
-      69,    66,     4,    69,    69,    41,    42,    41,    42,    45,
-      49,    45,    -1,    -1,     6,    95,   100,   117,    -1,    98,
+      55,    56,    57,     4,    30,    31,    30,    31,    69,    48,
+      69,    66,    69,    49,    69,    41,    42,    41,    42,    45,
+      95,    45,    -1,    -1,     6,   117,   100,    -1,    -1,    98,
       -1,    -1,    -1,    -1,    -1,    61,    -1,    61,    -1,    94,
       66,    67,     6,    67,    70,   100,    70,    71,    30,    31,
       -1,    -1,    -1,    -1,    36,    -1,    -1,    -1,    40,    41,
       42,    -1,    -1,    45,    46,    47,    30,    31,    50,    51,
-      52,    -1,    -1,    67,     6,    -1,    -1,    41,    42,    61,
+      52,    -1,    -1,    -1,     6,    -1,    -1,    41,    42,    61,
       -1,    45,    -1,    -1,    66,    67,    -1,    -1,    70,     8,
        9,    10,    11,    12,    -1,    -1,    -1,    61,    30,    31,
-      -1,    -1,    96,    67,    68,    -1,    70,    -1,   102,    41,
-      42,    -1,   106,    45,   108,    -1,     8,     9,    10,    11,
-      12,   115,   116,    -1,    43,    44,    -1,    -1,    -1,    61,
+      -1,    -1,    -1,    67,    68,    -1,    70,    -1,    -1,    41,
+      42,    -1,    -1,    45,     8,     9,    10,    11,    12,    -1,
+      -1,    -1,    -1,    -1,    43,    44,    -1,    -1,    -1,    61,
       -1,    -1,    -1,    -1,    -1,    67,    -1,    -1,    70,    58,
-      59,    60,    61,    62,    63,     8,     9,    10,    11,    12,
-      69,    43,    44,    -1,    -1,    -1,     8,     9,    10,    11,
-      12,    -1,    -1,    -1,    -1,    -1,    58,    59,    60,    61,
-      62,    63,    -1,    -1,    -1,    -1,    -1,    69,    -1,    -1,
-      43,    44,     8,     9,    10,    11,    12,    -1,    -1,    -1,
-      -1,    43,    44,    -1,    -1,    58,    59,    60,    61,    62,
-      63,    -1,    -1,    -1,    -1,    68,    58,    59,    60,    61,
-      62,    63,    -1,    -1,    66,    -1,    -1,    43,    44,     8,
-       9,    10,    11,    12,    -1,     8,     9,    10,    11,    12,
-      -1,    -1,    58,    59,    60,    61,    62,    63,    -1,    -1,
-      66,    -1,    -1,    -1,    -1,    -1,     8,     9,    10,    11,
-      12,    -1,    -1,    -1,    43,    44,    -1,    -1,    -1,    -1,
-      43,    44,     8,     9,    10,    11,    12,    56,    -1,    58,
-      59,    60,    61,    62,    63,    58,    59,    60,    61,    62,
-      63,    43,     8,     9,    10,    11,    12,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    58,    59,    60,    61,
-      62,    63,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    58,    59,    60,    61,    62,    63,    -1,    -1,
+      59,    60,    61,    62,    63,    -1,    -1,    -1,    -1,    43,
+      44,    -1,    71,     8,     9,    10,    11,    12,    -1,    -1,
+      -1,    -1,    -1,    -1,    58,    59,    60,    61,    62,    63,
+      -1,    -1,    -1,    -1,    -1,    69,     8,     9,    10,    11,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    43,    44,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,     8,     9,    10,
+      11,    12,    -1,    58,    59,    60,    61,    62,    63,    -1,
+      -1,    43,    44,    -1,    69,    -1,    -1,    -1,     8,     9,
+      10,    11,    12,    -1,    -1,    -1,    58,    59,    60,    61,
+      62,    63,    43,    44,    -1,    -1,    68,    -1,    -1,     8,
+       9,    10,    11,    12,    -1,    -1,    -1,    58,    59,    60,
+      61,    62,    63,    43,    44,    66,    -1,    -1,    -1,    -1,
+       8,     9,    10,    11,    12,    -1,    -1,    -1,    58,    59,
+      60,    61,    62,    63,    43,    44,    66,    -1,    -1,    -1,
+      -1,     8,     9,    10,    11,    12,    -1,    56,    -1,    58,
+      59,    60,    61,    62,    63,    43,    44,     8,     9,    10,
+      11,    12,    -1,     8,     9,    10,    11,    12,    -1,    -1,
+      58,    59,    60,    61,    62,    63,    43,    -1,    -1,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    58,    59,    60,    61,    62,    63
+      67,    58,    59,    60,    61,    62,    63,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    58,    59,    60,
+      61,    62,    63,    58,    59,    60,    61,    62,    63,    96,
+      -1,    -1,    -1,    -1,    -1,   102,    -1,    -1,    -1,   106,
+      -1,   108,    -1,    -1,    -1,    -1,    -1,    -1,   115,   116
     };
   }
 
@@ -1741,7 +1749,7 @@ private static final byte[] yycheck_ = yycheck_init();
       66,    84,    84,    31,    84,    86,    31,    84,    84,    84,
       71,    84,    85,     0,    74,     8,     9,    10,    11,    12,
       43,    44,    58,    59,    60,    61,    62,    63,    66,    84,
-      68,    85,     6,    66,    67,    69,    39,    69,    68,    56,
+      68,    85,    84,    66,    67,    69,    39,    69,    68,    56,
       71,    84,    84,    84,    84,    84,    84,    84,    84,    84,
       84,    84,    84,    84,    68,    71,    31,    68,    77,    66,
       83,    84,    83,    85,    57,    56,    69,    68,     3,    48,
@@ -1783,22 +1791,22 @@ private static final byte[] yycheck_ = yycheck_init();
   }
 
 
-        
+
 
   /* YYTRANSLATE_(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
      as returned by yylex, with out-of-bounds checking.  */
-private static final SymbolKind yytranslate_(int t)
-          {
-        // Last valid token kind.
-        int code_max = 311;
-        if (t <= 0)
-        return SymbolKind.S_YYEOF;
-        else if (t <= code_max)
-        return SymbolKind.get(yytranslate_table_[t]);
-        else
-        return SymbolKind.S_YYUNDEF;
-        }
-        private static final byte[] yytranslate_table_ = yytranslate_table_init();
+  private static final SymbolKind yytranslate_(int t)
+  {
+    // Last valid token kind.
+    int code_max = 311;
+    if (t <= 0)
+      return SymbolKind.S_YYEOF;
+    else if (t <= code_max)
+      return SymbolKind.get(yytranslate_table_[t]);
+    else
+      return SymbolKind.S_YYUNDEF;
+  }
+  private static final byte[] yytranslate_table_ = yytranslate_table_init();
   private static final byte[] yytranslate_table_init()
   {
     return new byte[]
@@ -1837,21 +1845,20 @@ private static final SymbolKind yytranslate_(int t)
       55,    64
     };
   }
-        
 
-private static final int YYLAST_ = 387;
-private static final int YYEMPTY_ = -2;
-private static final int YYFINAL_ = 43;
-private static final int YYNTOKENS_ = 72;
 
-        /* Unqualified %code blocks.  */
+  private static final int YYLAST_ = 429;
+  private static final int YYEMPTY_ = -2;
+  private static final int YYFINAL_ = 43;
+  private static final int YYNTOKENS_ = 72;
+
+/* Unqualified %code blocks.  */
 /* "./parser/pythonparser.y":22  */
 
 	public Program program;
 
-/* "./src/compiler/parser/Parser.java":1853  */
+/* "./src/compiler/parser/Parser.java":1861  */
 
-        }
-                /* "./parser/pythonparser.y":349  */
+}
+/* "./parser/pythonparser.y":349  */
 
-        

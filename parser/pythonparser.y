@@ -312,13 +312,13 @@ IDENTIFIER {
 | '(' exp ')' {
 	$$=$2;
 }
-| IDENTIFIER '[' NUMBER ']' {
+| IDENTIFIER '[' exp ']' {
 	$$=new IndexExpression($3,$1);
 }
 | IDENTIFIER '=' exp {
 	$$=new AssignmentExpression($1,null,$3); //Adds a new symbol to the context
 }
-| IDENTIFIER '[' NUMBER ']' '=' exp{
+| IDENTIFIER '[' exp ']' '=' exp{
 	$$=new AssignmentExpression($1,$3,$6); //Assign a list element to a new value
 }
 | IDENTIFIER '(' exp_list ')' {

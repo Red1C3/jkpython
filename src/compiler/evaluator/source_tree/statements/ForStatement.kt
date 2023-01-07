@@ -5,6 +5,8 @@ import compiler.evaluator.core.Context
 import compiler.evaluator.core.ExecutionSignal
 import compiler.evaluator.source_tree.statements.expressions.Expression
 import compiler.evaluator.source_tree.statements.expressions.Identifier
+import compiler.evaluator.visualization.AST
+import compiler.evaluator.visualization.LabeledEdge
 import kotlin.math.sign
 
 class ForStatement(
@@ -12,6 +14,12 @@ class ForStatement(
         private val iterable: Expression, //The list expression
         private val block: StatementsBlock //for-loop block
         ) :Statement(){
+    init {
+        AST.instance().g.addVertex(this)
+        AST.instance().g.addEdge(this,iterator,LabeledEdge("iterator"))
+        AST.instance().g.addEdge(this,iterable,LabeledEdge("list exp"))
+        AST.instance().g.addEdge(this,block,LabeledEdge(""))
+    }
     //Side note: when defining variables inside loops in python they are
     //defined in the surrounding scope, hence, no need to a local scope
     override fun execute(context: Context): ExecutionSignal {
@@ -20,7 +28,12 @@ class ForStatement(
             context.setVariable(iterator.name,listVal[i]) //Assign the current loop value in the new scope
             val signal=block.execute(context)
             if(signal===ExecutionSignal.BreakOperation) break
+            if(signal is ExecutionSignal.Return) return signal
         }
         return ExecutionSignal.NormalOperation
+    }
+
+    override fun toString(): String {
+        return "for"
     }
 }

@@ -24,4 +24,8 @@ class PyFunction(
 
         return PyNone
     }
+
+    override fun toString(): String {
+        return "Function"
+    }
 }

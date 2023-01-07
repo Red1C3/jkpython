@@ -12,4 +12,8 @@ object PyPrint : PyCallable {
         println(arguments.joinToString(" ") { it.toString() })
         return PyNone
     }
+
+    override fun toString(): String {
+        return "Function"
+    }
 }

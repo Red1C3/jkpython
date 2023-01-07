@@ -7,6 +7,8 @@ import compiler.evaluator.core.Context
 import compiler.evaluator.core.ExecutionSignal
 import compiler.evaluator.core.PyObject
 import compiler.evaluator.source_tree.statements.expressions.Expression
+import compiler.evaluator.visualization.AST
+import compiler.evaluator.visualization.LabeledEdge
 
 class IfStatement(
         private val condition: Expression,
@@ -14,6 +16,17 @@ class IfStatement(
         private val elseifs:List<Pair<Expression, StatementsBlock>>, //All else ifs statements
         private val lastElse: StatementsBlock?
         ): Statement() {
+    init {
+        AST.instance().g.addVertex(this)
+        AST.instance().g.addEdge(this,condition,LabeledEdge("cond"))
+        AST.instance().g.addEdge(this,block,LabeledEdge())
+        for (elseif in elseifs){
+            AST.instance().g.addEdge(this,elseif.first,LabeledEdge("elif-cond"))
+            AST.instance().g.addEdge(this,elseif.second,LabeledEdge("elif-block"))
+        }
+        if (lastElse!=null)
+            AST.instance().g.addEdge(this,lastElse,LabeledEdge("else"))
+    }
     //Side note: when defining variables inside ifs in python they are
     //defined in the surrounding scope, hence, no need to a local scope
     override fun execute(context: Context): ExecutionSignal {
@@ -37,5 +50,9 @@ class IfStatement(
         return ((condition is PyBool) && condition.value)||
                 ((condition is PyFloat)&&condition.value!=0.0)||
                 ((condition is PyString) && condition.value.isNotEmpty())
+    }
+
+    override fun toString(): String {
+        return "if stmt"
     }
 }
