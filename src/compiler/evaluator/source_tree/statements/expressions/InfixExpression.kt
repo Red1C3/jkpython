@@ -15,11 +15,6 @@ class InfixExpression(
 //        AST.instance().g.addEdge(this, firstOperand, LabeledEdge())
 //        AST.instance().g.addEdge(this, secondOperand, LabeledEdge())
 //    }
-
-    override fun toString(): String {
-        return operator
-    }
-
     override fun evaluate(context: Context): PyObject {
         val first = firstOperand.evaluate(context)
         val second = secondOperand.evaluate(context)
