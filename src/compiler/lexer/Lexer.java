@@ -69,8 +69,9 @@ public class Lexer {
         cur=0;
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (isWindows) {
-            System.out.println("NO WINDOWS COMMAND FOR RUNNING THE LEXER, PLEASE INSERT ONE");
-            return null;
+//            System.out.println("NO WINDOWS COMMAND FOR RUNNING THE LEXER, PLEASE INSERT ONE");
+//            return null;
+            processBuilder.command("wsl", "./lexer/pythonlexer");
             //TODO windows command for running the lexer
         } else {
             processBuilder.command("sh", "-c", SHELL_RUN);
