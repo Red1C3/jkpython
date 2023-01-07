@@ -80,6 +80,8 @@
       case FALSE_TOK:
       	  yylval=SourceNode.Companion.addMeta(new Literal(false),token.lineNum,token.colNum,null);
       	  return FALSE_TOK;
+      case COMMENT:
+      	  return (int) '\n'; //FIXME just anything that does nothing
       default:
           return token.getType();
     }
@@ -259,6 +261,7 @@ IDENTIFIER {
 }
 | NUMBER {$$=$1;}
 | STRING {$$=$1;}
+| COMMENT {}
 | '[' exp_list ']' {
 	$$=new ListExpression($2); //Create a list in the host language
 }
