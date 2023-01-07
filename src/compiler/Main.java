@@ -1,6 +1,8 @@
 package compiler;
 
-import compiler.evaluator.core.StandardContext;
+import compiler.evaluator.core.BuiltinsContext;
+import compiler.evaluator.source_tree.SourceNode;
+import compiler.evaluator.source_tree.statements.expressions.Literal;
 import compiler.evaluator.visualization.AST;
 import compiler.lexer.Lexer;
 import compiler.parser.Parser;
@@ -29,10 +31,10 @@ public class Main {
             Parser parser = new Parser(lexer);
             parser.parse();
 
-            AST.instance().outputGraph();
+//            AST.instance().outputGraph();
 
             //Some global identifiers container
-            StandardContext context=new StandardContext();
+            BuiltinsContext context=new BuiltinsContext();
 
             //program.run evaluates the AST stored in program
             parser.program.run(context);
@@ -48,7 +50,7 @@ public class Main {
         System.out.print(PROMPT);
 
         //Some global identifiers container, outside the loop to preserve symbols
-        StandardContext context=new StandardContext();
+        BuiltinsContext context=new BuiltinsContext();
 
         while ((line = scanner.nextLine()) != null) {
             //Run the interpreting process line by line

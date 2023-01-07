@@ -21,20 +21,20 @@ public class SymbolTable {
         contexts.remove(context);
     }
     public void print(){
-        System.out.println("Symbol Table:");
-        System.out.printf("%-5s %-10s %-10s %-5s\n","Scope","Identifier", "Value","Outer");
-        for(Context context:contexts){
-            //Get all variables in each context
-            //k=identifier
-            //v=associated PyObject
-            context.getVariables().forEach((k,v)->{
-                if(context.getParent()!=null){
-                    System.out.printf("%-5s %-10s %-10s %-5s\n",context,k,v,context.getParent());
-                }else{
-                    System.out.printf("%-5s %-10s %-10s %-5s\n",context,k,v,"");
-                }
-            });
-
-        }
+//        System.out.println("Symbol Table:");
+//        System.out.printf("%-5s %-10s %-10s %-5s\n","Scope","Identifier", "Value","Outer");
+//        for(Context context:contexts){
+//            //Get all variables in each context
+//            //k=identifier
+//            //v=associated PyObject
+//            context.getVariables().forEach((k,v)->{
+//                if(context.getParent()!=null){
+//                    System.out.printf("%-5s %-10s %-10s %-5s\n",context,k,v,context.getParent());
+//                }else{
+//                    System.out.printf("%-5s %-10s %-10s %-5s\n",context,k,v,"");
+//                }
+//            });
+//
+//        }
     }
 }

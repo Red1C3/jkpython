@@ -12,11 +12,15 @@ open class ExecutionSignal private constructor() {
      */
     object NormalOperation : ExecutionSignal()
 
-    //Signal a break statement occurrence
-    object BreakOperation:ExecutionSignal()
+    /**
+     * Break to execution of a loop statement.
+     */
+    object BreakOperation : ExecutionSignal()
 
-    //Signal a continue statement occurrence
-    object ContinueOperation:ExecutionSignal()
+    /**
+     * Skip the current iteration of a loop statement.
+     */
+    object ContinueOperation: ExecutionSignal()
 
     /**
      * Stop the execution of the current function and return a value.

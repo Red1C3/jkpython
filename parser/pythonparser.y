@@ -11,6 +11,7 @@
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
   import compiler.evaluator.source_tree.Program;
+  import compiler.evaluator.source_tree.SourceNode;
   import compiler.evaluator.source_tree.statements.expressions.*;
   import compiler.evaluator.source_tree.statements.*;
   import compiler.evaluator.builtins.types.*;
@@ -55,7 +56,7 @@
       case NUMBER:
       	  //Return a literal (AST leaf that contains a primitive type) so it gets added to the AST
       	  //Literals are host language variables
-          yylval=new Literal(Double.parseDouble(token.getLiteral()));
+          yylval=SourceNode.Companion.addMeta(new Literal(Double.parseDouble(token.getLiteral())),token.lineNum,token.colNum,null);
           return NUMBER;
       case NEWLINE:
           return (int) '\n';
@@ -63,21 +64,21 @@
           String str=token.getLiteral();
           //Remove quotation marks to allow operations on strings
           if(str.startsWith("'''") || str.startsWith("\"\"\""))
-          	yylval=new Literal(str.substring(3,str.length()-3));
+          	yylval=SourceNode.Companion.addMeta(new Literal(str.substring(3,str.length()-3)),token.lineNum,token.colNum,null);
           else
-          	yylval=new Literal(str.substring(1,str.length()-1));
+          	yylval=SourceNode.Companion.addMeta(new Literal(str.substring(1,str.length()-1)),token.lineNum,token.colNum,null);
           return STRING;
       case IDENTIFIER:
           //AST node that marks an identifier (Also Identifier type is now
           //Identifier (as in the evaluator's))
-          yylval=new Identifier(token.getLiteral());
+          yylval=SourceNode.Companion.addMeta(new Identifier(token.getLiteral()),token.lineNum,token.colNum,null);
           return IDENTIFIER;
 
       case TRUE_TOK:
-          yylval=new Literal(true);
+          yylval=SourceNode.Companion.addMeta(new Literal(true),token.lineNum,token.colNum,null);
           return TRUE_TOK;
       case FALSE_TOK:
-      	  yylval=new Literal(false);
+      	  yylval=SourceNode.Companion.addMeta(new Literal(false),token.lineNum,token.colNum,null);
       	  return FALSE_TOK;
       default:
           return token.getType();
@@ -313,13 +314,13 @@ IDENTIFIER {
 	$$=$2;
 }
 | IDENTIFIER '[' exp ']' {
-	$$=new IndexExpression($3,$1);
+	$$=new IndexExpression($1,$3);
 }
 | IDENTIFIER '=' exp {
-	$$=new AssignmentExpression($1,null,$3); //Adds a new symbol to the context
+	$$=new AssignmentExpression($1,$3,null); //Adds a new symbol to the context
 }
 | IDENTIFIER '[' exp ']' '=' exp{
-	$$=new AssignmentExpression($1,$3,$6); //Assign a list element to a new value
+	$$=new AssignmentExpression($1,$6,$3); //Assign a list element to a new value
 }
 | IDENTIFIER '(' exp_list ')' {
 	//Define a function call using the identifier and the parameters list

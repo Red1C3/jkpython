@@ -1,5 +1,5 @@
 
-# Calculator 05
+# Calculator 07
 
 A prototype of a calculator runtime that evolved into a python interpreter.
 
@@ -17,12 +17,27 @@ print("space =", space)
 
 ## Incrementation Features
 
-- Introduced `ExecutionSignal` that statements return,
-to indicate if the execution flow must continue normally or not.
-- Introduced `StatementsBlock` to make executing a group of statements more straightforward.
-- Added support for `ReturnStatement`.
+- `SourceNode`s now have `addMeta` which allows to attach some parser information to the nodes.
+  - Like `line`, `column` and `filename`.
+  - This is useful for both error reporting and printing the source-tree.
+- `SourceNode` when converted to a string now displays a fancy/pretty formatted text view of the tree.
+  - The tree also includes the symbols tables if they are analyzed.
 
-## The suggested plan for next iterations
+## The current plan for next generations
+
+- For Generation 7:
+  - ~~Add `line` and `column` parameters to all nodes.~~ Done.
+  - ~~Implement a human-readable format for printing the source-tree.~~
+  - Create source-tree node for all the currently available grammar, but with no execution implementation.
+- For Generation 8:
+  - Implement a draft of the boolean builtin type.
+  - Support comparison expressions.
+  - Support conditional statements and loops?
+  - Support lists?
+- For Generation 9:
+  - Support the `global` and `nonlocal` keywords.
+
+## The old plan for next generations
 
 - ~~For Generation `N+1`:~~ Done.
   - ~~Introduce `StatementsBlock` which groups statements together.~~
@@ -30,11 +45,11 @@ to indicate if the execution flow must continue normally or not.
       - ~~So it can be reused between functions, loops, conditional statements, etc...~~
   - ~~Add `return` statements support.~~
 - For Generation `N+2`:
-  - Have a parent class for all the source tree nodes.
-  - Support the node visitor pattern.
-  - Generate symbols tables for each scope (by utilizing the nodes visitor pattern).
-  - Support the `global` keyword.
-  - Fix the early access issue of the local variables.
+  - ~~Have a parent class for all the source tree nodes.~~ Done.
+  - ~~Support the node visitor pattern.~~ Done.
+  - ~~Generate symbols tables for each scope (by utilizing the nodes visitor pattern).~~ Done.
+  - Support the `global` and `nonlocal` keywords.
+  - ~~Fix the early access issue of the local variables.~~ Done.
 - For Generation `N+3`?
   - Implement a draft of the boolean builtin type.
   - Support comparison expressions.
@@ -43,9 +58,6 @@ to indicate if the execution flow must continue normally or not.
 - For Generation `N+4`?
   - Collect location information of the nodes, so tracebacks can be made for error reporting.
   - Support exceptions and look for doing error reporting?
-
-> ℹ️ Note: The ordering maybe better be changed to give priority to start coupling
-the evaluator with the parser.
 
 ## Supported Statements & Expressions
 
@@ -72,7 +84,7 @@ the evaluator with the parser.
 - How to handle runtime exceptions with this structure?
 - ~~It's necessary to release the `Double` constraint in the next generation
 and introduce statements support.~~ Done :)
-- In the following sample, the variable in the whole function scope is considered local:
+- ~~In the following sample, the variable in the whole function scope is considered local:~~ Done.
 ```python
 my_var=5
 
@@ -87,7 +99,7 @@ my_func()
 # scan for the identifiers inside its scope?
 # This might be what's known as creating a "symbols table".
 ```
-- How to detect the type of objects in Python's world?
+- ~~How to detect the type of objects in Python's world?~~ Done.
 
 ### Things TODO
 

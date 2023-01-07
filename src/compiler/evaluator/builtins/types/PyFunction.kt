@@ -7,15 +7,18 @@ import compiler.evaluator.source_tree.statements.expressions.Identifier
 
 class PyFunction(
         private val id: Identifier, //TODO: Use the id in errors reporting.
+        private val scope: Scope,
         private val parametersNames: List<Identifier>,
         private val body: StatementsBlock,
-        private val ctx:Context //Function declaration scope
+        private val declarationContext: Context,
 ) : PyCallable {
     override fun call(arguments: List<PyObject>): PyObject {
-        val subContext = ctx.createSubContext() //A sub scope of the function declaration scope
-        (parametersNames zip arguments).forEach {
-            val (parameterId, parameterValue) = it
-            subContext.setVariable(parameterId.name, parameterValue)
+        // A sub scope of the function declaration scope
+        val subContext = declarationContext.createSubContext(scope)
+
+        // Provide the parameters
+        (parametersNames zip arguments).forEach { (id, value) ->
+            subContext.setVariable(id.name, value)
         }
 
         val resultSignal = body.execute(subContext)
@@ -23,9 +26,5 @@ class PyFunction(
             return resultSignal.value
 
         return PyNone
-    }
-
-    override fun toString(): String {
-        return "Function"
     }
 }

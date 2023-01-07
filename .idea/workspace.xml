@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Implement PyList append function">
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Very big changes">
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/BuiltinsContext.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/ExplorerSignal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/Scope.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/SubScoped.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/SourceNode.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/lalr1-patched.java" beforeDir="false" afterPath="$PROJECT_DIR$/parser/lalr1-patched.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/Calculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/Calculator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyAppend.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyAppend.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyBool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyBool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFloat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFloat.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyString.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyString.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/StandardContext.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/StandardContext.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/ExecutionSignal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/ExecutionSignal.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/PyObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/core/PyObject.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/StandardContext.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/Program.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/Program.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/BreakStatement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/BreakStatement.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ContinueStatement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ContinueStatement.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ForStatement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ForStatement.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/IfStatement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/IfStatement.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ReturnStatement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ReturnStatement.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/Statement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/Statement.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/StatementsBlock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/StatementsBlock.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/WhileStatement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/WhileStatement.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/AssignmentExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/AssignmentExpression.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Expression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Expression.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Identifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Identifier.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/IndexExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/IndexExpression.kt" afterDir="false" />
@@ -29,6 +43,8 @@
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/ListExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/ListExpression.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Literal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Literal.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/PrefixExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/PrefixExpression.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/AST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/visualization/AST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/evaluator/visualization/SymbolTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,8 +90,9 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "/home/reddeadalice/Projects/python-compileruwu/lib",
+    "last_opened_file_path": "/home/reddeadalice/Projects/python-compileruwu/src/compiler",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
@@ -106,10 +123,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="compiler.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="compiler.Main" />
       <module name="python-compileruwu" />
       <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Graphviz" />
         <option name="Make" enabled="true" />
       </method>
     </configuration>
@@ -170,7 +188,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main - File" />
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.compiler.Main" />
       <item itemvalue="JUnit.LexerTest.test" />
       <item itemvalue="JUnit.LexerTest.testa" />
       <item itemvalue="JUnit.LexerTest.testTest" />
@@ -178,7 +196,7 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.compiler.Main" />
         <item itemvalue="Kotlin.CalculatorKt" />
         <item itemvalue="JUnit.LexerTest.testTest" />
         <item itemvalue="JUnit.LexerTest.testa" />
@@ -391,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673001941504</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Very big changes">
+      <created>1673106848066</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1673106848066</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -409,7 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improve Lexer testing, Create Token class" />
     <MESSAGE value="Improve Token printing" />
     <MESSAGE value="Switch token types to int" />
     <MESSAGE value="Assemble lexer-bridge" />
@@ -434,6 +458,7 @@
     <MESSAGE value="Implement setting a value to a list element" />
     <MESSAGE value="Patch functions scoping" />
     <MESSAGE value="Implement PyList append function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement PyList append function" />
+    <MESSAGE value="Very big changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Very big changes" />
   </component>
 </project>

@@ -1,43 +1,36 @@
 package compiler.evaluator.core
 
-import compiler.evaluator.visualization.SymbolTable
-
 /**
  * The execution context.
  * Stores the variables list and their contents.
  */
 abstract class Context(
-    public val parent: Context?
+        val scope: Scope,
+        val parent: Context? = null,
 ) {
-    constructor() : this(null)
-    private val id:Int = i
+    private val scopesChain: List<Scope> = (parent?.scopesChain ?: listOf()) + listOf(scope)
+
+    private val variables = HashMap<String, PyObject>()
 
     init {
-        i++
+        scope.analyze(scopesChain)
     }
 
-    public val variables = HashMap<String, PyObject>()
-
-
-    fun lookupVariable(name: String): PyObject = (variables[name] ?: parent?.lookupVariable(name))!!
+    fun lookupVariable(name: String): PyObject {
+        val symbolContext = scope.findSymbolContext(name, this)
+        val value = symbolContext.variables[name]
+        if (value === null) throw Error("cannot access local variable '$name' where it is not associated with a value")
+        return value
+    }
 
     fun setVariable(name: String, value: PyObject) {
-        variables[name] = value
-    }
-    fun createSubContext(): Context {
-        return SubContext(this)
+        val symbolContext = scope.findSymbolContext(name, this)
+        symbolContext.variables[name] = value
     }
 
-    private class SubContext(parent: Context?) : Context(parent){
-        init {
-            SymbolTable.instance().addContext(this)
-        }
+    fun createSubContext(subScope: Scope): Context {
+        return SubContext(subScope, this)
     }
 
-    override fun toString(): String {
-        return id.toString()
-    }
-    companion object{
-        var i=0
-    }
+    private class SubContext(scope: Scope, parent: Context) : Context(scope, parent)
 }

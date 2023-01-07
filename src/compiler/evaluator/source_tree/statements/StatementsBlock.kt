@@ -2,34 +2,26 @@ package compiler.evaluator.source_tree.statements
 
 import compiler.evaluator.core.Context
 import compiler.evaluator.core.ExecutionSignal
-import compiler.evaluator.source_tree.statements.Statement
-import compiler.evaluator.visualization.AST
-import compiler.evaluator.visualization.LabeledEdge
-import compiler.evaluator.visualization.SymbolTable
+import compiler.evaluator.core.ExecutionSignal.NormalOperation
 
 class StatementsBlock(
     private vararg val statements: Statement
-): Statement() {
-    init{
-        AST.instance().g.addVertex(this)
-        for(stmt in statements){
-            AST.instance().g.addEdge(this,stmt,LabeledEdge())
-        }
-    }
+) : Statement(statements.toList()) {
     override fun execute(context: Context): ExecutionSignal {
         for (statement in statements) {
             val signal = statement.execute(context)
-
-            SymbolTable.instance().print()
-
-            if (signal !== ExecutionSignal.NormalOperation)
+            if (signal !== NormalOperation)
                 return signal
         }
 
-        return ExecutionSignal.NormalOperation
+        return NormalOperation
     }
 
+    override fun getPrintableFields(): HashMap<String, Any?> = hashMapOf()
+
     override fun toString(): String {
-        return "block"
+        return "StatementsBlock {\n${
+            statements.joinToString("\n\n") { "* $it" }.prependIndent("\t")
+        }\n}"
     }
 }

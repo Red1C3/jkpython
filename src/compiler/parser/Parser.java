@@ -46,6 +46,7 @@ import java.util.ArrayList;
   import compiler.lexer.Lexer;
   import compiler.lexer.Token;
   import compiler.evaluator.source_tree.Program;
+  import compiler.evaluator.source_tree.SourceNode;
   import compiler.evaluator.source_tree.statements.expressions.*;
   import compiler.evaluator.source_tree.statements.*;
   import compiler.evaluator.builtins.types.*;
@@ -53,7 +54,7 @@ import java.util.ArrayList;
   import java.util.ArrayList;
   import kotlin.Pair;
 
-/* "./src/compiler/parser/Parser.java":57  */
+/* "./src/compiler/parser/Parser.java":58  */
 
 /**
  * A Bison parser, automatically generated from <tt>./parser/pythonparser.y</tt>.
@@ -490,7 +491,7 @@ public class Parser
 
   private class YYLexer implements Lexer {
 /* "%code lexer" blocks.  */
-/* "./parser/pythonparser.y":31  */
+/* "./parser/pythonparser.y":32  */
 
   private compiler.lexer.Lexer lexer;
 
@@ -518,7 +519,7 @@ public class Parser
       case NUMBER:
       	  //Return a literal (AST leaf that contains a primitive type) so it gets added to the AST
       	  //Literals are host language variables
-          yylval=new Literal(Double.parseDouble(token.getLiteral()));
+          yylval=SourceNode.Companion.addMeta(new Literal(Double.parseDouble(token.getLiteral())),token.lineNum,token.colNum,null);
           return NUMBER;
       case NEWLINE:
           return (int) '\n';
@@ -526,28 +527,28 @@ public class Parser
           String str=token.getLiteral();
           //Remove quotation marks to allow operations on strings
           if(str.startsWith("'''") || str.startsWith("\"\"\""))
-          	yylval=new Literal(str.substring(3,str.length()-3));
+          	yylval=SourceNode.Companion.addMeta(new Literal(str.substring(3,str.length()-3)),token.lineNum,token.colNum,null);
           else
-          	yylval=new Literal(str.substring(1,str.length()-1));
+          	yylval=SourceNode.Companion.addMeta(new Literal(str.substring(1,str.length()-1)),token.lineNum,token.colNum,null);
           return STRING;
       case IDENTIFIER:
           //AST node that marks an identifier (Also Identifier type is now
           //Identifier (as in the evaluator's))
-          yylval=new Identifier(token.getLiteral());
+          yylval=SourceNode.Companion.addMeta(new Identifier(token.getLiteral()),token.lineNum,token.colNum,null);
           return IDENTIFIER;
 
       case TRUE_TOK:
-          yylval=new Literal(true);
+          yylval=SourceNode.Companion.addMeta(new Literal(true),token.lineNum,token.colNum,null);
           return TRUE_TOK;
       case FALSE_TOK:
-      	  yylval=new Literal(false);
+      	  yylval=SourceNode.Companion.addMeta(new Literal(false),token.lineNum,token.colNum,null);
       	  return FALSE_TOK;
       default:
           return token.getType();
     }
   }
 
-/* "./src/compiler/parser/Parser.java":551  */
+/* "./src/compiler/parser/Parser.java":552  */
 
   }
 
@@ -730,7 +731,7 @@ public class Parser
       {
           case 3: /* prog: statements  */
   if (yyn == 3)
-    /* "./parser/pythonparser.y":173  */
+    /* "./parser/pythonparser.y":174  */
              {
 	//The AST root node
 	program = new Program(new StatementsBlock(((List<Statement>)(yystack.valueAt (0))).toArray(new Statement[0])));
@@ -740,14 +741,14 @@ public class Parser
 
   case 4: /* statements: statement  */
   if (yyn == 4)
-    /* "./parser/pythonparser.y":180  */
+    /* "./parser/pythonparser.y":181  */
           {yyval=new ArrayList<>(List.of(((Statement)(yystack.valueAt (0)))));};
   break;
 
 
   case 5: /* statements: statement statements  */
   if (yyn == 5)
-    /* "./parser/pythonparser.y":181  */
+    /* "./parser/pythonparser.y":182  */
                      {
 	yyval=new ArrayList<>(List.of(((Statement)(yystack.valueAt (1)))));
 	((List)(yyval)).addAll(((List<Statement>)(yystack.valueAt (0)))); //Combine all statements together
@@ -757,77 +758,77 @@ public class Parser
 
   case 6: /* statement: '\n'  */
   if (yyn == 6)
-    /* "./parser/pythonparser.y":188  */
+    /* "./parser/pythonparser.y":189  */
      {};
   break;
 
 
   case 7: /* statement: exp '\n'  */
   if (yyn == 7)
-    /* "./parser/pythonparser.y":189  */
+    /* "./parser/pythonparser.y":190  */
            {yyval=((Expression)(yystack.valueAt (1)));};
   break;
 
 
   case 8: /* statement: if_statement  */
   if (yyn == 8)
-    /* "./parser/pythonparser.y":190  */
+    /* "./parser/pythonparser.y":191  */
                {yyval=((IfStatement)(yystack.valueAt (0)));};
   break;
 
 
   case 9: /* statement: for_statement  */
   if (yyn == 9)
-    /* "./parser/pythonparser.y":191  */
+    /* "./parser/pythonparser.y":192  */
                 {yyval=((ForStatement)(yystack.valueAt (0)));};
   break;
 
 
   case 10: /* statement: while_statement  */
   if (yyn == 10)
-    /* "./parser/pythonparser.y":192  */
+    /* "./parser/pythonparser.y":193  */
                   {yyval=((WhileStatement)(yystack.valueAt (0)));};
   break;
 
 
   case 11: /* statement: function_statement  */
   if (yyn == 11)
-    /* "./parser/pythonparser.y":193  */
+    /* "./parser/pythonparser.y":194  */
                      {yyval=((FunctionDeclaration)(yystack.valueAt (0)));};
   break;
 
 
   case 12: /* statement: return_statement  */
   if (yyn == 12)
-    /* "./parser/pythonparser.y":194  */
+    /* "./parser/pythonparser.y":195  */
                    {yyval=((ReturnStatement)(yystack.valueAt (0)));};
   break;
 
 
   case 13: /* statement: CONTINUE  */
   if (yyn == 13)
-    /* "./parser/pythonparser.y":195  */
+    /* "./parser/pythonparser.y":196  */
            {yyval=new ContinueStatement();};
   break;
 
 
   case 14: /* statement: BREAK  */
   if (yyn == 14)
-    /* "./parser/pythonparser.y":196  */
+    /* "./parser/pythonparser.y":197  */
         {yyval=new BreakStatement();};
   break;
 
 
   case 15: /* function_statement: DEF IDENTIFIER '(' function_args ')' ':' block  */
   if (yyn == 15)
-    /* "./parser/pythonparser.y":202  */
+    /* "./parser/pythonparser.y":203  */
                                              {yyval=new FunctionDeclaration(((Identifier)(yystack.valueAt (5))),((List<Identifier>)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
   case 16: /* function_statement: DEF IDENTIFIER '(' ')' ':' block  */
   if (yyn == 16)
-    /* "./parser/pythonparser.y":203  */
+    /* "./parser/pythonparser.y":204  */
                                   {
  	yyval=new FunctionDeclaration(((Identifier)(yystack.valueAt (4))),new ArrayList<Identifier>(),((StatementsBlock)(yystack.valueAt (0)))); //Declare a function with empty arguments list
  };
@@ -836,14 +837,14 @@ public class Parser
 
   case 17: /* function_args: IDENTIFIER  */
   if (yyn == 17)
-    /* "./parser/pythonparser.y":210  */
+    /* "./parser/pythonparser.y":211  */
            {yyval= new ArrayList<>(List.of(((Identifier)(yystack.valueAt (0)))));};
   break;
 
 
   case 18: /* function_args: IDENTIFIER ',' function_args  */
   if (yyn == 18)
-    /* "./parser/pythonparser.y":211  */
+    /* "./parser/pythonparser.y":212  */
                                {
 	yyval=new ArrayList<>(List.of(((Identifier)(yystack.valueAt (2)))));
     ((List)(yyval)).addAll(((List<Identifier>)(yystack.valueAt (0)))); //Combine all identifiers together
@@ -853,70 +854,70 @@ public class Parser
 
   case 19: /* for_statement: FOR IDENTIFIER IN exp ':' block  */
   if (yyn == 19)
-    /* "./parser/pythonparser.y":218  */
+    /* "./parser/pythonparser.y":219  */
                                 {yyval=new ForStatement(((Identifier)(yystack.valueAt (4))),((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
   case 20: /* while_statement: WHILE exp ':' block  */
   if (yyn == 20)
-    /* "./parser/pythonparser.y":222  */
+    /* "./parser/pythonparser.y":223  */
                    {yyval= new WhileStatement(((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
   case 21: /* return_statement: RETURN '\n'  */
   if (yyn == 21)
-    /* "./parser/pythonparser.y":226  */
+    /* "./parser/pythonparser.y":227  */
             {yyval=new ReturnStatement();};
   break;
 
 
   case 22: /* return_statement: RETURN exp '\n'  */
   if (yyn == 22)
-    /* "./parser/pythonparser.y":227  */
+    /* "./parser/pythonparser.y":228  */
                  {yyval=new ReturnStatement(((Expression)(yystack.valueAt (1))));};
   break;
 
 
   case 23: /* if_statement: IF if_pred ':' block  */
   if (yyn == 23)
-    /* "./parser/pythonparser.y":231  */
+    /* "./parser/pythonparser.y":232  */
                      {yyval=new IfStatement(((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))),new ArrayList<Pair<Expression,StatementsBlock>>(),null);};
   break;
 
 
   case 24: /* if_statement: IF if_pred ':' block ELSE ':' block  */
   if (yyn == 24)
-    /* "./parser/pythonparser.y":232  */
+    /* "./parser/pythonparser.y":233  */
                                       {yyval=new IfStatement(((Expression)(yystack.valueAt (5))),((StatementsBlock)(yystack.valueAt (3))),new ArrayList<Pair<Expression,StatementsBlock>>(),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
   case 25: /* if_statement: IF if_pred ':' block else_if_blocks  */
   if (yyn == 25)
-    /* "./parser/pythonparser.y":233  */
+    /* "./parser/pythonparser.y":234  */
                                       {yyval=new IfStatement(((Expression)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (1))),((List<Pair<Expression,StatementsBlock>>)(yystack.valueAt (0))),null);};
   break;
 
 
   case 26: /* if_statement: IF if_pred ':' block else_if_blocks ELSE ':' block  */
   if (yyn == 26)
-    /* "./parser/pythonparser.y":234  */
+    /* "./parser/pythonparser.y":235  */
                                                      {yyval=new IfStatement(((Expression)(yystack.valueAt (6))),((StatementsBlock)(yystack.valueAt (4))),((List<Pair<Expression,StatementsBlock>>)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (0))));};
   break;
 
 
   case 27: /* else_if_blocks: ELIF if_pred ':' block  */
   if (yyn == 27)
-    /* "./parser/pythonparser.y":238  */
+    /* "./parser/pythonparser.y":239  */
                        {yyval= new ArrayList<>(List.of(new Pair<Expression,StatementsBlock>(((Expression)(yystack.valueAt (2))),((StatementsBlock)(yystack.valueAt (0))))));};
   break;
 
 
   case 28: /* else_if_blocks: ELIF if_pred ':' block else_if_blocks  */
   if (yyn == 28)
-    /* "./parser/pythonparser.y":239  */
+    /* "./parser/pythonparser.y":240  */
                                         {
 	yyval=new ArrayList<>(List.of(new Pair<Expression,StatementsBlock>(((Expression)(yystack.valueAt (3))),((StatementsBlock)(yystack.valueAt (1))))));
 	((List)(yyval)).addAll(((List<Pair<Expression,StatementsBlock>>)(yystack.valueAt (0)))); //Combine all else ifs together
@@ -926,14 +927,14 @@ public class Parser
 
   case 29: /* block: '\n' INDENT statements DEDENT  */
   if (yyn == 29)
-    /* "./parser/pythonparser.y":246  */
+    /* "./parser/pythonparser.y":247  */
                               {yyval=new StatementsBlock(((List<Statement>)(yystack.valueAt (1))).toArray(new Statement[0]));};
   break;
 
 
   case 30: /* exp: IDENTIFIER  */
   if (yyn == 30)
-    /* "./parser/pythonparser.y":250  */
+    /* "./parser/pythonparser.y":251  */
            {
 	yyval=((Identifier)(yystack.valueAt (0))); //Just so types cast
 };
@@ -942,7 +943,7 @@ public class Parser
 
   case 31: /* exp: TRUE_TOK  */
   if (yyn == 31)
-    /* "./parser/pythonparser.y":253  */
+    /* "./parser/pythonparser.y":254  */
            {
 	yyval=((Literal)(yystack.valueAt (0)));
 };
@@ -951,7 +952,7 @@ public class Parser
 
   case 32: /* exp: FALSE_TOK  */
   if (yyn == 32)
-    /* "./parser/pythonparser.y":256  */
+    /* "./parser/pythonparser.y":257  */
             {
 	yyval=((Literal)(yystack.valueAt (0)));
 };
@@ -960,21 +961,21 @@ public class Parser
 
   case 33: /* exp: NUMBER  */
   if (yyn == 33)
-    /* "./parser/pythonparser.y":259  */
+    /* "./parser/pythonparser.y":260  */
          {yyval=((Literal)(yystack.valueAt (0)));};
   break;
 
 
   case 34: /* exp: STRING  */
   if (yyn == 34)
-    /* "./parser/pythonparser.y":260  */
+    /* "./parser/pythonparser.y":261  */
          {yyval=((Literal)(yystack.valueAt (0)));};
   break;
 
 
   case 35: /* exp: '[' exp_list ']'  */
   if (yyn == 35)
-    /* "./parser/pythonparser.y":261  */
+    /* "./parser/pythonparser.y":262  */
                    {
 	yyval=new ListExpression(((List<Expression>)(yystack.valueAt (1)))); //Create a list in the host language
 };
@@ -983,7 +984,7 @@ public class Parser
 
   case 36: /* exp: '[' ']'  */
   if (yyn == 36)
-    /* "./parser/pythonparser.y":264  */
+    /* "./parser/pythonparser.y":265  */
          {
 	yyval=new ListExpression(new ArrayList<Expression>()); //Empty list
 };
@@ -992,7 +993,7 @@ public class Parser
 
   case 37: /* exp: exp AND exp  */
   if (yyn == 37)
-    /* "./parser/pythonparser.y":267  */
+    /* "./parser/pythonparser.y":268  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"&&",((Expression)(yystack.valueAt (0))));
 };
@@ -1001,7 +1002,7 @@ public class Parser
 
   case 38: /* exp: exp OR exp  */
   if (yyn == 38)
-    /* "./parser/pythonparser.y":270  */
+    /* "./parser/pythonparser.y":271  */
              {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"||",((Expression)(yystack.valueAt (0))));
 };
@@ -1010,7 +1011,7 @@ public class Parser
 
   case 39: /* exp: exp EQUAL exp  */
   if (yyn == 39)
-    /* "./parser/pythonparser.y":273  */
+    /* "./parser/pythonparser.y":274  */
                 {
 				yyval= new InfixExpression(((Expression)(yystack.valueAt (2))),"==",((Expression)(yystack.valueAt (0))));
                 };
@@ -1019,7 +1020,7 @@ public class Parser
 
   case 40: /* exp: exp NOT_EQUAL exp  */
   if (yyn == 40)
-    /* "./parser/pythonparser.y":276  */
+    /* "./parser/pythonparser.y":277  */
                     {
 				yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"!=",((Expression)(yystack.valueAt (0))));
                 };
@@ -1028,7 +1029,7 @@ public class Parser
 
   case 41: /* exp: exp NOT_EQUAL_2 exp  */
   if (yyn == 41)
-    /* "./parser/pythonparser.y":279  */
+    /* "./parser/pythonparser.y":280  */
                       {
 				yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"!=",((Expression)(yystack.valueAt (0))));
                 };
@@ -1037,7 +1038,7 @@ public class Parser
 
   case 42: /* exp: NOT exp  */
   if (yyn == 42)
-    /* "./parser/pythonparser.y":282  */
+    /* "./parser/pythonparser.y":283  */
           {
 	yyval=new PrefixExpression("!",((Expression)(yystack.valueAt (0))));
 };
@@ -1046,7 +1047,7 @@ public class Parser
 
   case 43: /* exp: exp GREATER_THAN_OR_EQUAL exp  */
   if (yyn == 43)
-    /* "./parser/pythonparser.y":285  */
+    /* "./parser/pythonparser.y":286  */
                                 {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),">=",((Expression)(yystack.valueAt (0))));
 };
@@ -1055,7 +1056,7 @@ public class Parser
 
   case 44: /* exp: exp LESS_THAN_OR_EQUAL exp  */
   if (yyn == 44)
-    /* "./parser/pythonparser.y":288  */
+    /* "./parser/pythonparser.y":289  */
                              {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"<=",((Expression)(yystack.valueAt (0))));
 };
@@ -1064,7 +1065,7 @@ public class Parser
 
   case 45: /* exp: exp '<' exp  */
   if (yyn == 45)
-    /* "./parser/pythonparser.y":291  */
+    /* "./parser/pythonparser.y":292  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"<",((Expression)(yystack.valueAt (0))));
 };
@@ -1073,7 +1074,7 @@ public class Parser
 
   case 46: /* exp: exp '>' exp  */
   if (yyn == 46)
-    /* "./parser/pythonparser.y":294  */
+    /* "./parser/pythonparser.y":295  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),">",((Expression)(yystack.valueAt (0))));
 };
@@ -1082,7 +1083,7 @@ public class Parser
 
   case 47: /* exp: exp '+' exp  */
   if (yyn == 47)
-    /* "./parser/pythonparser.y":297  */
+    /* "./parser/pythonparser.y":298  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"+",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
@@ -1091,7 +1092,7 @@ public class Parser
 
   case 48: /* exp: exp '-' exp  */
   if (yyn == 48)
-    /* "./parser/pythonparser.y":300  */
+    /* "./parser/pythonparser.y":301  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"-",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
@@ -1100,7 +1101,7 @@ public class Parser
 
   case 49: /* exp: exp '*' exp  */
   if (yyn == 49)
-    /* "./parser/pythonparser.y":303  */
+    /* "./parser/pythonparser.y":304  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"*",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
@@ -1109,7 +1110,7 @@ public class Parser
 
   case 50: /* exp: exp '/' exp  */
   if (yyn == 50)
-    /* "./parser/pythonparser.y":306  */
+    /* "./parser/pythonparser.y":307  */
               {
 	yyval=new InfixExpression(((Expression)(yystack.valueAt (2))),"/",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
@@ -1118,7 +1119,7 @@ public class Parser
 
   case 51: /* exp: '-' exp  */
   if (yyn == 51)
-    /* "./parser/pythonparser.y":309  */
+    /* "./parser/pythonparser.y":310  */
                     {
 	yyval=new InfixExpression(new Literal(0.0),"-",((Expression)(yystack.valueAt (0)))); // An AST node for binary ops
 };
@@ -1127,7 +1128,7 @@ public class Parser
 
   case 52: /* exp: '(' exp ')'  */
   if (yyn == 52)
-    /* "./parser/pythonparser.y":312  */
+    /* "./parser/pythonparser.y":313  */
               {
 	yyval=((Expression)(yystack.valueAt (1)));
 };
@@ -1136,34 +1137,34 @@ public class Parser
 
   case 53: /* exp: IDENTIFIER '[' exp ']'  */
   if (yyn == 53)
-    /* "./parser/pythonparser.y":315  */
+    /* "./parser/pythonparser.y":316  */
                          {
-	yyval=new IndexExpression(((Expression)(yystack.valueAt (1))),((Identifier)(yystack.valueAt (3))));
+	yyval=new IndexExpression(((Identifier)(yystack.valueAt (3))),((Expression)(yystack.valueAt (1))));
 };
   break;
 
 
   case 54: /* exp: IDENTIFIER '=' exp  */
   if (yyn == 54)
-    /* "./parser/pythonparser.y":318  */
+    /* "./parser/pythonparser.y":319  */
                      {
-	yyval=new AssignmentExpression(((Identifier)(yystack.valueAt (2))),null,((Expression)(yystack.valueAt (0)))); //Adds a new symbol to the context
+	yyval=new AssignmentExpression(((Identifier)(yystack.valueAt (2))),((Expression)(yystack.valueAt (0))),null); //Adds a new symbol to the context
 };
   break;
 
 
   case 55: /* exp: IDENTIFIER '[' exp ']' '=' exp  */
   if (yyn == 55)
-    /* "./parser/pythonparser.y":321  */
+    /* "./parser/pythonparser.y":322  */
                                 {
-	yyval=new AssignmentExpression(((Identifier)(yystack.valueAt (5))),((Expression)(yystack.valueAt (3))),((Expression)(yystack.valueAt (0)))); //Assign a list element to a new value
+	yyval=new AssignmentExpression(((Identifier)(yystack.valueAt (5))),((Expression)(yystack.valueAt (0))),((Expression)(yystack.valueAt (3)))); //Assign a list element to a new value
 };
   break;
 
 
   case 56: /* exp: IDENTIFIER '(' exp_list ')'  */
   if (yyn == 56)
-    /* "./parser/pythonparser.y":324  */
+    /* "./parser/pythonparser.y":325  */
                               {
 	//Define a function call using the identifier and the parameters list
 	yyval=new FunctionCall(((Identifier)(yystack.valueAt (3))),((List<Expression>)(yystack.valueAt (1))));
@@ -1173,7 +1174,7 @@ public class Parser
 
   case 57: /* exp: IDENTIFIER '(' ')'  */
   if (yyn == 57)
-    /* "./parser/pythonparser.y":328  */
+    /* "./parser/pythonparser.y":329  */
                     {
 	//Define a function call using the identifier
     yyval=new FunctionCall(((Identifier)(yystack.valueAt (2))),new ArrayList<Expression>());
@@ -1183,14 +1184,14 @@ public class Parser
 
   case 58: /* exp_list: exp  */
   if (yyn == 58)
-    /* "./parser/pythonparser.y":337  */
+    /* "./parser/pythonparser.y":338  */
     {yyval= new ArrayList<>(List.of(((Expression)(yystack.valueAt (0)))));};
   break;
 
 
   case 59: /* exp_list: exp ',' exp_list  */
   if (yyn == 59)
-    /* "./parser/pythonparser.y":338  */
+    /* "./parser/pythonparser.y":339  */
                    {
 	yyval=new ArrayList<>(List.of(((Expression)(yystack.valueAt (2)))));
 	((List)(yyval)).addAll(((List<Expression>)(yystack.valueAt (0)))); //Combine all expressions together
@@ -1200,7 +1201,7 @@ public class Parser
 
   case 60: /* if_pred: exp  */
   if (yyn == 60)
-    /* "./parser/pythonparser.y":345  */
+    /* "./parser/pythonparser.y":346  */
     {
 //$$=(Boolean)$1;
 };
@@ -1208,7 +1209,7 @@ public class Parser
 
 
 
-/* "./src/compiler/parser/Parser.java":1212  */
+/* "./src/compiler/parser/Parser.java":1213  */
 
         default: break;
       }
@@ -1853,12 +1854,12 @@ private static final byte[] yycheck_ = yycheck_init();
   private static final int YYNTOKENS_ = 72;
 
 /* Unqualified %code blocks.  */
-/* "./parser/pythonparser.y":22  */
+/* "./parser/pythonparser.y":23  */
 
 	public Program program;
 
-/* "./src/compiler/parser/Parser.java":1861  */
+/* "./src/compiler/parser/Parser.java":1862  */
 
 }
-/* "./parser/pythonparser.y":349  */
+/* "./parser/pythonparser.y":350  */
 

@@ -12,6 +12,7 @@ class PyString(
         return PyString(this.value + other.value)
     }
 
+    @Suppress("CovariantEquals")
     override fun equals(other: PyObject): PyObject {
         if(other !is PyString) return PyNotImplemented
         return PyBool.of(value == other.value)
@@ -21,6 +22,7 @@ class PyString(
         if (other !is PyString) return PyNotImplemented
         return PyBool.of(value!=other.value)
     }
+
     override fun toString(): String {
         return value
     }

@@ -3,9 +3,10 @@ package compiler.evaluator.source_tree.statements.expressions
 import compiler.evaluator.core.Context
 import compiler.evaluator.core.ExecutionSignal
 import compiler.evaluator.core.PyObject
+import compiler.evaluator.source_tree.SourceNode
 import compiler.evaluator.source_tree.statements.Statement
 
-abstract class Expression : Statement() {
+abstract class Expression(children: List<SourceNode>) : Statement(children) {
     abstract fun evaluate(context: Context): PyObject
 
     /**

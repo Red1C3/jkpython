@@ -4,27 +4,30 @@ import compiler.evaluator.builtins.types.PyFloat
 import compiler.evaluator.builtins.types.PyList
 import compiler.evaluator.core.Context
 import compiler.evaluator.core.PyObject
-import compiler.evaluator.visualization.AST
-import compiler.evaluator.visualization.LabeledEdge
+
+// TODO (rami): review lists code.
 
 //Evaluates indexed values like list[0]
-class IndexExpression(
-        private val index:Expression,
-        private val identifier: Identifier //The list identifier
-):Expression() {
-    init {
-        AST.instance().g.addVertex(this)
-        AST.instance().g.addEdge(this,index,LabeledEdge("index"))
-        AST.instance().g.addEdge(this,identifier,LabeledEdge())
-    }
+class IndexExpression (
+        private val target: Expression,
+        private val index: Expression,
+) : Expression(listOf(index, target)) {
+    // FIXME: commented AST code
+//    init {
+//        AST.instance().g.addVertex(this)
+//        AST.instance().g.addEdge(this, index, LabeledEdge("index"))
+//        AST.instance().g.addEdge(this, identifier, LabeledEdge())
+//    }
+
     override fun evaluate(context: Context): PyObject {
-        val list=identifier.evaluate(context) as PyList
-        //TODO check if integer and internal PyObject is correct
-        val indexValue= (index.evaluate(context) as PyFloat).value.toInt()
+        val list = target.evaluate(context) as PyList
+        // FIXME: check if integer and internal PyObject is correct
+        val indexValue = (index.evaluate(context) as PyFloat).value.toInt()
         return list[indexValue]
     }
 
-    override fun toString(): String {
-        return "[]"
-    }
+    override fun getPrintableFields(): HashMap<String, Any?> = hashMapOf(
+        "target" to target,
+        "index" to index,
+    )
 }

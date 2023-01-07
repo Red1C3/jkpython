@@ -1,7 +1,6 @@
 package compiler.evaluator.builtins.functions
 
 import compiler.evaluator.builtins.constants.PyNone
-import compiler.evaluator.core.Context
 import compiler.evaluator.core.PyCallable
 import compiler.evaluator.core.PyObject
 
@@ -11,9 +10,5 @@ object PyPrint : PyCallable {
     override fun call(arguments: List<PyObject>): PyObject {
         println(arguments.joinToString(" ") { it.toString() })
         return PyNone
-    }
-
-    override fun toString(): String {
-        return "Function"
     }
 }

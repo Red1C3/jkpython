@@ -1,7 +1,9 @@
 package compiler.evaluator.source_tree
 
-import compiler.evaluator.core.Context
 import compiler.evaluator.source_tree.statements.StatementsBlock
+import compiler.evaluator.core.Context
+import compiler.evaluator.core.Scope
+import compiler.evaluator.core.SubScoped
 
 /**
  * A sequence of expressions.
@@ -10,8 +12,21 @@ import compiler.evaluator.source_tree.statements.StatementsBlock
  */
 class Program(
         private val statements: StatementsBlock,
-) {
-    fun run(context: Context) {
-        statements.execute(context)
+): SourceNode(listOf(statements)), SubScoped {
+
+    override val scope = Scope(this)
+    // FIXME: eagerly analyze the SymbolsTables of the program.
+
+    fun run(environmentContext: Context) {
+        val programContext = environmentContext.createSubContext(scope)
+        statements.execute(programContext)
     }
+
+    override fun getPrintableFields(): HashMap<String, Any?> {
+        return hashMapOf(
+            "statements" to statements,
+            "symbols" to scope,
+        )
+    }
+
 }
