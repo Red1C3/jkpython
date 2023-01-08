@@ -9,8 +9,8 @@ import compiler.evaluator.source_tree.statements.expressions.Identifier
 
 class FunctionDeclaration(
         val id: Identifier,
-        val parametersNames: List<Identifier>,
-        val body: StatementsBlock,
+        private val parametersNames: List<Identifier>,
+        private val body: StatementsBlock,
 ): Statement(listOf(id) + parametersNames + listOf(body)), SubScoped {
     // FIXME: commented AST code
 //    init {
