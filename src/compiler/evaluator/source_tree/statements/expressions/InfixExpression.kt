@@ -23,6 +23,7 @@ class InfixExpression(
             "+" -> first.__add__(second)
             "-" -> first.__sub__(second)
             "*" -> first.__mul__(second)
+            "@" -> first.__matmul__(second) // TODO: Integrate with parser
             "/" -> first.__truediv__(second)
             "==" -> first.__eq__(second)
             "!=" -> first.__ne__(second)
@@ -30,8 +31,8 @@ class InfixExpression(
             "<" -> first.__lt__(second)
             ">=" -> first.__ge__(second)
             "<=" -> first.__le__(second)
-            "&&" -> first.and(second)
-            "||" -> first.or(second)
+            "&&" -> first.and(second) // FIXME: Should be "and"
+            "||" -> first.or(second)  // FIXME: Should be "or
             else -> error("Invalid infix operator: $operator")
         }
 

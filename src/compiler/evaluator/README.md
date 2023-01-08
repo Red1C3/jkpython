@@ -18,6 +18,7 @@ print("space =", space)
 ## Incrementation Features
 
 - Prefix and Suffix the magic methods in `PyObject` with `__` and match them with standard Python ones.
+- Add `__matmull__` to `PyObject`.
 
 ## The current plan for next generations
 
