@@ -36,6 +36,9 @@ public class Main {
             //Some global identifiers container
             BuiltinsContext context=new BuiltinsContext();
 
+            parser.program.loadSymbolsTable(context);
+            System.out.println(parser.program);
+
             //program.run evaluates the AST stored in program
             parser.program.run(context);
 
