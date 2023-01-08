@@ -5,7 +5,7 @@ A prototype of a calculator runtime that evolved into a python interpreter.
 
 ## Example Program
 
-```py
+```pycon
 def calc_space(side):
     return side * side
 
@@ -83,20 +83,6 @@ print("space =", space)
 - ~~It's necessary to release the `Double` constraint in the next generation
 and introduce statements support.~~ Done :)
 - ~~In the following sample, the variable in the whole function scope is considered local:~~ Done.
-```python
-my_var=5
-
-def my_func():
-    print(my_var) # throws a runtime error for accessing the variable before initialization.
-    my_var=5
-    print(my_var)
-
-my_func()
-
-# This might give a hint that a function must
-# scan for the identifiers inside its scope?
-# This might be what's known as creating a "symbols table".
-```
 - ~~How to detect the type of objects in Python's world?~~ Done.
 
 ### Things TODO
