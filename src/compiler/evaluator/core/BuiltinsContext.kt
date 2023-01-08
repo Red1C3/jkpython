@@ -3,6 +3,7 @@ package compiler.evaluator.core
 import compiler.evaluator.builtins.constants.PyNone
 import compiler.evaluator.builtins.constants.PyNotImplemented
 import compiler.evaluator.builtins.functions.PyAppend
+import compiler.evaluator.builtins.functions.PyLen
 import compiler.evaluator.builtins.functions.PyPrint
 import compiler.evaluator.builtins.functions.PyRange
 import compiler.evaluator.builtins.types.PyBool
@@ -16,6 +17,7 @@ val builtins = hashMapOf(
     "False" to PyBool.of(false),
     // Functions
     "print" to PyPrint,
+    "len" to PyLen,
     "range" to PyRange,
     "append" to PyAppend,
     // Types (can be used as functions for constructing instances).
