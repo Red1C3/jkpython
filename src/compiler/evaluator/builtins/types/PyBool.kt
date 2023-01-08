@@ -6,6 +6,8 @@ import compiler.evaluator.core.PyObject
 class PyBool private constructor(
     val value: Boolean
 ) : PyObject {
+    override fun __repr__(): PyString = PyString(if (value) "True" else "False")
+
     override fun __eq__(other: PyObject): PyObject {
         if (other !is PyBool) return PyNotImplemented
         return of(value == other.value)
@@ -28,10 +30,6 @@ class PyBool private constructor(
 
     override fun not(): PyObject {
         return of(!value)
-    }
-
-    override fun toString(): String {
-        return value.toString()
     }
 
     companion object {

@@ -13,6 +13,8 @@ class PyFloat private constructor(
     val value: Double
 ) : PyObject {
 
+    override fun __str__(): PyObject = PyString("$value")
+
     /* ========== Arithmetic Operators ========== */
 
     override fun __add__(other: PyObject): PyObject {
@@ -80,10 +82,6 @@ class PyFloat private constructor(
     override fun __ge__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return PyBool.of(value >= other.value)
-    }
-
-    override fun toString(): String {
-        return this.value.toString()
     }
 
     companion object {

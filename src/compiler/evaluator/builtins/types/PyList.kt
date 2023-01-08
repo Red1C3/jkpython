@@ -1,5 +1,6 @@
 package compiler.evaluator.builtins.types
 
+import compiler.evaluator.builtins.constants.PyNotImplemented
 import compiler.evaluator.core.PyObject
 
 // TODO (rami): review lists code.
@@ -24,7 +25,10 @@ class PyList(
         value[index] = newVal
     }
 
-    override fun toString(): String {
-        return value.toString()
-    }
+    override fun __str__(): PyObject = PyString("[${value.joinToString(", ") { 
+        when (val value = it.__str__()) {
+            is PyString -> value.value
+            else -> value.__repr__().value
+        }
+    }}]")
 }
