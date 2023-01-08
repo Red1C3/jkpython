@@ -1,6 +1,5 @@
 package compiler.evaluator.builtins.types
 
-import compiler.evaluator.builtins.constants.PyNotImplemented
 import compiler.evaluator.core.PyObject
 
 // TODO (rami): review lists code.

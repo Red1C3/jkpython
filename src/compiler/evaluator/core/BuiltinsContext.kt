@@ -6,6 +6,7 @@ import compiler.evaluator.builtins.functions.PyAppend
 import compiler.evaluator.builtins.functions.PyPrint
 import compiler.evaluator.builtins.functions.PyRange
 import compiler.evaluator.builtins.types.PyBool
+import compiler.evaluator.builtins.types.PyString
 
 val builtins = hashMapOf(
     // Constants
@@ -17,6 +18,8 @@ val builtins = hashMapOf(
     "print" to PyPrint,
     "range" to PyRange,
     "append" to PyAppend,
+    // Types (can be used as functions for constructing instances).
+    "str" to PyString,
 )
 
 val builtinsScope = Scope(null, builtins.keys.toList())
