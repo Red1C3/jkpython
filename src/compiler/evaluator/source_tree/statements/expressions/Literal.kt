@@ -26,6 +26,8 @@ class Literal(
     override fun evaluate(context: Context) = pyValue
 
     override fun getPrintableFields(): HashMap<String, Any?> {
-        return hashMapOf("value" to pyValue)
+        val str = pyValue.__str__()
+        if (str is PyString) return hashMapOf("value" to str.value)
+        return hashMapOf("value" to "\"${str.__repr__().value}\"")
     }
 }
