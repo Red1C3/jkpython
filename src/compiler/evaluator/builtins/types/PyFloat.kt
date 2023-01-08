@@ -13,7 +13,7 @@ class PyFloat private constructor(
     val value: Double
 ) : PyObject {
 
-    override fun __str__(): PyObject = PyString("$value")
+    override fun __repr__(): PyObject = PyString("$value")
 
     /* ========== Arithmetic Operators ========== */
 
