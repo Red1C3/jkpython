@@ -59,5 +59,6 @@ class PyString(
 
     /* ========== Container-Like Operations ========== */
 
+    // FIXME: Should use PyInt
     override fun __len__(): PyObject = PyFloat.of(value.length.toDouble())
 }
