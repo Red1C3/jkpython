@@ -3,7 +3,12 @@ package compiler.evaluator.builtins.types
 import compiler.evaluator.builtins.constants.PyNotImplemented
 import compiler.evaluator.core.PyCallable
 import compiler.evaluator.core.PyObject
+import kotlin.math.floor
+import kotlin.math.max
 
+/**
+ * [Reference](https://docs.python.org/3/library/stdtypes.html#textseq)
+ */
 class PyString(
     val value: String
 ) : PyObject {
@@ -20,13 +25,27 @@ class PyString(
         }
     }
 
+    /* ========== Type Casting ========== */
+
     override fun __str__(): PyObject = this
 
+    /* ========== Arithmetic Operators ========== */
+
     override fun __add__(other: PyObject): PyObject {
-        // TODO: Attempt casting into a string.
         if (other !is PyString) return PyNotImplemented
         return PyString(this.value + other.value)
     }
+
+    // FIXME: There should be the reversed version of __mul__
+
+    override fun __mul__(other: PyObject): PyObject {
+        // FIXME: This should actually only accept PyInt
+        if (other !is PyFloat) return PyNotImplemented
+        if (floor(other.value) != other.value) error("TypeError: can't multiply sequence by non-int of type 'float'")
+        return PyString(this.value.repeat(max(other.value.toInt(), 0)))
+    }
+
+    /* ========== Rich Comparison Operators ========== */
 
     override fun __eq__(other: PyObject): PyObject {
         if (other !is PyString) return PyNotImplemented
@@ -37,4 +56,8 @@ class PyString(
         if (other !is PyString) return PyNotImplemented
         return PyBool.of(value != other.value)
     }
+
+    /* ========== Container-Like Operations ========== */
+
+    override fun __len__(): PyObject = PyFloat.of(value.length.toDouble())
 }
