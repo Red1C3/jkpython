@@ -166,9 +166,9 @@
 %precedence NOT
 %nonassoc EQUAL NOT_EQUAL NOT_EQUAL_2 '<' '>' GREATER_THAN_OR_EQUAL LESS_THAN_OR_EQUAL
 %left '+' '-'
-%left '*' '/'
+%left '*' '/' '%' FLOOR_DIVISION
 %precedence NEG
-%right '^'
+%right POWER
 
 %%
 prog:
@@ -310,8 +310,17 @@ IDENTIFIER {
 | exp '/' exp {
 	$$=new InfixExpression($1,"/",$3); // An AST node for binary ops
 }
+| exp '%' exp{
+	$$=new InfixExpression($1,"%",$3);
+}
 | '-' exp %prec NEG {
 	$$=new InfixExpression(new Literal(0.0),"-",$2); // An AST node for binary ops
+}
+| exp POWER exp {
+	$$=new InfixExpression($1,"**",$3);
+}
+| exp FLOOR_DIVISION exp{
+	$$=new InfixExpression($1,"//",$3);
 }
 | '(' exp ')' {
 	$$=$2;
