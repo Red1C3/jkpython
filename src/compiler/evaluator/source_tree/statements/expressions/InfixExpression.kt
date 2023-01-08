@@ -25,6 +25,9 @@ class InfixExpression(
             "*" -> first.__mul__(second)
             "@" -> first.__matmul__(second) // TODO: Integrate with parser
             "/" -> first.__truediv__(second)
+            "//" -> first.__floordiv__(second) // TODO: Integrate with parser
+            "%" -> first.__mod__(second) // TODO: Integrate with parser
+            "**" -> first.__pow__(second) // TODO: Integrate with parser
             "==" -> first.__eq__(second)
             "!=" -> first.__ne__(second)
             ">" -> first.__gt__(second)
