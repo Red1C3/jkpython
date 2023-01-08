@@ -6,13 +6,12 @@ import compiler.evaluator.core.PyObject
 class PyBool private constructor(
     val value: Boolean
 ) : PyObject {
-    @Suppress("CovariantEquals")
-    override fun equals(other: PyObject): PyObject {
+    override fun __eq__(other: PyObject): PyObject {
         if (other !is PyBool) return PyNotImplemented
         return of(value == other.value)
     }
 
-    override fun notEquals(other: PyObject): PyObject {
+    override fun __ne__(other: PyObject): PyObject {
         if (other !is PyBool) return PyNotImplemented
         return of(value != other.value)
     }

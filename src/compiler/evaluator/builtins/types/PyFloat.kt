@@ -7,53 +7,52 @@ class PyFloat private constructor(
     val value: Double
 ) : PyObject {
 
-    override fun add(other: PyObject): PyObject {
+    override fun __add__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return of(this.value + other.value)
     }
 
-    override fun sub(other: PyObject): PyObject {
+    override fun __sub__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return of(this.value - other.value)
     }
 
-    override fun mul(other: PyObject): PyObject {
+    override fun __mul__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return of(this.value * other.value)
     }
 
-    override fun truediv(other: PyObject): PyObject {
+    override fun __truediv__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return of(this.value / other.value)
     }
 
-    @Suppress("CovariantEquals")
-    override fun equals(other: PyObject): PyObject {
+    override fun __eq__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return PyBool.of(value == other.value)
     }
 
-    override fun notEquals(other: PyObject): PyObject {
+    override fun __ne__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return PyBool.of(value != other.value)
     }
 
-    override fun less(other: PyObject): PyObject {
+    override fun __lt__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return PyBool.of(value < other.value)
     }
 
-    override fun greater(other: PyObject): PyObject {
+    override fun __gt__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return PyBool.of(value > other.value)
     }
 
-    override fun lessEquals(other: PyObject): PyObject {
+    override fun __le__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return PyBool.of(value <= other.value)
     }
 
-    override fun greaterEquals(other: PyObject): PyObject {
+    override fun __ge__(other: PyObject): PyObject {
         if (other !is PyFloat) return PyNotImplemented
         return PyBool.of(value >= other.value)
     }

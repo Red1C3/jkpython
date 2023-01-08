@@ -1,5 +1,5 @@
 
-# Calculator 07
+# Calculator 08
 
 A prototype of a calculator runtime that evolved into a python interpreter.
 
@@ -17,11 +17,7 @@ print("space =", space)
 
 ## Incrementation Features
 
-- `SourceNode`s now have `addMeta` which allows to attach some parser information to the nodes.
-  - Like `line`, `column` and `filename`.
-  - This is useful for both error reporting and printing the source-tree.
-- `SourceNode` when converted to a string now displays a fancy/pretty formatted text view of the tree.
-  - The tree also includes the symbols tables if they are analyzed.
+- Prefix and Suffix the magic methods in `PyObject` with `__` and match them with standard Python ones.
 
 ## The current plan for next generations
 
