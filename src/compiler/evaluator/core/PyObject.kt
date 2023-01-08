@@ -1,5 +1,6 @@
 package compiler.evaluator.core
 
+import compiler.evaluator.builtins.constants.PyNone
 import compiler.evaluator.builtins.constants.PyNotImplemented
 
 /**
@@ -43,10 +44,36 @@ interface PyObject {
     @Suppress("FunctionName")
     fun __truediv__(other: PyObject): PyObject = PyNotImplemented
 
-    // TODO: __floordiv__
-    // TODO: __mod__
-    // TODO: __div__
-    // TODO: __pow__
+    /**
+     * ('//' operator)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__floordiv__)
+     */
+    @Suppress("FunctionName")
+    fun __floordiv__(other: PyObject): PyObject = PyNotImplemented
+
+    /**
+     * ('%' operator)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__mod__)
+     */
+    @Suppress("FunctionName")
+    fun __mod__(other: PyObject): PyObject = PyNotImplemented
+
+    /**
+     * ('divmod' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__truediv__)
+     */
+    @Suppress("FunctionName")
+    fun __divmod__(other: PyObject): PyObject = PyNotImplemented
+
+    /**
+     * ('**' operator or 'pow' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__pow__)
+     */
+    @Suppress("FunctionName")
+    fun __pow__(exp: PyObject, mod: PyObject = PyNone): PyObject = PyNotImplemented
+
+    // Bitwise Operators
+
     // TODO: __lshift__
     // TODO: __rshift__
     // TODO: __and__
