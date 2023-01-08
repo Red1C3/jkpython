@@ -18,6 +18,7 @@
   import java.util.List;
   import java.util.ArrayList;
   import kotlin.Pair;
+  import compiler.evaluator.builtins.constants.*;
 }
  // Add a "program" data member to Bison's Parser class
 %code {
@@ -82,6 +83,9 @@
       	  return FALSE_TOK;
       case COMMENT:
       	  return (int) '\n'; //FIXME just anything that does nothing
+      case NONE:
+		   yylval=SourceNode.Companion.addMeta(new Literal(PyNone.INSTANCE),token.lineNum,token.colNum,null);
+		   return NONE;
       default:
           return token.getType();
     }
@@ -122,7 +126,7 @@
 %token <Object> IMPORT
 %token <Object> NONLOCAL
 %token <ContinueStatement> CONTINUE
-%token <Object> NONE
+%token <Literal> NONE
 %token <Object> GLOBAL
 %token <Object> IN
 %token <Object> RETURN
@@ -257,6 +261,9 @@ IDENTIFIER {
 	$$=$1;
 }
 | FALSE_TOK {
+	$$=$1;
+}
+| NONE{
 	$$=$1;
 }
 | NUMBER {$$=$1;}
