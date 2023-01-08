@@ -21,6 +21,7 @@ print("space =", space)
 - Add `__matmul__`, `__floordiv__`, `__mod__`, `__divmod__`, `__pow__` to `PyObject`.
 - Add `//`, `@`, `**` operators support to `InfixExpression`.
 - Add `__repr__`, `__str__`, `__bool__`, `__int__`, `__float__` to `PyObject`.
+- Implement `__pow__` and `__mod__` for `PyFloat`.
 
 ## The current plan for next generations
 
