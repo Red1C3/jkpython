@@ -5,15 +5,11 @@ import compiler.evaluator.builtins.constants.PyNotImplemented
 import compiler.evaluator.core.PyObject
 import kotlin.math.pow
 
-private fun toFloat(): Float? {
-    return null
-}
-
 class PyFloat private constructor(
     val value: Double
 ) : PyObject {
 
-    override fun __repr__(): PyObject = PyString("$value")
+    override fun __repr__(): PyString = PyString("$value")
 
     /* ========== Arithmetic Operators ========== */
 
