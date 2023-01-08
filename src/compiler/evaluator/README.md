@@ -20,6 +20,7 @@ print("space =", space)
 - Prefix and Suffix the magic methods in `PyObject` with `__` and match them with standard Python ones.
 - Add `__matmul__`, `__floordiv__`, `__mod__`, `__divmod__`, `__pow__` to `PyObject`.
 - Add `//`, `@`, `**` operators support to `InfixExpression`.
+- Add `__repr__`, `__str__`, `__bool__`, `__int__`, `__float__` to `PyObject`.
 
 ## The current plan for next generations
 

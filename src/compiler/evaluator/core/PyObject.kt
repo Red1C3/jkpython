@@ -2,11 +2,63 @@ package compiler.evaluator.core
 
 import compiler.evaluator.builtins.constants.PyNone
 import compiler.evaluator.builtins.constants.PyNotImplemented
+import compiler.evaluator.builtins.types.PyString
 
 /**
- * Reference: https://docs.python.org/3/reference/datamodel.html
+ * [Reference](https://docs.python.org/3/reference/datamodel.html)
  */
 interface PyObject {
+
+    /* ========== Type Casting ========== */
+
+    /**
+     * ('repr' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__repr__)
+     *
+     * `PyNotImplemented` is not allowed in this method.
+     */
+    @Suppress("FunctionName")
+    fun __repr__(): PyString = PyString("<built-in '${this::class.qualifiedName}'>")
+
+    /**
+     * ('str' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__str__)
+     */
+    @Suppress("FunctionName")
+    fun __str__(): PyObject = __repr__()
+
+    /**
+     * ('bool' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__bool__)
+     */
+    @Suppress("FunctionName")
+    fun __bool__(): PyObject = PyNotImplemented
+
+    /**
+     * ('int' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__int__)
+     */
+    @Suppress("FunctionName")
+    fun __int__(): PyObject = PyNotImplemented
+
+    /**
+     * ('float' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__float__)
+     */
+    @Suppress("FunctionName")
+    fun __float__(): PyObject = PyNotImplemented
+
+    // TODO: Spread the usage of the types casting methods.
+
+    /* ========== Container-Like Operations ========== */
+
+    /**
+     * ('len' function)
+     * [Reference](https://docs.python.org/3/reference/datamodel.html#object.__len__)
+     */
+    @Suppress("FunctionName")
+    fun __len__(): PyObject = PyNotImplemented
+
     /* ========== Arithmetic Operators ========== */
 
     /**
