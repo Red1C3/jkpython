@@ -30,7 +30,7 @@ class ForStatement(
             context.setVariable(iterator.name, listVal[i]) // Assign the current loop value in the new scope
             val signal = body.execute(context)
 
-            if (signal === ExecutionSignal.BreakOperation) break
+            if (signal === ExecutionSignal.BreakIteration) break
             if (signal is ExecutionSignal.Return) return signal
             // Continue signal will work properly naturally.
         }

@@ -15,7 +15,7 @@ class BreakStatement : Statement(listOf()) {
 //    }
 
     override fun execute(context: Context): ExecutionSignal {
-        return ExecutionSignal.BreakOperation
+        return ExecutionSignal.BreakIteration
     }
 
     override fun getPrintableFields(): HashMap<String, Any?> = hashMapOf()

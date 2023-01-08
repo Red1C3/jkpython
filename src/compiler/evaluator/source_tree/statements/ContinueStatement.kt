@@ -15,7 +15,7 @@ class ContinueStatement : Statement(listOf()) {
 //    }
 
     override fun execute(context: Context): ExecutionSignal {
-        return ExecutionSignal.ContinueOperation
+        return ExecutionSignal.ContinueIteration
     }
 
     override fun getPrintableFields(): HashMap<String, Any?> = hashMapOf()

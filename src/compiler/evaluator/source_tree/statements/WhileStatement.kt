@@ -22,7 +22,7 @@ class WhileStatement(
             // Execute the statements block each loop unless it faces a break statement
             val signal = body.execute(context)
 
-            if (signal == ExecutionSignal.BreakOperation) break
+            if (signal == ExecutionSignal.BreakIteration) break
             if (signal is ExecutionSignal.Return) return signal
             // Continue signal will work properly naturally.
         }
