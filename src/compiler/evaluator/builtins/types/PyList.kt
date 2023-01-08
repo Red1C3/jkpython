@@ -24,10 +24,12 @@ class PyList(
         value[index] = newVal
     }
 
-    override fun __str__(): PyObject = PyString("[${value.joinToString(", ") { 
+    override fun __repr__(): PyString = PyString("[${value.joinToString(", ") { 
         when (val value = it.__str__()) {
             is PyString -> value.value
             else -> value.__repr__().value
         }
     }}]")
+
+    override fun __len__(): PyObject = PyFloat.of(value.size.toDouble())
 }
