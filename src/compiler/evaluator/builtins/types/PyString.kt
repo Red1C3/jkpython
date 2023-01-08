@@ -28,6 +28,7 @@ class PyString(
     /* ========== Type Casting ========== */
 
     override fun __str__(): PyObject = this
+    override fun __repr__(): PyString = PyString("'${value.replace("'","\\'")}'")
 
     /* ========== Arithmetic Operators ========== */
 
