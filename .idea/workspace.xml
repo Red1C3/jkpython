@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Remove InfixExpression toString function">
-      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/Parser.java" afterDir="false" />
-    </list>
+    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Parse ** // % operations" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -381,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673131773311</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Parse ** // % operations">
+      <created>1673179188325</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1673179188325</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -399,7 +403,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Switch token types to int" />
     <MESSAGE value="Assemble lexer-bridge" />
     <MESSAGE value="Big failure yay" />
     <MESSAGE value="Add print all tokens method to Lexer" />
@@ -424,6 +427,7 @@
     <MESSAGE value="Implement PyList append function" />
     <MESSAGE value="Very big changes" />
     <MESSAGE value="Remove InfixExpression toString function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove InfixExpression toString function" />
+    <MESSAGE value="Parse ** // % operations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Parse ** // % operations" />
   </component>
 </project>
