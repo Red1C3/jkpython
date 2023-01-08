@@ -1,7 +1,7 @@
 package compiler.evaluator.core
 
-import compiler.evaluator.core.ExplorerSignal.CONTINUE
-import compiler.evaluator.core.ExplorerSignal.SKIP_CHILDREN
+import compiler.evaluator.core.VisitorSignal.CONTINUE
+import compiler.evaluator.core.VisitorSignal.SKIP_CHILDREN
 import compiler.evaluator.source_tree.SourceNode
 import compiler.evaluator.source_tree.statements.ForStatement
 import compiler.evaluator.source_tree.statements.FunctionDeclaration

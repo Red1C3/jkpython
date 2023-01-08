@@ -1,8 +1,8 @@
 package compiler.evaluator.source_tree
 
 import compiler.evaluator.builtins.types.PyString
-import compiler.evaluator.core.ExplorerSignal
-import compiler.evaluator.core.ExplorerSignal.*
+import compiler.evaluator.core.VisitorSignal
+import compiler.evaluator.core.VisitorSignal.*
 
 abstract class SourceNode(
     val children: List<SourceNode>
@@ -17,13 +17,13 @@ abstract class SourceNode(
         private set
 
     fun explore(
-        explorer: (node: SourceNode) -> ExplorerSignal
-    ): ExplorerSignal {
-        val signal = explorer(this)
+        visitor: (node: SourceNode) -> VisitorSignal
+    ): VisitorSignal {
+        val signal = visitor(this)
         if (signal !== CONTINUE) return signal
 
         for (child in children) {
-            val childSignal = child.explore(explorer)
+            val childSignal = child.explore(visitor)
             if (childSignal === STOP) return childSignal
         }
 

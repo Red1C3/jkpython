@@ -3,7 +3,7 @@ package compiler.evaluator.core
 /**
  * Used to control the exploration process when traversing a source-tree.
  */
-enum class ExplorerSignal {
+enum class VisitorSignal {
     /**
      * Continue exploring the source-tree normally.
      */
