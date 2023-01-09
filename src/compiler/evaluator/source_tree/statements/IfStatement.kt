@@ -9,7 +9,7 @@ import compiler.evaluator.core.PyObject
 import compiler.evaluator.source_tree.statements.expressions.Expression
 
 //Evaluates each data type to a boolean
-private fun isConditionSatisfied(condition: PyObject): Boolean {
+fun isConditionSatisfied(condition: PyObject): Boolean {
     return ((condition is PyBool) && condition.value) ||
             ((condition is PyFloat) && condition.value != 0.0) ||
             ((condition is PyString) && condition.value.isNotEmpty())

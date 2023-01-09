@@ -18,7 +18,7 @@ class WhileStatement(
 
     override fun execute(context: Context): ExecutionSignal {
         // Evaluate the condition expression until it returns false
-        while ((condition.evaluate(context) as PyBool).value) { // FIXME: handle floats and string conditions
+        while (isConditionSatisfied(condition.evaluate(context))) { // FIXME: handle floats and string conditions
             // Execute the statements block each loop unless it faces a break statement
             val signal = body.execute(context)
 
