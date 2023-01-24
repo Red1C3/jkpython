@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
         lexer = new Lexer();
         if (args.length == 0) {
+            System.out.println("Interactive mode is broken atm");
             runInteractive();
             return;
         }
@@ -26,12 +27,14 @@ public class Main {
             //Run flex on the input file
             lexer.run(Paths.get(args[0]));
 
-            lexer.printAllTokens();
+            //Uncomment to print lexer output
+            //lexer.printAllTokens();
 
             Parser parser = new Parser(lexer);
             parser.parse();
 
-//            AST.instance().outputGraph();
+            //Uncomment to print AST tree
+            //AST.instance().outputGraph();
 
             //Some global identifiers container
             BuiltinsContext context=new BuiltinsContext();
@@ -60,7 +63,8 @@ public class Main {
             try {
                 line += "\n";
                 lexer.run(line);
-                lexer.printAllTokens(); //TODO if faced an INDENT don't parse until it DEDENTs?
+                //Uncomment to print lexer output
+                //lexer.printAllTokens(); //TODO if faced an INDENT don't parse until it DEDENTs?
                 Parser parser = new Parser(lexer);
                 parser.parse();
 
