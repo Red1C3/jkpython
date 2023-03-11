@@ -4,106 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f7c2e00-9826-4422-8fc0-5aa7b1692804" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jkpython.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="6f7c2e00-9826-4422-8fc0-5aa7b1692804" name="Changes" comment="Migrate project to Maven">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/example-01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/antlr4-runtime-4.8-1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/antlr4-runtime-4.8-1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-lang3-3.9-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-lang3-3.9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-text-1.8-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-text-1.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jgrapht-core-1.5.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jgrapht-core-1.5.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jgrapht-io-1.5.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jgrapht-io-1.5.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jheaps-0.13-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jheaps-0.13.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/opentest4j-1.2.0-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/opentest4j-1.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python-compileruwu.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/Calculator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/constants/PyNone.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/constants/PyNotImplemented.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyAppend.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyLen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRepr.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyBool.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFloat.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyString.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/BuiltinsContext.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/ExecutionSignal.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/PyCallable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/PyObject.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/Scope.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/SubScoped.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/VisitorSignal.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/Program.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/SourceNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/BreakStatement.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ContinueStatement.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ForStatement.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/IfStatement.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ReturnStatement.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/Statement.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/StatementsBlock.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/WhileStatement.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/AssignmentExpression.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Expression.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Identifier.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/IndexExpression.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/InfixExpression.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/ListExpression.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Literal.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/PrefixExpression.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/AST.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/LabeledEdge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/SymbolTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Token.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/Unit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visualize.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,22 +36,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/home/reddeadalice/Projects/jkpython",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/reddeadalice/Projects/jkpython&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Main - File">
     <configuration name="Main - File" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="io.codeberg.jkpython.compiler.Main" />
@@ -197,6 +100,18 @@
       <option name="presentableId" value="Default" />
       <updated>1678562237442</updated>
     </task>
+    <task id="LOCAL-00001" summary="Migrate project to Maven">
+      <created>1678565303843</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1678565303843</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Migrate project to Maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrate project to Maven" />
   </component>
 </project>

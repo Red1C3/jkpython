@@ -40,3 +40,5 @@ lexer/pythonlexer
 ### Misc.
 tokens.txt
 input.txt
+workspace
+target
