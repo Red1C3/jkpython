@@ -1,24 +1,24 @@
 %language "Java"
 %skeleton "./lalr1-patched.java"
 
-%define api.package {compiler.parser}
+%define api.package {io.codeberg.jkpython.compiler.parser}
 
 %define api.parser.class {Parser}
 %define api.parser.public
 
 
 %code imports {
-  import compiler.lexer.Lexer;
-  import compiler.lexer.Token;
-  import compiler.evaluator.source_tree.Program;
-  import compiler.evaluator.source_tree.SourceNode;
-  import compiler.evaluator.source_tree.statements.expressions.*;
-  import compiler.evaluator.source_tree.statements.*;
-  import compiler.evaluator.builtins.types.*;
+  import io.codeberg.jkpython.compiler.lexer.Lexer;
+  import io.codeberg.jkpython.compiler.lexer.Token;
+  import io.codeberg.jkpython.compiler.evaluator.source_tree.Program;
+  import io.codeberg.jkpython.compiler.evaluator.source_tree.SourceNode;
+  import io.codeberg.jkpython.compiler.evaluator.source_tree.statements.expressions.*;
+  import io.codeberg.jkpython.compiler.evaluator.source_tree.statements.*;
+  import io.codeberg.jkpython.compiler.evaluator.builtins.types.*;
   import java.util.List;
   import java.util.ArrayList;
   import kotlin.Pair;
-  import compiler.evaluator.builtins.constants.*;
+  import io.codeberg.jkpython.compiler.evaluator.builtins.constants.*;
 }
  // Add a "program" data member to Bison's Parser class
 %code {
@@ -26,14 +26,14 @@
 }
 
 //Bison's generated Parser class constructor parameter
-%lex-param {compiler.lexer.Lexer lexer}
+%lex-param {io.codeberg.jkpython.compiler.lexer.Lexer lexer}
 
 //Bison's generated Lexer class data members and methods (won't be directly used, This class is rather covered
 //in Bison's generated Parser class)
 %code lexer {
-  private compiler.lexer.Lexer lexer;
+  private io.codeberg.jkpython.compiler.lexer.Lexer lexer;
 
-  public YYLexer(compiler.lexer.Lexer lexer){
+  public YYLexer(io.codeberg.jkpython.compiler.lexer.Lexer lexer){
     this.lexer=lexer;
   }
 

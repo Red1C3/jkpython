@@ -1,433 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Parse ** // % operations" />
+    <list default="true" id="6f7c2e00-9826-4422-8fc0-5aa7b1692804" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jkpython.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/example-01.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/antlr4-runtime-4.8-1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/antlr4-runtime-4.8-1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commons-lang3-3.9-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commons-lang3-3.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commons-text-1.8-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commons-text-1.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jgrapht-core-1.5.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jgrapht-core-1.5.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jgrapht-io-1.5.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jgrapht-io-1.5.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jheaps-0.13-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jheaps-0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/opentest4j-1.2.0-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/opentest4j-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/pythonparser.y" beforeDir="false" afterPath="$PROJECT_DIR$/parser/pythonparser.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python-compileruwu.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/Calculator.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/constants/PyNone.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/constants/PyNotImplemented.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyAppend.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyLen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyPrint.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRange.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/functions/PyRepr.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyBool.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFloat.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyFunction.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyList.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/builtins/types/PyString.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/BuiltinsContext.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/Context.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/ExecutionSignal.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/PyCallable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/PyObject.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/Scope.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/SubScoped.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/core/VisitorSignal.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/Program.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/SourceNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/BreakStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ContinueStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ForStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/FunctionDeclaration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/IfStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/ReturnStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/Statement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/StatementsBlock.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/WhileStatement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/AssignmentExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Expression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/FunctionCall.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Identifier.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/IndexExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/InfixExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/ListExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/Literal.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/source_tree/statements/expressions/PrefixExpression.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/AST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/LabeledEdge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/evaluator/visualization/SymbolTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Lexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/Token.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/LexerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/lexer/test/Unit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/parser/Parser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visualize.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-        <option value="Kotlin Class" />
-        <option value="Kotlin Object" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
-  <component name="ProjectId" id="2HMM5mW1poIbDYditnUcSzvWkT1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2MshWt2cVilyv7kzJfs1GgZ3o2s" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/reddeadalice/Projects/python-compileruwu/src/compiler&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/home/reddeadalice/Projects/jkpython",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/compiler" />
-      <recent name="$PROJECT_DIR$/parser" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/compiler/parser" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="compiler.parser" />
-      <recent name="compiler" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager" selected="Application.Main - File">
-    <configuration name="Main - File" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="compiler.Main" />
-      <module name="python-compileruwu" />
+    <configuration name="Main - File" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="io.codeberg.jkpython.compiler.Main" />
+      <module name="jkpython" />
       <option name="PROGRAM_PARAMETERS" value="input.txt" />
-      <method v="2">
-        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Bison" />
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="compiler.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="compiler.Main" />
-      <module name="python-compileruwu" />
-      <method v="2">
-        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Graphviz" />
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LexerTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="python-compileruwu" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="compiler.lexer.test.*" />
+          <option name="PATTERN" value="io.codeberg.jkpython.compiler.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="compiler.lexer.test" />
-      <option name="MAIN_CLASS_NAME" value="compiler.lexer.test.LexerTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LexerTest.testTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="python-compileruwu" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.codeberg.jkpython.Main" />
+      <module name="jkpython" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="compiler.lexer.test.*" />
+          <option name="PATTERN" value="io.codeberg.jkpython.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="compiler.lexer.test" />
-      <option name="MAIN_CLASS_NAME" value="compiler.lexer.test.LexerTest" />
-      <option name="METHOD_NAME" value="testTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LexerTest.testa" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="python-compileruwu" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="compiler.lexer.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="compiler.lexer.test" />
-      <option name="MAIN_CLASS_NAME" value="compiler.lexer.test.LexerTest" />
-      <option name="METHOD_NAME" value="testa" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CalculatorKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="evaluator.calculator_05.CalculatorKt" />
-      <module name="python-compileruwu" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.Main - File" />
-      <item itemvalue="Application.compiler.Main" />
-      <item itemvalue="JUnit.LexerTest.test" />
-      <item itemvalue="JUnit.LexerTest.testa" />
-      <item itemvalue="JUnit.LexerTest.testTest" />
-      <item itemvalue="Kotlin.CalculatorKt" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.compiler.Main" />
-        <item itemvalue="Kotlin.CalculatorKt" />
-        <item itemvalue="JUnit.LexerTest.testTest" />
-        <item itemvalue="JUnit.LexerTest.testa" />
-        <item itemvalue="JUnit.LexerTest.test" />
+        <item itemvalue="Application.Main - File" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3f7f428c-3c34-41b4-a447-647eac4a575e" name="Changes" comment="Implement Unit class" />
-      <created>1668090324403</created>
+      <changelist id="6f7c2e00-9826-4422-8fc0-5aa7b1692804" name="Changes" comment="" />
+      <created>1678562237442</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1668090324403</updated>
+      <updated>1678562237442</updated>
     </task>
-    <task id="LOCAL-00001" summary="Add junit package and create a Java package">
-      <created>1668511076766</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1668511076766</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Implement running lexer functions">
-      <created>1668516979704</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1668516979704</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Implement Unit class">
-      <created>1668519492361</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1668519492361</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Improve Lexer testing, Create Token class">
-      <created>1668545808937</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1668545808937</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Improve Token printing">
-      <created>1668545897890</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1668545897890</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Switch token types to int">
-      <created>1669832948335</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1669832948335</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Assemble lexer-bridge">
-      <created>1669841593750</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1669841593750</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Big failure yay">
-      <created>1669888816972</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1669888816972</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add print all tokens method to Lexer">
-      <created>1669888850126</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1669888850126</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Fix tokens false convention">
-      <created>1669965225335</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1669965225335</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Print conditions evaluations">
-      <created>1670060029209</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1670060029209</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Improve assignement statement output">
-      <created>1670060360180</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1670060360180</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Set a default value for identifier for testing">
-      <created>1670060990187</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1670060990187</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Add some comments">
-      <created>1671798880087</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1671798880087</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Import calculator 5-6 from compiler-prototype">
-      <created>1671860255850</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1671860255850</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Fit addition into the evaluator, among statements,statement and program&#10;&#10;NOTE: Most grammar actions need to be adjusted too, so I commented most of them so the program compiles">
-      <created>1671886992428</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1671886992428</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Integrate function calls, including identifiers too (no assignment yet tho)">
-      <created>1671888219934</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1671888219934</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Integrate strings">
-      <created>1671904263269</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1671904263269</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Integrate expressions opertaions">
-      <created>1671904999380</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1671904999380</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Integrate assignment expression">
-      <created>1671906549811</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1671906549811</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Integrate function declarations">
-      <created>1671909347366</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1671909347366</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Integrate return statements">
-      <created>1671910001127</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1671910001127</updated>
-    </task>
-    <task id="LOCAL-00023" summary="VERY BIG CHANGES">
-      <created>1672945443431</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1672945443431</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Parse and execute while statements">
-      <created>1672946797847</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1672946797847</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Implement list indexing (no setter tho for indexed values)">
-      <created>1672950048998</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1672950048998</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Implement setting a value to a list element">
-      <created>1672996926377</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1672996926377</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Patch functions scoping">
-      <created>1673001161017</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1673001161017</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Implement PyList append function">
-      <created>1673001941504</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1673001941504</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Very big changes">
-      <created>1673106848066</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1673106848066</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Remove InfixExpression toString function">
-      <created>1673131773311</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1673131773311</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Parse ** // % operations">
-      <created>1673179188325</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1673179188325</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
     <servers />
-  </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.y" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Assemble lexer-bridge" />
-    <MESSAGE value="Big failure yay" />
-    <MESSAGE value="Add print all tokens method to Lexer" />
-    <MESSAGE value="Fix tokens false convention" />
-    <MESSAGE value="Print conditions evaluations" />
-    <MESSAGE value="Improve assignement statement output" />
-    <MESSAGE value="Set a default value for identifier for testing" />
-    <MESSAGE value="Add some comments" />
-    <MESSAGE value="Import calculator 5-6 from compiler-prototype" />
-    <MESSAGE value="Fit addition into the evaluator, among statements,statement and program&#10;&#10;NOTE: Most grammar actions need to be adjusted too, so I commented most of them so the program compiles" />
-    <MESSAGE value="Integrate function calls, including identifiers too (no assignment yet tho)" />
-    <MESSAGE value="Integrate strings" />
-    <MESSAGE value="Integrate expressions opertaions" />
-    <MESSAGE value="Integrate assignment expression" />
-    <MESSAGE value="Integrate function declarations" />
-    <MESSAGE value="Integrate return statements" />
-    <MESSAGE value="VERY BIG CHANGES" />
-    <MESSAGE value="Parse and execute while statements" />
-    <MESSAGE value="Implement list indexing (no setter tho for indexed values)" />
-    <MESSAGE value="Implement setting a value to a list element" />
-    <MESSAGE value="Patch functions scoping" />
-    <MESSAGE value="Implement PyList append function" />
-    <MESSAGE value="Very big changes" />
-    <MESSAGE value="Remove InfixExpression toString function" />
-    <MESSAGE value="Parse ** // % operations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Parse ** // % operations" />
   </component>
 </project>
